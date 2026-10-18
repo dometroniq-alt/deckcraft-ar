@@ -621,14 +621,21 @@ fn shape_blocks(p: &Presentation, ctx: &resolve::Ctx, shapes: &[Shape], out: &mu
         match &sh.kind {
             ShapeKind::Group { children, .. } => shape_blocks(p, ctx, children, out, depth + 1),
             ShapeKind::Table(t) => {
-                let rows: Vec<Vec<CCell>> = t.rows.iter().map(|r| r.cells.iter().map(|c| ccell(ctx, sh, c)).collect()).collect();
+                let mut rows: Vec<Vec<CCell>> = t.rows.iter().map(|r| r.cells.iter().map(|c| ccell(ctx, sh, c)).collect()).collect();
                 let rtl = rows.first().and_then(|r| r.first()).and_then(|c| c.text.para.bidi);
                 let total: f64 = t.cols.iter().filter(|w| w.is_finite()).sum();
-                let widths = if total > 0.0 {
+                let mut widths: Vec<f64> = if total > 0.0 {
                     t.cols.iter().map(|w| if w.is_finite() { (w / total * 1000.0).round() / 1000.0 } else { 0.0 }).collect()
                 } else {
                     vec![]
                 };
+                // A right-to-left table shows its first column at the right: back to logical order.
+                if rtl == Some(true) {
+                    widths.reverse();
+                    for r in &mut rows {
+                        r.reverse();
+                    }
+                }
                 out.push(Block::Table { rtl, header: t.first_row, widths, rows });
             }
             ShapeKind::Picture { fill } => {
@@ -926,12 +933,17 @@ impl Builder<'_> {
             vec![(area.w / ncols as f64).max(1.0); ncols]
         };
         let row_h = (area.h / nrows as f64).clamp(1.0, 4032.0);
+        // The model lays columns out left to right; a right-to-left table's first column stands
+        // at the right, so its columns (and widths) go in reversed, and come back reversed in
+        // `shape_blocks`.
+        let cols = if rtl { cols.into_iter().rev().collect() } else { cols };
         let mut table = Table { cols, rows: vec![], first_row: header, ..Default::default() };
         for row in rows {
             let mut cells: Vec<TCell> = vec![];
             for c in 0..ncols {
                 let mut cell = TCell::new("");
-                if let Some(cc) = row.get(c) {
+                let logical = if rtl { ncols - 1 - c } else { c };
+                if let Some(cc) = row.get(logical) {
                     let mut t = cc.text.clone();
                     if t.para.bidi.is_none() {
                         t.para.bidi = Some(rtl);
@@ -1319,6 +1331,14 @@ mod tests {
         let rows: usize = doc.blocks.iter().filter_map(|b| if let Block::Table { rows, .. } = b { Some(rows.len()) } else { None }).sum();
         assert_eq!(rows, 12);
         assert!(doc.blocks.iter().any(|b| matches!(b, Block::Table { header: true, rtl: Some(true), .. })));
+        // The right-to-left table's first column stands at the right on the slide and comes
+        // back first: column order survives the round trip.
+        let first_row = doc.blocks.iter().find_map(|b| if let Block::Table { rows, .. } = b { rows.first() } else { None }).unwrap();
+        assert_eq!(first_row.iter().map(|c| c.text.text()).collect::<Vec<_>>(), ["خلية 0", "قيمة 0"]);
+        let slide_table =
+            p.slides.iter().find_map(|s| s.shapes.iter().find_map(|sh| if let ShapeKind::Table(t) = &sh.kind { Some(t) } else { None })).unwrap();
+        let shown: Vec<String> = slide_table.rows[0].cells.iter().map(|c| c.text.text()).collect();
+        assert_eq!(shown, ["قيمة 0", "خلية 0"], "the first logical column is drawn last (at the right)");
         // And it reads again.
         assert!(read(&out).unwrap().slides.len() >= 4);
     }

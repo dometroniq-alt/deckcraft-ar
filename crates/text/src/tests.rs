@@ -469,9 +469,12 @@ fn rtl_mixed_string_is_reordered_per_line() {
 
 #[test]
 fn an_english_run_keeps_digits_and_brackets_left_to_right() {
-    // The same text in a run without a right-to-left language: PowerPoint keeps "2024 (Retrait) "
-    // one left-to-right stretch, its number on the left.
-    let (p, sh) = bidi_setup(vec![Run::new(MIXED)], 2000.0, true, Align::Right);
+    // The same text in a run of a left-to-right language: PowerPoint keeps "2024 (Retrait) "
+    // one left-to-right stretch, its number on the left. (DeckCraft AR: a run with no language
+    // at all follows its paragraph's direction instead, see `punctuation_between_arabic_words_keeps_its_place`.)
+    let mut run = Run::new(MIXED);
+    run.props.lang = Some("en-US".into());
+    let (p, sh) = bidi_setup(vec![run], 2000.0, true, Align::Right);
     let l = lay(&p, &sh, 2000.0, 300.0);
     let line = &l.lines[0];
     let mid = |k: usize| (line.edges[k].0 + line.edges[k].1) / 2.0;
@@ -1510,4 +1513,30 @@ fn empty_plain_paragraphs_and_soft_breaks_have_no_bullet_preview() {
     let l = lay(&p, &sh, 600.0, 300.0);
     assert_eq!(l.lines.len(), 2);
     assert!(l.empty_bullets.is_empty(), "a soft line break is not a new list item");
+}
+
+/// DeckCraft AR: a colon, a comma or a bracket between two Arabic words keeps its place on the
+/// line — right after the word it follows, the space after it — even when the mark comes from a
+/// fallback face (the Arabic face lacks it): "ثانياً: الجدول" shows the colon against "ثانياً".
+#[test]
+fn punctuation_between_arabic_words_keeps_its_place() {
+    if arabic_face().is_none() {
+        eprintln!("skipped: no Arabic face available");
+        return;
+    }
+    for text in ["ثانياً: الجدول", "أولاً، الثاني", "قبل. بعد"] {
+        let chars: Vec<char> = text.chars().collect();
+        let (p, sh) = bidi_setup(vec![Run::new(text)], 600.0, true, Align::Right);
+        let l = lay(&p, &sh, 600.0, 200.0);
+        let line = &l.lines[0];
+        // The mark's and the space's visual boxes.
+        let mark = chars.iter().position(|c| matches!(c, ':' | '،' | '.')).unwrap();
+        let space = chars.iter().position(|c| *c == ' ').unwrap();
+        let mark_x = line.edges[mark];
+        let space_x = line.edges[space];
+        let first_word_x = line.edges[0];
+        // Right to left: first word at the right, then the mark, then the space, then the rest.
+        assert!(mark_x.0 < first_word_x.0, "{text}: the mark sits left of the first word: {mark_x:?} vs {first_word_x:?}");
+        assert!(space_x.0 < mark_x.0, "{text}: the space sits left of the mark: {space_x:?} vs {mark_x:?}");
+    }
 }

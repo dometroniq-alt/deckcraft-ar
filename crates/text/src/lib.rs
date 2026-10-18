@@ -830,7 +830,12 @@ fn shape_cells(
     let mut byte_of: Vec<usize> = text.char_indices().map(|(b, _)| b).collect();
     byte_of.push(text.len());
     let char_at_byte: HashMap<usize, usize> = byte_of.iter().enumerate().map(|(i, b)| (*b, i)).collect();
-    let style_rtl: Vec<bool> = styles.iter().map(|st| st.lang.as_deref().is_some_and(bidi::is_rtl_lang)).collect();
+    // DeckCraft AR: a run without a language tag (text typed here, or received from WordCraft /
+    // GridCraft) in a right-to-left paragraph is treated as right-to-left text, so its colon,
+    // comma or bracket stays against the Arabic word it follows instead of forming a
+    // left-to-right island with the space after it; PowerPoint files tag their runs and are
+    // read as before.
+    let style_rtl: Vec<bool> = styles.iter().map(|st| st.lang.as_deref().map_or(rtl, bidi::is_rtl_lang)).collect();
     let rtl_lang: Vec<bool> = char_style.iter().map(|&si| style_rtl.get(si).copied().unwrap_or(false)).collect();
     let levels = bidi::levels_lang(text, &chars, rtl, &rtl_lang);
     let scripts = script::resolve(&chars);
