@@ -232,11 +232,86 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
         ui.painter().rect_filled(card.translate(vec2(0.0, 1.0)), CornerRadius::same(10), t.card_border);
         ui.painter().rect_filled(card, CornerRadius::same(10), t.card);
         let inner = Rect::from_min_size(pos2(card.min.x + 10.0, card.min.y + 5.0), vec2(card.width() - 20.0, RIBBON_H));
-        // DeckCraft AR: the groups run from the right edge in a right-to-left interface.
-        let mut cui = ui.new_child(egui::UiBuilder::new().max_rect(inner).layout(crate::rtl::row(egui::Align::Min)));
+        // DeckCraft AR: the groups run from the right edge in a right-to-left interface, and a
+        // tab wider than the window (a narrow laptop) scrolls instead of losing its last groups:
+        // the groups are laid out in a hidden horizontal scroll area, edge chevrons show where
+        // more is and scroll it on click; the wheel scrolls it too.
+        let mut cui = ui.new_child(egui::UiBuilder::new().max_rect(inner).layout(egui::Layout::left_to_right(egui::Align::Min)));
         cui.set_clip_rect(inner.expand2(vec2(0.0, 3.0)));
-        cui.spacing_mut().item_spacing.x = 1.0;
-        let ui = &mut cui;
+        let rtl = crate::rtl::on();
+        let strip_w_id = cui.id().with(("ribbon_strip_width", app.ui.tab.as_str()));
+        let from_end_id = cui.id().with("ribbon_strip_from_end");
+        let scroll =
+            egui::ScrollArea::horizontal().scroll_bar_visibility(egui::scroll_area::ScrollBarVisibility::AlwaysHidden).show(&mut cui, |ui| {
+                let mut size = vec2(ui.available_width(), RIBBON_H);
+                if rtl {
+                    size.x = size.x.max(ui.data(|d| d.get_temp::<f32>(strip_w_id)).unwrap_or(0.0));
+                }
+                let strip = ui.allocate_ui_with_layout(size, crate::rtl::row(egui::Align::Min), |ui| {
+                    ui.spacing_mut().item_spacing.x = 1.0;
+                    ribbon_tab(app, ui);
+                });
+                if rtl {
+                    ui.data_mut(|d| d.insert_temp(strip_w_id, strip.response.rect.width()));
+                }
+            });
+        let r = scroll.inner_rect;
+        let overflow = scroll.content_size.x - r.width();
+        let mut offset = scroll.state.offset.x;
+        let mut next = None;
+        if rtl {
+            // The strip starts scrolled to its right end; when its overflow changes (another tab,
+            // a resize), the distance from the right end is what stays.
+            let last: Option<(f32, f32)> = cui.data(|d| d.get_temp(from_end_id));
+            let from_end = match last {
+                Some((last_overflow, last_offset)) if (last_overflow - overflow).abs() > 0.5 => Some(last_overflow - last_offset),
+                Some(_) => None,
+                None => Some(0.0),
+            };
+            if let Some(from_end) = from_end {
+                offset = (overflow - from_end).clamp(0.0, overflow.max(0.0));
+                next = Some(offset);
+            }
+        }
+        if offset > 1.0 {
+            let left = Rect::from_min_max(r.left_top(), pos2(r.left() + 18.0, r.bottom()));
+            if edge_cue(&mut cui, left, "‹", &tl!("Scroll ribbon left"), &t) {
+                next = Some(offset - 160.0);
+            }
+        }
+        if overflow - offset > 1.0 {
+            let right = Rect::from_min_max(pos2(r.right() - 18.0, r.top()), r.right_bottom());
+            if edge_cue(&mut cui, right, "›", &tl!("Scroll ribbon right"), &t) {
+                next = Some(offset + 160.0);
+            }
+        }
+        if let Some(x) = next {
+            let mut state = scroll.state;
+            state.offset.x = x.clamp(0.0, overflow.max(0.0));
+            state.store(cui.ctx(), scroll.id);
+            if rtl {
+                offset = state.offset.x;
+                cui.ctx().request_repaint();
+            }
+        }
+        if rtl {
+            cui.data_mut(|d| d.insert_temp(from_end_id, (overflow, offset)));
+        }
+    });
+}
+
+/// A chevron at an edge of the ribbon: more groups lie that way; a click scrolls to them.
+fn edge_cue(ui: &mut Ui, rect: Rect, glyph: &str, hint: &str, t: &Tokens) -> bool {
+    let resp = ui.interact(rect, ui.id().with(glyph), Sense::click()).on_hover_text(hint);
+    let ink = if resp.hovered() { t.text } else { t.text_dim };
+    ui.painter().rect_filled(rect, 0.0, t.card);
+    ui.painter().text(rect.center(), Align2::CENTER_CENTER, glyph, egui::FontId::proportional(18.0), ink);
+    resp.clicked()
+}
+
+/// The groups of the active tab.
+fn ribbon_tab(app: &mut SlideApp, ui: &mut Ui) {
+    {
         let tab = app.ui.tab.clone();
         match tab.as_str() {
             "Home" => home(app, ui),
@@ -261,7 +336,7 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
             "Notes Master" => notes_master(app, ui),
             _ => {}
         }
-    });
+    }
 }
 
 fn big(app: &mut SlideApp, ui: &mut Ui, icon: Icon, label: &str, id: &str, p: Value) {

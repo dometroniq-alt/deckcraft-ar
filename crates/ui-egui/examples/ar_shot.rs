@@ -24,7 +24,7 @@ fn main() {
 
 fn app(out: &str, lang: &str, tab: &str) {
     let mut frame = 0u32;
-    let size = vec2(1600.0, 700.0);
+    let size = vec2(std::env::var("SHOT_W").ok().and_then(|v| v.parse().ok()).unwrap_or(1600.0), 700.0);
     let (lang, tab) = (lang.to_string(), tab.to_string());
     let mut harness = egui_kittest::Harness::builder().with_size(size).with_pixels_per_point(1.5).wgpu().build_ui_state(
         move |ui, app: &mut SlideApp| {

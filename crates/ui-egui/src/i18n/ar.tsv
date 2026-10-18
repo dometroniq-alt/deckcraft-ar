@@ -1112,3 +1112,5 @@
 	Removes the selected layout from the master; slides that used it move to the nearest remaining layout, so nothing is lost. Example: delete the unused «two pictures» layout to keep the Layout menu short.	يحذف التخطيط المحدد من الشريحة الرئيسية؛ الشرائح التي كانت تستخدمه تنتقل إلى أقرب تخطيط متبقٍ فلا يضيع شيء. مثال: احذف تخطيط «صورتان» غير المستخدم لتبقى قائمة التخطيط قصيرة.
 	Sets how large the slide is drawn in the window, from a far overview to a close-up for fine work; the slide itself keeps its size. Example: choose 200% to align two small boxes exactly, then Fit to Window.	يحدد حجم رسم الشريحة في النافذة، من نظرة عامة بعيدة إلى تقريب للعمل الدقيق؛ الشريحة نفسها تحتفظ بحجمها. مثال: اختر 200% لمحاذاة مربعين صغيرين بدقة، ثم «ملاءمة النافذة».
 	Draw	رسم
+	Scroll ribbon left	تمرير الشريط إلى اليسار
+	Scroll ribbon right	تمرير الشريط إلى اليمين
