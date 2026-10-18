@@ -97,6 +97,7 @@ icons! {
     AlignCenter => "align-center",
     AlignRight => "align-right",
     Justify => "justify",
+    Kashida => "kashida",
     TextDirection => "text-direction",
     AlignText => "align-text",
     ConvertSmartArt => "convert-smart-art",
@@ -1290,6 +1291,20 @@ fn draw(p: &Pen<'_>, icon: Icon) {
             for ((a, b), y) in rows.into_iter().zip([4.5, 9.5, 14.5, 19.5]) {
                 p.seg((a, y), (b, y), K);
             }
+        }
+        I::Kashida => {
+            // Two justified text lines; the upper one's word is pulled apart at a letter joint by
+            // a stretched (tatweel-like) accent stroke, the lower one is plain.
+            p.seg((3.0, 7.0), (7.5, 7.0), K);
+            p.seg_w((7.5, 7.0), (16.5, 7.0), B, 1.5);
+            p.seg((16.5, 7.0), (21.0, 7.0), K);
+            // The joint's own letters: a small bump on either end of the stretch.
+            p.line_w(&[(7.5, 7.0), (7.5, 4.5), (9.5, 4.5)], K, 1.0);
+            p.line_w(&[(14.5, 4.5), (16.5, 4.5), (16.5, 7.0)], K, 1.0);
+            for y in [12.5, 17.0] {
+                p.seg((3.0, y), (21.0, y), K);
+            }
+            p.seg((11.0, 21.5), (21.0, 21.5), K);
         }
         I::TextDirection => {
             // A capital A lying on its side.

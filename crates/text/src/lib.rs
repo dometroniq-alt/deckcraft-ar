@@ -11,7 +11,7 @@
 //! 4. per line, rules L1/L2 reorder the characters visually (L4 mirroring is done by the shaper).
 //!
 //! It then places bullets and numbers from the paragraph's start edge (the right edge for RTL
-//! paragraphs), applies indents, spacing and alignment (kashida for `justLow`), anchors the block
+//! paragraphs), applies indents, spacing and alignment (kashida for `justLow`/`justMedium`/`justHigh`), anchors the block
 //! in the shape's text box, and shrinks text on overflow when the body asks for it. The result is
 //! positioned glyph runs in shape-local coordinates plus per-line caret geometry for editing:
 //! bidirectional carets with affinity, logical and visual movement, and selection as the union of
@@ -1757,14 +1757,23 @@ fn layout_scaled(ctx: &Ctx, shape: &Shape, body: &TextBody, bp: &BodyProps, opts
             let align = props.align.unwrap_or(Align::Left);
             let last_line = li + 1 == raw.len();
             let slack = (avail - width).max(0.0);
-            // Justification: kashida (justLow, Arabic), spaces, or every character.
+            // Justification: kashida (justLow/Medium/High, Arabic) shared between the joints and
+            // the spaces, spaces alone, or every character.
             let stretch = !last_line && wrap && slack > 0.0;
             let mut kashida = vec![0.0; n];
             let mut filled = false;
-            if stretch && align == Align::JustLow {
+            if stretch && let Some(share) = align.kashida_share() {
                 let ops = kashida_opportunities(p, rl.start, rl.end);
+                let spaces = line_cells.iter().filter(|c| c.ch == ' ').count();
+                // The joints take `share` of the slack and the spaces the rest; whichever is
+                // missing leaves everything to the other.
+                let joint_slack = match (ops.is_empty(), spaces) {
+                    (true, _) => 0.0,
+                    (false, 0) => slack,
+                    (false, _) => slack * share,
+                };
                 if !ops.is_empty() {
-                    let each = slack / ops.len() as f64;
+                    let each = joint_slack / ops.len() as f64;
                     for k in ops {
                         if let (Some(e), Some(a)) = (kashida.get_mut(k), adv.get_mut(k)) {
                             *e = each;
@@ -1773,8 +1782,17 @@ fn layout_scaled(ctx: &Ctx, shape: &Shape, body: &TextBody, bp: &BodyProps, opts
                     }
                     filled = true;
                 }
+                if spaces > 0 {
+                    let each = (slack - joint_slack) / spaces as f64;
+                    for (a, c) in adv.iter_mut().zip(line_cells) {
+                        if c.ch == ' ' {
+                            *a += each;
+                        }
+                    }
+                    filled = true;
+                }
             }
-            if stretch && !filled && matches!(align, Align::Justify | Align::JustLow) {
+            if stretch && !filled && align == Align::Justify {
                 let spaces = line_cells.iter().filter(|c| c.ch == ' ').count();
                 if spaces > 0 {
                     for (a, c) in adv.iter_mut().zip(line_cells) {
@@ -1804,8 +1822,8 @@ fn layout_scaled(ctx: &Ctx, shape: &Shape, body: &TextBody, bp: &BodyProps, opts
                     Align::Center => box_l + (box_r - box_l - line_w) / 2.0,
                     Align::Distributed if n <= 1 => box_l + slack / 2.0,
                     // Justified lines that aren't stretched (the last one) sit at the start edge.
-                    Align::Justify | Align::JustLow | Align::Distributed if p.rtl => box_r - line_w,
-                    Align::Justify | Align::JustLow | Align::Distributed => box_l,
+                    Align::Justify | Align::JustLow | Align::JustMedium | Align::JustHigh | Align::Distributed if p.rtl => box_r - line_w,
+                    Align::Justify | Align::JustLow | Align::JustMedium | Align::JustHigh | Align::Distributed => box_l,
                 }
             };
             // Distance from the box's start edge to the text (bullets move with centred or

@@ -165,6 +165,13 @@ pub fn install_fonts_with(ctx: &egui::Context, extra: &[std::sync::Arc<deckcraft
     ctx.set_fonts(font_definitions(extra));
 }
 
+/// Font-data keys of the bundled Arabic interface faces (DeckCraft AR).
+pub const AR_REGULAR: &str = "deckcraft-ar-arabic";
+pub const AR_BOLD: &str = "deckcraft-ar-arabic-semibold";
+/// Font families with the Arabic faces first in every interface language (`egui::FontFamily::Name`).
+pub const AR_FAMILY: &str = "arabic-first";
+pub const AR_FAMILY_BOLD: &str = "arabic-first-bold";
+
 /// The interface font definitions; see [`install_fonts_with`].
 pub fn font_definitions(extra: &[std::sync::Arc<deckcraft_fonts::FontFace>]) -> FontDefinitions {
     let mut defs = FontDefinitions::default();
@@ -181,15 +188,49 @@ pub fn font_definitions(extra: &[std::sync::Arc<deckcraft_fonts::FontFace>]) -> 
         names.push((f.family, f.style, name));
     }
     let regular: Vec<String> = names.iter().filter(|(fam, st, _)| !(*fam == "Inter" && *st != "Regular")).map(|(_, _, n)| n.clone()).collect();
+    // DeckCraft AR: the bundled Arabic interface faces (Noto Sans Arabic with the ASCII digits
+    // removed and Inter's vertical metrics; see ATTRIBUTION.md). epaint shapes one run per font
+    // face and lays the runs out left to right, so an Arabic label must land in one face, with
+    // its spaces: with an Arabic interface these faces come first — they have no Latin letters
+    // or digits, so those still come from Inter in reading order (the catalog stores mixed
+    // strings in visual run order, `i18n::rtl_display`). Other interfaces keep Inter first and
+    // use the Arabic faces only for Arabic letters.
+    defs.font_data
+        .insert(AR_REGULAR.into(), std::sync::Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/NotoSansArabic-Regular.ttf"))));
+    defs.font_data
+        .insert(AR_BOLD.into(), std::sync::Arc::new(FontData::from_static(include_bytes!("../../../assets/fonts/NotoSansArabic-SemiBold.ttf"))));
+    let arabic_ui = crate::i18n::current().is_arabic();
+    let order = |latin: Vec<String>, arabic: &str| -> Vec<String> {
+        let mut v = Vec::new();
+        if arabic_ui {
+            v.push(arabic.to_string());
+            v.extend(latin);
+        } else {
+            v.extend(latin);
+            v.push(arabic.to_string());
+        }
+        v
+    };
     if let Some(list) = defs.families.get_mut(&FontFamily::Proportional) {
-        for (k, n) in regular.iter().enumerate() {
-            list.insert(k, n.clone());
+        for (k, n) in order(regular, AR_REGULAR).into_iter().enumerate() {
+            list.insert(k, n);
         }
     }
     // A bold family for headings and selected tabs.
-    let mut bold: Vec<String> = names.iter().filter(|(fam, st, _)| *fam == "Inter" && *st == "SemiBold").map(|(_, _, n)| n.clone()).collect();
+    let semibold: Vec<String> = names.iter().filter(|(fam, st, _)| *fam == "Inter" && *st == "SemiBold").map(|(_, _, n)| n.clone()).collect();
+    let mut bold = order(semibold.clone(), AR_BOLD);
     bold.extend(defs.families.get(&FontFamily::Proportional).cloned().unwrap_or_default());
     defs.families.insert(FontFamily::Name("bold".into()), bold);
+    // Arabic-first families whatever the interface language, for text that is Arabic by
+    // design (the UI kit's thumbnails, which show Arabic sample words in every interface).
+    let prop = defs.families.get(&FontFamily::Proportional).cloned().unwrap_or_default();
+    let mut ar_first: Vec<String> = vec![AR_REGULAR.into()];
+    ar_first.extend(prop.iter().filter(|n| *n != AR_REGULAR).cloned());
+    defs.families.insert(FontFamily::Name(AR_FAMILY.into()), ar_first);
+    let mut ar_first_bold: Vec<String> = vec![AR_BOLD.into()];
+    ar_first_bold.extend(semibold);
+    ar_first_bold.extend(prop.iter().filter(|n| *n != AR_REGULAR && *n != AR_BOLD).cloned());
+    defs.families.insert(FontFamily::Name(AR_FAMILY_BOLD.into()), ar_first_bold);
     add_fallback_faces(&mut defs, extra);
     // The Japanese interface face (the first one when Inter isn't embedded) hints its en and em
     // dashes, bars thinner than a pixel, down to nothing, so they drew as gaps in interface text;

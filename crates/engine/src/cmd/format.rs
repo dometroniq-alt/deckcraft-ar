@@ -114,9 +114,18 @@ pub fn specs() -> Vec<CommandSpec> {
             "Align",
             ["Home", "Paragraph"],
             None,
-            "{align: left|center|right|justify|justifyLow|distributed}",
+            "{align: left|center|right|justify|justifyLow|justMedium|justHigh|distributed}",
             has_text_or_shapes,
             align
+        ),
+        cmd!(
+            "format.kashida",
+            "Kashida",
+            ["Home", "Paragraph"],
+            None,
+            "{level: off|low|medium|high} — kashida (tatweel) justification for Arabic: how much of each line's slack the letter joints take; off = plain Justify",
+            has_text_or_shapes,
+            kashida
         ),
         cmd!(
             "format.rtl",
@@ -175,7 +184,7 @@ pub fn specs() -> Vec<CommandSpec> {
             "Paragraph…",
             ["Home", "Paragraph"],
             None,
-            "{align?: left|center|right|justify|justLow|distributed, indentLeft?: pt, indentRight?: pt, special?: none|first|hanging, specialBy?: pt, indentFirst?: pt, spaceBefore?: pt, spaceAfter?: pt, spaceBeforeKind?: pts|pct, spaceAfterKind?: pts|pct, lineSpacing?: lines, lineSpacingPt?: pt} — with none of these, opens the Paragraph dialog",
+            "{align?: left|center|right|justify|justLow|justMedium|justHigh|distributed, indentLeft?: pt, indentRight?: pt, special?: none|first|hanging, specialBy?: pt, indentFirst?: pt, spaceBefore?: pt, spaceAfter?: pt, spaceBeforeKind?: pts|pct, spaceAfterKind?: pts|pct, lineSpacing?: lines, lineSpacingPt?: pt} — with none of these, opens the Paragraph dialog",
             has_text_or_shapes,
             paragraph_dialog
         ),
@@ -753,11 +762,42 @@ fn align(s: &mut Session, p: &Value) -> Result<Value> {
         "center" | "centre" | "ctr" => Align::Center,
         "right" | "r" => Align::Right,
         "justify" | "just" => Align::Justify,
-        "justifyLow" | "justLow" => Align::JustLow,
+        "justifyLow" | "justLow" | "justifyMedium" | "justMedium" | "justifyHigh" | "justHigh" => kashida_align(str_param(p, "align").unwrap_or("")),
         "distributed" | "dist" => Align::Distributed,
         _ => Align::Left,
     };
     align_to(s, a)
+}
+
+/// The kashida alignment a `justifyLow`/`justMedium`/`justHigh` style name means.
+fn kashida_align(name: &str) -> Align {
+    match name {
+        "justifyMedium" | "justMedium" => Align::JustMedium,
+        "justifyHigh" | "justHigh" => Align::JustHigh,
+        _ => Align::JustLow,
+    }
+}
+
+/// `format.kashida`: set the kashida justification level (`off` = plain Justify).
+fn kashida(s: &mut Session, p: &Value) -> Result<Value> {
+    let a = match str_param(p, "level") {
+        Some("off") | None => Align::Justify,
+        Some("low") => Align::JustLow,
+        Some("medium") => Align::JustMedium,
+        Some("high") => Align::JustHigh,
+        Some(_) => return Err(bad("format.kashida", "`level` must be off, low, medium or high")),
+    };
+    align_to(s, a)
+}
+
+/// The kashida level name (`off|low|medium|high`) of an alignment, for the format state.
+fn kashida_level(a: Option<Align>) -> &'static str {
+    match a {
+        Some(Align::JustLow) => "low",
+        Some(Align::JustMedium) => "medium",
+        Some(Align::JustHigh) => "high",
+        _ => "off",
+    }
 }
 
 /// Paragraph reading direction. Switching it mirrors left and right alignment, so text that sat
@@ -855,6 +895,7 @@ fn paragraph(s: &mut Session, p: &Value) -> Result<Value> {
         "center" => Align::Center,
         "right" => Align::Right,
         "justify" => Align::Justify,
+        "justLow" | "justMedium" | "justHigh" => kashida_align(a),
         "distributed" => Align::Distributed,
         _ => Align::Left,
     });
@@ -917,8 +958,10 @@ fn parse_align(cmd: &str, s: &str) -> Result<Align> {
         "right" | "r" => Align::Right,
         "justify" | "just" => Align::Justify,
         "justLow" => Align::JustLow,
+        "justMedium" => Align::JustMedium,
+        "justHigh" => Align::JustHigh,
         "distributed" | "dist" => Align::Distributed,
-        _ => return Err(bad(cmd, "`align` must be left, center, right, justify, justLow or distributed")),
+        _ => return Err(bad(cmd, "`align` must be left, center, right, justify, justLow, justMedium, justHigh or distributed")),
     })
 }
 
@@ -929,6 +972,8 @@ fn align_name(a: Align) -> &'static str {
         Align::Right => "right",
         Align::Justify => "justify",
         Align::JustLow => "justLow",
+        Align::JustMedium => "justMedium",
+        Align::JustHigh => "justHigh",
         Align::Distributed => "distributed",
     }
 }
@@ -1196,6 +1241,7 @@ fn state(s: &mut Session, _p: &Value) -> Result<Value> {
         "superscript": r.baseline.unwrap_or(0.0) > 0.0,
         "subscript": r.baseline.unwrap_or(0.0) < 0.0,
         "align": pp.align.map(|a| a.xml()),
+        "kashida": kashida_level(pp.align),
         "bullets": matches!(pp.bullet, Some(Bullet::Char { .. })),
         "numbering": matches!(pp.bullet, Some(Bullet::AutoNum { .. })),
         "lang": r.lang,
@@ -1467,6 +1513,73 @@ mod tests {
 
     fn para(s: &Session) -> ParaProps {
         s.doc().unwrap().selected_shapes().first().and_then(|sh| sh.text.as_ref()).and_then(|t| t.paragraphs.first()).unwrap().props.clone()
+    }
+
+    /// A selected shape with an Arabic, right-to-left paragraph.
+    fn arabic_shape() -> Session {
+        let mut s = Session::with_new();
+        s.execute("shape.insert", &json!({"preset": "rect", "rect": [40.0, 40.0, 240.0, 80.0], "text": "بسم الله الرحمن الرحيم نستعين به"})).unwrap();
+        s.execute("format.rtl", &json!({"on": true})).unwrap();
+        s
+    }
+
+    /// The alignment of the Arabic paragraph `arabic_shape` inserted, in a saved-and-read deck.
+    fn arabic_align(p: &deckcraft_model::Presentation) -> Option<Align> {
+        p.slides
+            .first()?
+            .shapes
+            .iter()
+            .filter_map(|sh| sh.text.as_ref())
+            .flat_map(|t| &t.paragraphs)
+            .find(|para| para.runs.iter().any(|r| r.text.contains("بسم")))?
+            .props
+            .align
+    }
+
+    #[test]
+    fn kashida_levels_set_the_alignment_and_read_back() {
+        let mut s = arabic_shape();
+        for (level, align) in [("low", Align::JustLow), ("medium", Align::JustMedium), ("high", Align::JustHigh), ("off", Align::Justify)] {
+            s.execute("format.kashida", &json!({"level": level})).unwrap();
+            assert_eq!(para(&s).align, Some(align), "{level}");
+            let st = s.execute("format.state", &json!({})).unwrap();
+            assert_eq!(st["kashida"], level);
+            assert_eq!(st["align"], align.xml());
+            s.execute("format.paragraphDialog", &json!({})).unwrap();
+            let Some(UiRequest::Dialog { params, .. }) = s.ui_requests.last() else { panic!("dialog request") };
+            assert_eq!(params["align"], align_name(align));
+        }
+        assert!(s.execute("format.kashida", &json!({"level": "huge"})).unwrap_err().to_string().contains("level"));
+        assert_eq!(para(&s).align, Some(Align::Justify));
+        // The alignment command takes the level names too, old and new.
+        for (name, align) in [
+            ("justifyLow", Align::JustLow),
+            ("justLow", Align::JustLow),
+            ("justMedium", Align::JustMedium),
+            ("justifyHigh", Align::JustHigh),
+            ("justHigh", Align::JustHigh),
+        ] {
+            s.execute("format.align", &json!({"align": name})).unwrap();
+            assert_eq!(para(&s).align, Some(align), "{name}");
+        }
+        s.execute("format.paragraphDialog", &json!({"align": "justMedium"})).unwrap();
+        assert_eq!(para(&s).align, Some(Align::JustMedium));
+        // Native save keeps the exact level.
+        let doc = s.doc().unwrap().doc.clone();
+        let json = serde_json::to_value(&doc).unwrap();
+        assert!(json.to_string().contains("\"justMedium\""), "serde keeps the level");
+        let back: deckcraft_model::Presentation = serde_json::from_value(json).unwrap();
+        assert_eq!(arabic_align(&back), Some(Align::JustMedium));
+    }
+
+    #[test]
+    fn kashida_high_saves_to_pptx_as_just_low() {
+        let mut s = arabic_shape();
+        s.execute("format.kashida", &json!({"level": "high"})).unwrap();
+        assert_eq!(para(&s).align, Some(Align::JustHigh));
+        let bytes = deckcraft_pptx::export(&s.doc().unwrap().doc).unwrap();
+        let back = deckcraft_pptx::import(&bytes).unwrap();
+        assert_eq!(arabic_align(&back), Some(Align::JustLow), "PowerPoint knows only justLow");
     }
 
     #[test]

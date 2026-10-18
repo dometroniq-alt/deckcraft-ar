@@ -18,6 +18,15 @@ pub fn specs() -> Vec<CommandSpec> {
             new
         ),
         cmd!(query "file.templates", "Starter Templates", [], None, "{} → [{name, summary, theme, slides}]", always, templates),
+        cmd!(
+            noundo "file.arabicDefaults",
+            "Arabic Presentation Defaults",
+            [],
+            None,
+            "{on?: bool (true)} → {rtl, fonts}: a new presentation's text right-to-left and its theme fonts Arabic-capable (off puts them back); never for a presentation opened from a file",
+            has_doc,
+            arabic_defaults
+        ),
         cmd!(noundo "file.open", "Open…", ["File"], Some("Cmd+O"), "{path}", always, open),
         cmd!(
             noundo "file.adopt",
@@ -121,6 +130,107 @@ fn new(s: &mut Session, p: &Value) -> Result<Value> {
         out["template"] = json!(name);
     }
     Ok(out)
+}
+
+/// The Arabic-capable family DeckCraft AR gives a new presentation's theme fonts (installed on
+/// Windows and macOS; Noto Sans Arabic is embedded for display when it is missing).
+pub const ARABIC_FONT: &str = "Arial";
+
+/// DeckCraft AR: `file.arabicDefaults` — the paragraphs of every slide, layout and master
+/// placeholder (and the masters' text styles) run right-to-left, and the theme's heading and body
+/// fonts become [`ARABIC_FONT`]; `on: false` puts both back. A presentation that was opened from
+/// a file is left alone: this is for the blank presentation `file.new` made. A pristine
+/// presentation stays pristine (the defaults are part of its creation, not an edit).
+fn arabic_defaults(s: &mut Session, p: &Value) -> Result<Value> {
+    let on = bool_or(p, "on", true);
+    let st = s.doc_mut()?;
+    if st.path.is_some() {
+        return Err(bad("file.arabicDefaults", "only a new presentation takes the Arabic defaults; this one was opened from a file"));
+    }
+    let pristine = !st.is_dirty();
+    let mut doc = (*st.doc).clone();
+    let fonts_before = doc.masters.first().map(|m| m.theme.fonts.clone());
+    apply_arabic_defaults(&mut doc, on);
+    let doc = std::sync::Arc::new(doc);
+    st.doc = doc.clone();
+    if pristine {
+        st.saved_doc = doc;
+    }
+    st.revision += 1;
+    let fonts = st.doc.masters.first().map(|m| m.theme.fonts.clone());
+    Ok(json!({"rtl": on, "fonts": fonts.as_ref().map(|f| f.major.latin.clone()), "changedFonts": fonts_before != fonts}))
+}
+
+/// [`arabic_defaults`] on a presentation: every text body's paragraphs and every master text
+/// style level get `rtl` (left alignment mirrored to right, as `format.rtl` does), and the theme
+/// fonts become [`ARABIC_FONT`] (back to the theme's own when `on` is false).
+pub fn apply_arabic_defaults(doc: &mut Presentation, on: bool) {
+    use deckcraft_model::text::{Align, ParaProps};
+    fn para(props: &mut ParaProps, on: bool) {
+        let was = props.rtl.unwrap_or(false);
+        if was != on {
+            props.align = match props.align {
+                None | Some(Align::Left) if on => Some(Align::Right),
+                Some(Align::Right) if !on => Some(Align::Left),
+                other => other,
+            };
+        }
+        props.rtl = on.then_some(true);
+    }
+    fn shapes(list: &mut [deckcraft_model::Shape], on: bool, depth: usize) {
+        if depth > 64 {
+            return;
+        }
+        for sh in list {
+            if let Some(t) = &mut sh.text {
+                for p in &mut t.paragraphs {
+                    para(&mut p.props, on);
+                }
+                for l in t.list_style.levels.iter_mut().flatten() {
+                    para(&mut l.para, on);
+                }
+            }
+            if let Some(children) = sh.children_mut() {
+                shapes(children, on, depth + 1);
+            }
+        }
+    }
+    for slide in &mut doc.slides {
+        let slide = std::sync::Arc::make_mut(slide);
+        shapes(&mut slide.shapes, on, 0);
+        for p in &mut slide.notes.paragraphs {
+            para(&mut p.props, on);
+        }
+    }
+    for master in &mut doc.masters {
+        let m = std::sync::Arc::make_mut(master);
+        shapes(&mut m.shapes, on, 0);
+        for layout in &mut m.layouts {
+            shapes(&mut layout.shapes, on, 0);
+        }
+        for style in [&mut m.title_style, &mut m.body_style, &mut m.other_style] {
+            if style.levels.is_empty() {
+                style.levels.push(Some(Default::default()));
+            }
+            for l in style.levels.iter_mut().flatten() {
+                para(&mut l.para, on);
+            }
+        }
+        if on {
+            m.theme.fonts.major.latin = ARABIC_FONT.into();
+            m.theme.fonts.minor.latin = ARABIC_FONT.into();
+            m.theme.fonts.major.cs = ARABIC_FONT.into();
+            m.theme.fonts.minor.cs = ARABIC_FONT.into();
+        } else if let Some(own) = theme_named(&m.theme.name).map(|t| t.fonts) {
+            m.theme.fonts = own;
+        } else {
+            let d = deckcraft_model::Theme::default().fonts;
+            m.theme.fonts.major.latin = d.major.latin;
+            m.theme.fonts.minor.latin = d.minor.latin;
+            m.theme.fonts.major.cs = d.major.cs;
+            m.theme.fonts.minor.cs = d.minor.cs;
+        }
+    }
 }
 
 /// Recognise and read presentation bytes (native, PPTX).
@@ -661,6 +771,74 @@ fn recovery_discard(s: &mut Session, p: &Value) -> Result<Value> {
 #[cfg(test)]
 #[path = "color_at_tests.rs"]
 mod color_at_tests;
+
+#[cfg(test)]
+mod arabic_defaults_tests {
+    #![allow(clippy::unwrap_used, clippy::expect_used)]
+
+    use deckcraft_model::text::Align;
+    use serde_json::json;
+
+    use crate::Session;
+
+    fn every_para(s: &Session, f: &mut dyn FnMut(&deckcraft_model::text::ParaProps)) {
+        let doc = &s.doc().unwrap().doc;
+        for slide in &doc.slides {
+            deckcraft_model::walk(&slide.shapes, &mut |sh, _| {
+                for p in sh.text.iter().flat_map(|t| &t.paragraphs) {
+                    f(&p.props);
+                }
+            });
+        }
+        for m in &doc.masters {
+            for l in [&m.title_style, &m.body_style, &m.other_style].into_iter().flat_map(|s| s.levels.iter().flatten()) {
+                f(&l.para);
+            }
+        }
+    }
+
+    /// DeckCraft AR: a new presentation takes right-to-left paragraphs (left alignment mirrored)
+    /// and Arabic-capable theme fonts, stays pristine, and `on: false` puts it all back.
+    #[test]
+    fn arabic_defaults_make_a_new_presentation_right_to_left_and_back() {
+        let mut s = Session::with_new();
+        let fonts_before = s.doc().unwrap().doc.masters[0].theme.fonts.clone();
+        let r = s.execute("file.arabicDefaults", &json!({})).unwrap();
+        assert_eq!(r["rtl"], true);
+        assert_eq!(r["fonts"], super::ARABIC_FONT);
+        let st = s.doc().unwrap();
+        assert!(!st.is_dirty(), "the defaults are part of the presentation's creation");
+        assert_eq!(st.doc.masters[0].theme.fonts.major.latin, super::ARABIC_FONT);
+        assert_eq!(st.doc.masters[0].theme.fonts.minor.latin, super::ARABIC_FONT);
+        let mut n = 0;
+        every_para(&s, &mut |p| {
+            n += 1;
+            assert_eq!(p.rtl, Some(true));
+            assert_ne!(p.align, Some(Align::Left));
+        });
+        assert!(n > 0, "the blank presentation has placeholders and master styles");
+        // A new slide inherits the masters' direction through its placeholders' list styles.
+        s.execute("slide.new", &json!({"layout": "titleAndContent"})).unwrap();
+        s.execute("file.arabicDefaults", &json!({"on": false})).unwrap();
+        every_para(&s, &mut |p| {
+            assert_eq!(p.rtl, None);
+            assert_ne!(p.align, Some(Align::Right));
+        });
+        assert_eq!(s.doc().unwrap().doc.masters[0].theme.fonts, fonts_before);
+        assert!(s.doc().unwrap().doc.validate().is_empty());
+    }
+
+    /// Hostile params don't matter, and a presentation that came from a file is never touched.
+    #[test]
+    fn arabic_defaults_leave_opened_files_alone() {
+        let mut s = Session::with_new();
+        s.execute("file.arabicDefaults", &serde_json::Value::Null).unwrap();
+        s.execute("file.arabicDefaults", &json!([1, 2])).unwrap();
+        s.doc_mut().unwrap().path = Some("/tmp/deck.deckcraft".into());
+        let err = s.execute("file.arabicDefaults", &json!({})).unwrap_err().to_string();
+        assert!(err.contains("opened from a file"), "{err}");
+    }
+}
 
 #[cfg(all(test, not(target_arch = "wasm32")))]
 mod tests {

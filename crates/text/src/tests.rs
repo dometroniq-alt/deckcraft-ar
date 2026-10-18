@@ -656,6 +656,48 @@ fn just_low_stretches_arabic_with_kashida() {
 }
 
 #[test]
+fn kashida_levels_share_the_slack_between_joints_and_spaces() {
+    if arabic_face().is_none() {
+        eprintln!("skipped: no Arabic face available");
+        return;
+    }
+    let text = "بسم الله الرحمن الرحيم نستعين به ونستغفره ونتوب إليه";
+    let chars: Vec<char> = text.chars().collect();
+    // The first line's total space width and tatweel count at one level.
+    let measure = |align: Align| {
+        let (p, sh) = bidi_setup(vec![Run::new(text)], 220.0, true, align);
+        let l = lay(&p, &sh, 220.0, 600.0);
+        assert!(l.lines.len() >= 2);
+        let first = &l.lines[0];
+        let w = l.inner.width();
+        assert!((first.extent.1 - first.extent.0 - w).abs() < 0.5, "{align:?}: first line fills the box: {:?} vs {w}", first.extent);
+        let spaces: f64 =
+            first.edges.iter().enumerate().filter(|(k, _)| chars.get(first.start + k).is_some_and(|c| *c == ' ')).map(|(_, e)| e.1 - e.0).sum();
+        let tatweels: usize = l
+            .runs
+            .iter()
+            .filter(|r| r.cells.first().is_some_and(|c| c.0 < first.end))
+            .map(|r| {
+                let tg = r.face.glyph_for('\u{0640}');
+                if tg == 0 { 0 } else { r.glyphs.iter().filter(|g| g.0 == tg).count() }
+            })
+            .sum();
+        (spaces, tatweels)
+    };
+    let (low_sp, low_k) = measure(Align::JustLow);
+    let (mid_sp, mid_k) = measure(Align::JustMedium);
+    let (high_sp, high_k) = measure(Align::JustHigh);
+    if low_k + mid_k + high_k == 0 {
+        eprintln!("skipped: the Arabic face has no tatweel");
+        return;
+    }
+    // Low leaves most of the slack to the spaces, High gives nearly all of it to the joints.
+    assert!(low_sp > mid_sp && mid_sp > high_sp, "spaces: low {low_sp} > medium {mid_sp} > high {high_sp}");
+    assert!(low_k < high_k, "tatweels: low {low_k} < high {high_k}");
+    assert!(low_k > 0, "even Low elongates some joint");
+}
+
+#[test]
 fn wrapped_rtl_lines_break_in_logical_order() {
     let text = "واحد اثنان ثلاثة أربعة خمسة ستة سبعة ثمانية تسعة عشرة";
     let (p, sh) = bidi_setup(vec![Run::new(text)], 160.0, true, Align::Right);
@@ -679,7 +721,9 @@ fn wrapped_rtl_lines_break_in_logical_order() {
 fn hostile_bidi_input_never_panics() {
     let nasty = format!("{}\t\u{b}\u{202E}abc\u{2069}{}(]))[ ١٢٣ \u{0640}\u{064E}\u{064E}\u{200D}", "\u{202B}".repeat(200), "\u{2067}".repeat(130));
     for rtl in [true, false] {
-        for align in [Align::Left, Align::Right, Align::Center, Align::Justify, Align::JustLow, Align::Distributed] {
+        for align in
+            [Align::Left, Align::Right, Align::Center, Align::Justify, Align::JustLow, Align::JustMedium, Align::JustHigh, Align::Distributed]
+        {
             let (p, sh) = bidi_setup(vec![Run::new(nasty.clone()), Run::new(MIXED)], 60.0, rtl, align);
             let l = lay(&p, &sh, 60.0, 60.0);
             for line in &l.lines {

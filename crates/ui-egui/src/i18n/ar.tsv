@@ -1,0 +1,1114 @@
+# Arabic (ar) interface catalog — DeckCraft AR. Columns, separated by a TAB:
+#   context <TAB> English source <TAB> translation
+#   context    empty (DeckCraft uses no contexts yet)
+#   source     the English text exactly as in the code (tl!( … ), ribbon labels, command labels)
+#   escapes    \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns, and a
+#              trailing "…" in one needs one in the other.
+#   Lines starting with # and blank lines are ignored. A missing entry shows in English.
+#
+# Clean room: every entry was written from the plain meaning of the English label in ordinary
+# Arabic computing vocabulary. No Microsoft Word (or other product) localisation, string table or
+# translated UI was consulted or copied; add entries the same way.
+# Product, format and technology names (DeckCraft, PowerPoint files, PDF, MCP …) stay in Latin letters.
+	Home	الرئيسية
+	Insert	إدراج
+	Design	تصميم
+	Transitions	انتقالات
+	Animations	حركات
+	Slide Show	عرض الشرائح
+	Review	مراجعة
+	View	عرض
+	Help	مساعدة
+	File	ملف
+	Kashida	كشيدة
+	Low	منخفضة
+	Medium	متوسطة
+	High	مرتفعة
+	Off	بلا
+# DeckCraft AR — preferences and the built-in developer systems (dev_tools.rs).
+	DeckCraft AR	DeckCraft AR
+	Interface language	لغة الواجهة
+	System	النظام
+	Explain buttons in Arabic too	اشرح الأزرار بالعربية أيضًا
+	Arabic presentations (new presentations start right-to-left)	عروض عربية (العروض الجديدة تبدأ من اليمين إلى اليسار)
+	UI Kit	عُدّة الواجهة
+	Self-Test	الفحص الذاتي
+	Checklist	قائمة التحقق
+	DeckCraft AR — UI Kit	DeckCraft AR — عُدّة الواجهة
+	Run the self-test	شغّل الفحص الذاتي
+	Runs every engine command with empty parameters on a scratch copy of the sample presentation (your presentation is not touched) and lists what each one answered.	يشغّل كل أمر في المحرك بلا معاملات على نسخة مؤقتة من العرض النموذجي (عرضك لا يُمَس) ويعرض ما أجاب به كل أمر.
+	commands ran	أمرًا نُفِّذ
+	answered with an error (a feature that needs a selection or a parameter)	أجاب بخطأ (ميزة تحتاج إلى تحديد أو معامل)
+	slide(s) in the scratch presentation	شريحة في العرض المؤقت
+	No Arabic translation yet	لا ترجمة عربية بعد
+	ribbon controls without a UI-kit entry	عنصرًا في الشريط بلا مدخل في عُدّة الواجهة
+	explanations without an Arabic translation	شرحًا بلا ترجمة عربية
+	ribbon controls in the inventory	عنصرًا في جرد الشريط
+	entries in the UI kit	مدخلًا في عُدّة الواجهة
+	icons in the set	أيقونة في المجموعة
+	commands in the engine registry	أمرًا في سجل المحرك
+	Add a control: one Entry in ui_kit/<tab>.rs, one row in the inventory, one Arabic line in i18n/ar.tsv.	لإضافة عنصر: مدخل Entry واحد في ui_kit/<tab>.rs، وصف واحد في الجرد، وسطر عربي واحد في i18n/ar.tsv.
+
+	 (notes)	 (ملاحظات)
+	(missing)	(مفقود)
+	(no spelling suggestions)	(لا توجد اقتراحات إملائية)
+	(none)	(بلا)
+	+ Add	+ إضافة
+	+ New Comment	+ تعليق جديد
+	+ New Slide	+ شريحة جديدة
+	+ Row	+ صف
+	+ Series	+ سلسلة
+	1 Column	عمود واحد
+	1 Slide	شريحة واحدة
+	3-D	ثلاثي الأبعاد
+	3-D Format	تنسيق ثلاثي الأبعاد
+	3-D Rotation	استدارة ثلاثية الأبعاد
+	@{login}: {prs} PRs, {commits} commits, +{added} / −{deleted} lines (Δ {delta}), +{bin_added} / −{bin_deleted} binary assets, {first} – {last}	@{login}: {prs} طلبات سحب، {commits} إيداعات، +{added} / −{deleted} سطرًا (Δ {delta})، +{bin_added} / −{bin_deleted} أصول ثنائية، {first} – {last}
+	A photo album holds at most 48 pictures or text boxes	يتسع ألبوم الصور لـ 48 صورة أو مربع نص على الأكثر
+	About DeckCraft	حول DeckCraft
+	Accept	قبول
+	Accept All ({n})	قبول الكل ({n})
+	Accept Revision	قبول المراجعة
+	Accept\nAll	قبول\nالكل
+	Action	إجراء
+	Action Button: {k}	زر إجراء: {k}
+	Action Settings…	إعدادات الإجراء…
+	Add	إضافة
+	Add Font	إضافة خط
+	Add Pictures…	إضافة صور…
+	Add Section	إضافة مقطع
+	Add Shape	إضافة شكل
+	Add a picture or a text box first	أضف صورة أو مربع نص أولًا
+	Add a title with a picture or some text to get layout ideas.	أضف عنوانًا مع صورة أو بعض النص للحصول على أفكار للتخطيط.
+	Add to Dictionary	إضافة إلى القاموس
+	Add\nAnimation	إضافة\nحركة
+	Adjust Shape	ضبط الشكل
+	After:	بعد:
+	Album theme	سمة الألبوم
+	Align	محاذاة
+	Align Left	محاذاة إلى اليسار
+	Align Right	محاذاة إلى اليمين
+	Align Text	محاذاة النص
+	Alignment	المحاذاة
+	Alignment:	المحاذاة:
+	All	الكل
+	All slides	كل الشرائح
+	Alt Text	النص البديل
+	An open-source, clean-room project. Not affiliated with Microsoft.	مشروع مفتوح المصدر مبني من الصفر. غير تابع لشركة Microsoft.
+	Angle	الزاوية
+	Animation Painter (double-click to keep it on)	ناسخ الحركة (انقر نقرًا مزدوجًا لإبقائه مفعّلًا)
+	Animation\nPainter	ناسخ\nالحركة
+	Applies to this presentation's theme colours.	يُطبَّق على ألوان سمة هذا العرض التقديمي.
+	Apply	تطبيق
+	Apply Animation	تطبيق الحركة
+	Apply Design Idea	تطبيق فكرة التصميم
+	Apply To All	تطبيق على الكل
+	Apply only to this picture	تطبيق على هذه الصورة فقط
+	Apply to All	تطبيق على الكل
+	Arabic Presentations	العروض التقديمية العربية
+	Arrange	ترتيب
+	Arrows	أسهم
+	Artistic\nEffects	تأثيرات\nفنية
+	As:	بتنسيق:
+	Audio from File…	صوت من ملف…
+	AutoCorrect Options…	خيارات التصحيح التلقائي…
+	AutoCorrect as you type	التصحيح التلقائي أثناء الكتابة
+	Autofit	احتواء تلقائي
+	Automatic	تلقائي
+	Available formats:	التنسيقات المتاحة:
+	Back (Esc)	رجوع (Esc)
+	Background\nStyles	أنماط\nالخلفية
+	Banded Columns	أعمدة مخططة
+	Banded Rows	صفوف مخططة
+	Baseline	خط الأساس
+	Bevel	حافة مشطوفة
+	Black	أسود
+	Body sample  {minor}	نموذج النص الأساسي  {minor}
+	Body:	النص الأساسي:
+	Bold	غامق
+	Borders	حدود
+	Brightness	السطوع
+	Brightness {v}%	السطوع {v}%
+	Bring Forward	إحضار إلى الأمام
+	Bring to Front	إحضار إلى المقدمة
+	Bring\nForward	إحضار\nإلى الأمام
+	Browse for Themes needs the desktop app for now	يتطلب استعراض السمات تطبيق سطح المكتب حاليًا
+	Browse for Themes…	استعراض السمات…
+	Bullets	تعداد نقطي
+	Bullets and Numbering…	تعداد نقطي وتعداد رقمي…
+	Cameo	Cameo
+	Camera capture is not available yet	التقاط الكاميرا غير متاح بعد
+	Cancel	إلغاء
+	Capitalize first letter of sentences	كتابة أول حرف من الجمل بحرف كبير
+	Capitalize names of days	كتابة أسماء الأيام بحرف كبير
+	Caps	أحرف كبيرة
+	Cell Margins	هوامش الخلية
+	Center	توسيط
+	Change Case	تغيير حالة الأحرف
+	Change Chart Type	تغيير نوع المخطط
+	Change Colors	تغيير الألوان
+	Change File Type	تغيير نوع الملف
+	Change Picture…	تغيير الصورة…
+	Change Shape	تغيير الشكل
+	Change to:	تغيير إلى:
+	Change\nChart Type	تغيير\nنوع المخطط
+	Character Spacing	تباعد الأحرف
+	Character spacing must be a number	يجب أن يكون تباعد الأحرف رقمًا
+	Chart	مخطط
+	Choose a body font.	اختر خطًا للنص الأساسي.
+	Choose a font	اختر خطًا
+	Choose a heading font.	اختر خطًا للعناوين.
+	Choosing a presentation to reuse needs the desktop app	يتطلب اختيار عرض تقديمي لإعادة استخدامه تطبيق سطح المكتب
+	Choosing a sound file needs the desktop app	يتطلب اختيار ملف صوتي تطبيق سطح المكتب
+	Clear	مسح
+	Clear All	مسح الكل
+	Clear All Formatting	مسح كل التنسيقات
+	Clear the tab at {pos}"	مسح علامة الجدولة عند {pos}"
+	Click a symbol to insert it at the insertion point.	انقر رمزًا لإدراجه عند نقطة الإدراج.
+	Click the slide to take the colour under the pointer	انقر الشريحة لأخذ اللون الموجود تحت المؤشر
+	Click the slide to zoom in. Esc cancels.	انقر الشريحة للتكبير. Esc للإلغاء.
+	Click to add first slide	انقر لإضافة الشريحة الأولى
+	Click to add notes	انقر لإضافة ملاحظات
+	Click to add text	انقر لإضافة نص
+	Click to change this one; Shift-click to change all	انقر لتغيير هذا العنصر؛ انقر مع Shift لتغيير الكل
+	Close	إغلاق
+	Close Master View	إغلاق العرض الرئيسي
+	Close\nMaster View	إغلاق\nالعرض الرئيسي
+	Collapse the Ribbon	طي الشريط
+	Color	اللون
+	Color:	اللون:
+	Colors	الألوان
+	Columns	أعمدة
+	Command Palette	لوحة الأوامر
+	Community Links	روابط المجتمع
+	Compare	مقارنة
+	Compare needs the desktop app for now	تتطلب المقارنة تطبيق سطح المكتب حاليًا
+	Compare this presentation with a revised copy from Review › Compare.	قارن هذا العرض التقديمي بنسخة منقّحة من مراجعة › مقارنة.
+	Compared with {name}	تمت المقارنة مع {name}
+	Compare…	مقارنة…
+	Compress	ضغط
+	Compress Pictures	ضغط الصور
+	Compressed {n} picture(s): {before} KB → {after} KB	تم ضغط {n} صورة: {before} KB → {after} KB
+	Compression options	خيارات الضغط
+	Contrast	التباين
+	Contrast {v}%	التباين {v}%
+	Convert	تحويل
+	Convert to Shapes	تحويل إلى أشكال
+	Convert to SmartArt	تحويل إلى SmartArt
+	Convert to Text	تحويل إلى نص
+	Copied the path	تم نسخ المسار
+	Copy	نسخ
+	Copy path	نسخ المسار
+	Correct TWo INitial CApitals	تصحيح الحرفين الكبيرين في بداية الكلمة
+	Correct accidental use of cAPS LOCK key	تصحيح الاستخدام العرضي لمفتاح cAPS LOCK
+	Corrections	تصحيحات
+	Couldn't save AutoRecover information: {error}	تعذّر حفظ معلومات الاسترداد التلقائي: {error}
+	Create Handouts	إنشاء نشرات
+	Create a PDF Document	إنشاء مستند PDF
+	Crop	اقتصاص
+	Crop to Shape	اقتصاص إلى شكل
+	Custom	مخصص
+	Customize Colors…	تخصيص الألوان…
+	Customize Fonts…	تخصيص الخطوط…
+	Customize Quick Access Toolbar	تخصيص شريط أدوات الوصول السريع
+	Cut	قص
+	Dark Mode	الوضع الداكن
+	Dark appearance	مظهر داكن
+	Dark\nMode	الوضع\nالداكن
+	Dash	شرطة
+	Dashes	شرطات
+	Date and Time	التاريخ والوقت
+	DeckCraft can't export “{format}”	لا يستطيع DeckCraft تصدير “{format}”
+	DeckCraft can't find “{text}”.	لا يستطيع DeckCraft العثور على “{text}”.
+	Decrease Font Size	تصغير حجم الخط
+	Decrease List Level	تقليل مستوى القائمة
+	Delay:	التأخير:
+	Delete	حذف
+	Delete Columns	حذف الأعمدة
+	Delete Comment	حذف التعليق
+	Delete Guide	حذف الدليل
+	Delete Layout	حذف التخطيط
+	Delete Point	حذف النقطة
+	Delete Repeated Word	حذف الكلمة المكررة
+	Delete Rows	حذف الصفوف
+	Delete Slide	حذف الشريحة
+	Delete cropped areas of pictures	حذف المناطق المقتصّة من الصور
+	Demote	تخفيض المستوى
+	Deselect	إلغاء التحديد
+	Dictionary: {name}	القاموس: {name}
+	Direction	الاتجاه
+	Discard Recovered Presentations	تجاهل العروض التقديمية المستردّة
+	Display	شاشة العرض
+	Distribute Columns	توزيع الأعمدة
+	Distribute Rows	توزيع الصفوف
+	Do not check spelling or grammar	عدم التدقيق الإملائي أو النحوي
+	Do you want to save the changes you made to {what}?	هل تريد حفظ التغييرات التي أجريتها على {what}؟
+	Do you want to save the changes you made to “{name}”?	هل تريد حفظ التغييرات التي أجريتها على “{name}”؟
+	Don't Save	عدم الحفظ
+	Draw Table	رسم جدول
+	Duplicate	تكرار
+	Duplicate Selected Slides	تكرار الشرائح المحددة
+	Duplicate Slide	تكرار الشريحة
+	Duration:	المدة:
+	Edit Alt Text…	تحرير النص البديل…
+	Edit Header & Footer	تحرير الرأس والتذييل
+	Edit Photo Album…	تحرير ألبوم الصور…
+	Edit Points	تحرير النقاط
+	Edit Text	تحرير النص
+	Edit the data: first row = series names, first column = categories.	حرّر البيانات: الصف الأول = أسماء السلاسل، العمود الأول = الفئات.
+	Edit\nShape	تحرير\nالشكل
+	Editing	تحرير
+	Effect Options	خيارات التأثير
+	Effect\nOptions	خيارات\nالتأثير
+	Effects	تأثيرات
+	Email Address	عنوان البريد الإلكتروني
+	End	النهاية
+	End Review	إنهاء المراجعة
+	End Show	إنهاء العرض
+	End of slide show	نهاية عرض الشرائح
+	End of slide show, click to exit.	نهاية عرض الشرائح، انقر للخروج.
+	End\nReview	إنهاء\nالمراجعة
+	Enter a scheme name.	أدخل اسمًا للنظام.
+	Enter a zoom percent	أدخل نسبة التكبير/التصغير
+	Eraser	ممحاة
+	Exit Edit Points	الخروج من تحرير النقاط
+	Explain Buttons in Arabic Too	شرح الأزرار بالعربية أيضًا
+	Export the presentation as:	تصدير العرض التقديمي بتنسيق:
+	Exported {path}	تم التصدير إلى {path}
+	Export…	تصدير…
+	Eyedropper	القطّارة
+	File (Alt+F)	ملف (Alt+F)
+	File › {page} needs an open presentation	يتطلب ملف › {page} عرضًا تقديميًا مفتوحًا
+	Fill	تعبئة
+	Find Next	بحث عن التالي
+	Find…	بحث…
+	First Column	العمود الأول
+	First Slide	الشريحة الأولى
+	First {n} slides	أول {n} شرائح
+	Fit	احتواء
+	Fit to Window	احتواء ضمن النافذة
+	Fit to\nWindow	احتواء ضمن\nالنافذة
+	Flip	انعكاس
+	Flip Horizontal	انعكاس أفقي
+	Flip Vertical	انعكاس عمودي
+	Follow Path	اتباع المسار
+	Font	الخط
+	Font Color	لون الخط
+	Font Size	حجم الخط
+	Font name	اسم الخط
+	Font size must be a number	يجب أن يكون حجم الخط رقمًا
+	Fonts	الخطوط
+	Font…	خط…
+	Footers	التذييلات
+	For rectangles and rounded rectangles	للمستطيلات والمستطيلات المستديرة الزوايا
+	Format	تنسيق
+	Format Background…	تنسيق الخلفية…
+	Format Painter	نسخ التنسيق
+	Format Painter (double-click to keep it on)	نسخ التنسيق (انقر نقرًا مزدوجًا لإبقائه مفعّلًا)
+	Format Shape…	تنسيق الشكل…
+	Frame Slides	تأطير الشرائح
+	Frame shape	شكل الإطار
+	From the top-left corner of the slide	من الزاوية العلوية اليسرى للشريحة
+	From\nBeginning	من\nالبداية
+	From\nCurrent Slide	من\nالشريحة الحالية
+	General	عام
+	Glow	توهج
+	Go to	الانتقال إلى
+	Go to Slide	الانتقال إلى شريحة
+	Go to slide {n}	الانتقال إلى الشريحة {n}
+	Grab bag	منوعات
+	Gradient stops	نقاط توقف التدرج
+	Gradient…	تدرج…
+	Grayscale	تدرج الرمادي
+	Grid Options…	خيارات الشبكة…
+	Grid and Guides	الشبكة والأدلة
+	Grid\nOptions	خيارات\nالشبكة
+	Gridlines	خطوط الشبكة
+	Group	تجميع
+	Group Objects	تجميع الكائنات
+	Guides	الأدلة
+	Handout Master	النشرة الرئيسية
+	Handout\nMaster	النشرة\nالرئيسية
+	Header Row	صف الرأس
+	Heading and body fonts for this presentation.	خطوط العناوين والنص الأساسي لهذا العرض التقديمي.
+	Heading sample  {major}	نموذج العنوان  {major}
+	Heading:	العنوان:
+	Height	الارتفاع
+	Height:	الارتفاع:
+	Hide All	إخفاء الكل
+	Hide Background Graphics	إخفاء رسومات الخلفية
+	Hide During Show	إخفاء أثناء العرض
+	Hide Slide	إخفاء الشريحة
+	Hide background graphics	إخفاء رسومات الخلفية
+	Hide\nSlide	إخفاء\nالشريحة
+	How would you describe this object and its context to someone who is blind or has low vision?	كيف تصف هذا الكائن وسياقه لشخص كفيف أو ضعيف البصر؟
+	Hyperlink to:	ارتباط تشعبي إلى:
+	Icons	أيقونات
+	Ignore All	تجاهل الكل
+	Include hidden slides	تضمين الشرائح المخفية
+	Increase Font Size	زيادة حجم الخط
+	Increase List Level	زيادة مستوى القائمة
+	Indent after text must be a number of inches	يجب أن تكون المسافة البادئة بعد النص رقمًا بالبوصة
+	Indent before text must be a number of inches	يجب أن تكون المسافة البادئة قبل النص رقمًا بالبوصة
+	Indentation	المسافة البادئة
+	Ink to Math (coming soon)	تحويل الحبر إلى معادلة (قريبًا)
+	Ink to Shape: turn drawn lines, rectangles, ovals and triangles into shapes	تحويل الحبر إلى شكل: تحويل الخطوط والمستطيلات والأشكال البيضاوية والمثلثات المرسومة إلى أشكال
+	Ink to Text (coming soon)	تحويل الحبر إلى نص (قريبًا)
+	Ink to\nMath	حبر إلى\nمعادلة
+	Ink to\nShape	حبر إلى\nشكل
+	Ink to\nText	حبر إلى\nنص
+	Insert Above	إدراج لأعلى
+	Insert Below	إدراج لأسفل
+	Insert Layout	إدراج تخطيط
+	Insert Left	إدراج لليسار
+	Insert Picture	إدراج صورة
+	Insert Picture in SmartArt…	إدراج صورة في SmartArt…
+	Insert Right	إدراج لليمين
+	Insert Table	إدراج جدول
+	Insert Table…	إدراج جدول…
+	Insert picture from file…	إدراج صورة من ملف…
+	Insert\nPlaceholder	إدراج\nعنصر نائب
+	Inserted {n} slides from {path}	تم إدراج {n} شريحة من {path}
+	Insert…	إدراج…
+	Interface Language	لغة الواجهة
+	Interface size	حجم الواجهة
+	Italic	مائل
+	Join our community on Discord	انضم إلى مجتمعنا على Discord
+	Join the ArtCraft community on Discord	انضم إلى مجتمع ArtCraft على Discord
+	Justify	ضبط
+	Landscape	أفقي
+	Language	اللغة
+	Language:	اللغة:
+	Last Column	العمود الأخير
+	Last Slide	الشريحة الأخيرة
+	Layout	تخطيط
+	Layouts	التخطيطات
+	Learn\nMore	معرفة\nالمزيد
+	Less Brightness	تقليل السطوع
+	Less Contrast	تقليل التباين
+	Line	خط
+	Line Spacing	تباعد الأسطر
+	Line Spacing Options…	خيارات تباعد الأسطر…
+	Line spacing	تباعد الأسطر
+	Line spacing must be a number	يجب أن يكون تباعد الأسطر رقمًا
+	Link…	ارتباط…
+	Lock aspect ratio	تأمين نسبة العرض إلى الارتفاع
+	Loop Until Next Sound	تكرار حتى الصوت التالي
+	Loop until Stopped	تكرار حتى الإيقاف
+	MIT OR Apache-2.0 · © 2026 ArtCraft Team and the DeckCraft contributors	MIT OR Apache-2.0 · © 2026 فريق ArtCraft والمساهمون في DeckCraft
+	Margins (pt)	الهوامش (pt)
+	Mark selected text as:	تمييز النص المحدد كـ:
+	Match {n} of {total} on slide {slide}{where}.	التطابق {n} من {total} في الشريحة {slide}{where}.
+	Merge Cells	دمج الخلايا
+	Merge Shapes	دمج الأشكال
+	Merge\nShapes	دمج\nالأشكال
+	Mirror	عكس
+	Month names and AM/PM are listed for English. Other languages list the numeric date and 24-hour time.	تُعرض أسماء الأشهر وصيغة AM/PM للغة الإنجليزية. أما اللغات الأخرى فتعرض التاريخ الرقمي والوقت بنظام 24 ساعة.
+	More Brightness	زيادة السطوع
+	More Contrast	زيادة التباين
+	Move Down	نقل لأسفل
+	Move Guide	نقل الدليل
+	Move Insertion Point	نقل نقطة الإدراج
+	Move Point	نقل النقطة
+	Move Section	نقل المقطع
+	Move Section Down	نقل المقطع لأسفل
+	Move Section Up	نقل المقطع لأعلى
+	Move Slide	نقل الشريحة
+	Move Up	نقل لأعلى
+	Name:	الاسم:
+	New	جديد
+	New Comment	تعليق جديد
+	New Presentation	عرض تقديمي جديد
+	New Slide	شريحة جديدة
+	New Slide (⇧⌘N)	شريحة جديدة (⇧⌘N)
+	New Text Box	مربع نص جديد
+	New Window	نافذة جديدة
+	New Window needs a slide	تحتاج النافذة الجديدة إلى شريحة
+	New Window needs an open presentation	تحتاج النافذة الجديدة إلى عرض تقديمي مفتوح
+	New\nSlide	شريحة\nجديدة
+	New\nWindow	نافذة\nجديدة
+	Next	التالي
+	Next Slide	الشريحة التالية
+	Next Window	النافذة التالية
+	Next ▶	التالي ▶
+	No Color	بلا لون
+	No Fill	بلا تعبئة
+	No Glow	بلا توهج
+	No Outline	بلا مخطط تفصيلي
+	No Soft Edges	بلا حواف ناعمة
+	No accessibility issues found. People with disabilities should not have difficulty reading this document.	لم يتم العثور على مشكلات في إمكانية الوصول. لن يواجه الأشخاص ذوو الإعاقة صعوبة في قراءة هذا المستند.
+	No comments.	لا توجد تعليقات.
+	No contributor data was built into this copy.	لم تُضمَّن بيانات المساهمين في هذه النسخة.
+	No differences left.	لم تبقَ أي اختلافات.
+	No icons match.	لا توجد أيقونات مطابقة.
+	No line	بلا خط
+	No model credits were built into this copy.	لم تُضمَّن بيانات الإشادة بالنماذج في هذه النسخة.
+	No notes.	لا توجد ملاحظات.
+	No pictures yet	لا توجد صور بعد
+	No recent presentations match “{query}”.	لا توجد عروض تقديمية حديثة تطابق “{query}”.
+	No slides.	لا توجد شرائح.
+	No sound: {err}	لا يوجد صوت: {err}
+	No synonyms for "{word}".	لا توجد مرادفات لـ "{word}".
+	No themes or templates match “{query}”.	لا توجد سمات أو قوالب تطابق “{query}”.
+	No {lang} dictionary is installed, so only common misspellings are found. Put a Hunspell .aff/.dic pair in {folder}.	لا يوجد قاموس {lang} مثبّت، لذا يتم العثور على الأخطاء الإملائية الشائعة فقط. ضع زوج ملفات Hunspell بصيغة .aff/.dic في {folder}.
+	None	بلا
+	Normal	عادي
+	Not a copy of this presentation: slides are matched by position.	ليس نسخة من هذا العرض التقديمي: تتم مطابقة الشرائح حسب الموضع.
+	Not saved yet	لم يُحفظ بعد
+	Notes	ملاحظات
+	Notes Master	القالب الرئيسي للملاحظات
+	Notes Page	صفحة الملاحظات
+	Notes\nMaster	القالب الرئيسي\nللملاحظات
+	Nudge	تحريك طفيف
+	Numbering	ترقيم
+	On Click of {name}	عند النقر على {name}
+	On Click of… (none)	عند النقر على… (بلا)
+	On Mouse Click	عند النقر بالماوس
+	Open Data	فتح البيانات
+	Open Dialog	فتح مربع الحوار
+	Open Recovered Presentations	فتح العروض التقديمية المستردة
+	Open a presentation from a folder (Ctrl+O)	فتح عرض تقديمي من مجلد (Ctrl+O)
+	Open another window on this presentation	فتح نافذة أخرى لهذا العرض التقديمي
+	Open file location	فتح موقع الملف
+	Opened the presentation as a PDF to print	تم فتح العرض التقديمي بصيغة PDF للطباعة
+	Opening {name}…	جارٍ فتح {name}…
+	Open…	فتح…
+	Order Objects	ترتيب الكائنات
+	Orientation:	الاتجاه:
+	Other Sound…	صوت آخر…
+	Outline View	عرض المخطط التفصيلي
+	Page Setup…	إعداد الصفحة…
+	Paragraph	فقرة
+	Paragraph…	فقرة…
+	Pass pictures to insert.photoAlbum	مرِّر الصور إلى insert.photoAlbum
+	Paste	لصق
+	Paste (⌘V)	لصق (⌘V)
+	Paste Formatting	لصق التنسيق
+	Paste Special…	لصق خاص…
+	Paste and Match Formatting	لصق مع مطابقة التنسيق
+	Paste or type an outline. Unindented lines become slide titles; tab-indented lines become bullets.	الصق مخططًا تفصيليًا أو اكتبه. تصبح الأسطر التي بلا مسافة بادئة عناوين شرائح، وتصبح الأسطر ذات المسافة البادئة بعلامة الجدولة تعدادًا نقطيًا.
+	Pause	إيقاف مؤقت
+	Pen Color	لون القلم
+	Pen Style	نمط القلم
+	Pen Weight	سُمك القلم
+	Percent:	النسبة المئوية:
+	Photo Album options	خيارات ألبوم الصور
+	Photo Album…	ألبوم صور…
+	Photo\nAlbum	ألبوم\nصور
+	Pick a design for this slide. Ideas are generated on your device.	اختر تصميمًا لهذه الشريحة. يتم إنشاء الأفكار على جهازك.
+	Pick a graphic; type one item per line.	اختر رسمًا، واكتب عنصرًا واحدًا في كل سطر.
+	Picture	صورة
+	Picture Border	حد الصورة
+	Picture from File…	صورة من ملف…
+	Picture layout	تخطيط الصورة
+	Picture source	مصدر الصورة
+	Pictures are already at or below that resolution	الصور بالفعل عند هذه الدقة أو أقل منها
+	Pictures in album	الصور في الألبوم
+	Pixels of this colour become transparent:	تصبح وحدات البكسل بهذا اللون شفافة:
+	Play	تشغيل
+	Play Across Slides	تشغيل عبر الشرائح
+	Play Full Screen	تشغيل بملء الشاشة
+	Play Narrations	تشغيل السرد
+	Play from Current Slide	تشغيل من الشريحة الحالية
+	Play from Start	تشغيل من البداية
+	Play from\nCurrent Slide	تشغيل من\nالشريحة الحالية
+	Play from\nStart	تشغيل من\nالبداية
+	Play this slide's animations on the canvas	تشغيل حركات هذه الشريحة على لوحة الرسم
+	Play/Pause	تشغيل/إيقاف مؤقت
+	Play/Pause GIF	تشغيل/إيقاف مؤقت لـ GIF
+	Portrait	عمودي
+	Position	الموضع
+	Position Objects	تحديد موضع الكائنات
+	Position and Size	الموضع والحجم
+	Preferences…	التفضيلات…
+	Present	تقديم
+	Presentations and slide shows, rebuilt from scratch in pure Rust.	العروض التقديمية وعروض الشرائح، أُعيد بناؤها من الصفر بلغة Rust الخالصة.
+	Presenter View	عرض مقدم العرض
+	Presenter View — DeckCraft	عرض مقدم العرض — DeckCraft
+	Presenter\nView	عرض\nمقدم العرض
+	Preserve	الاحتفاظ
+	Preset gradients	تدرجات مُعدّة مسبقًا
+	Preview	معاينة
+	Preview Animations	معاينة الحركات
+	Previewing animations	جارٍ معاينة الحركات
+	Previous	السابق
+	Previous Slide	الشريحة السابقة
+	Print Hidden Slides	طباعة الشرائح المخفية
+	Print layout:	تخطيط الطباعة:
+	Print…	طباعة…
+	Promote	ترقية
+	Properties	خصائص
+	Put a picture in the selected node's picture placeholder	وضع صورة في العنصر النائب للصورة في العقدة المحددة
+	Quick Access Toolbar	شريط أدوات الوصول السريع
+	Quick\nStyles	أنماط\nسريعة
+	Reading View	عرض القراءة
+	Reading the file: {secs} s	قراءة الملف: {secs} ث
+	Recent	الأخيرة
+	Recolor	إعادة تلوين
+	Record	تسجيل
+	Recording narration needs audio capture (coming soon)	يحتاج تسجيل السرد إلى التقاط الصوت (قريبًا)
+	Recover Unsaved Presentations	استرداد العروض التقديمية غير المحفوظة
+	Redo	إعادة
+	Reflection	انعكاس
+	Regroup	إعادة تجميع
+	Rehearse\nTimings	تمرين على\nالتوقيتات
+	Remove	إزالة
+	Remove All Animations	إزالة كل الحركات
+	Remove All Sections	إزالة كل المقاطع
+	Remove Animation	إزالة الحركة
+	Remove Section	إزالة المقطع
+	Remove Section & Slides	إزالة المقطع والشرائح
+	Remove bullets and numbering	إزالة التعداد النقطي والترقيم
+	Remove from Quick Access Toolbar	إزالة من شريط أدوات الوصول السريع
+	Remove from Recent	إزالة من الأخيرة
+	Remove stop	إزالة نقطة التوقف
+	Remove the picture style	إزالة نمط الصورة
+	Remove\nBackground	إزالة\nالخلفية
+	Rename	إعادة تسمية
+	Rename Layout	إعادة تسمية التخطيط
+	Rename Section	إعادة تسمية المقطع
+	Rename Section…	إعادة تسمية المقطع…
+	Rename Slide	إعادة تسمية الشريحة
+	Reorder Animation	إعادة ترتيب الحركة
+	Repeated word	كلمة مكررة
+	Replace	استبدال
+	Replace All	استبدال الكل
+	Replace Fonts…	استبدال الخطوط…
+	Replace fractions (1/2) with fraction characters (½)	استبدال الكسور (1/2) بأحرف الكسور (½)
+	Replace straight quotes with smart quotes	استبدال علامات الاقتباس المستقيمة بعلامات اقتباس ذكية
+	Replace text as you type	استبدال النص أثناء الكتابة
+	Replace:	استبدال:
+	Replaced {n} occurrence(s).	تم استبدال {n} من التكرارات.
+	Replaced “{from}” with “{to}”.	تم استبدال “{from}” بـ “{to}”.
+	Replace…	استبدال…
+	Reply	رد
+	Reply…	رد…
+	Rescan Installed Fonts	إعادة فحص الخطوط المثبّتة
+	Reset	إعادة تعيين
+	Reset 3-D	إعادة تعيين ثلاثي الأبعاد
+	Reset Background	إعادة تعيين الخلفية
+	Reset Effects	إعادة تعيين التأثيرات
+	Reset Picture	إعادة تعيين الصورة
+	Reset Slide	إعادة تعيين الشريحة
+	Reset Slide Background	إعادة تعيين خلفية الشريحة
+	Reset Style	إعادة تعيين النمط
+	Reset to Defaults	إعادة التعيين إلى الإعدادات الافتراضية
+	Resolution	الدقة
+	Resolve Thread	حل سلسلة المحادثة
+	Reuse Slides needs the desktop app	تحتاج إعادة استخدام الشرائح إلى تطبيق سطح المكتب
+	Reuse Slides…	إعادة استخدام الشرائح…
+	Reverse the order	عكس الترتيب
+	Revert	الرجوع إلى المحفوظ
+	Rewind after Playing	إرجاع بعد التشغيل
+	Ribbon Tab	علامة تبويب الشريط
+	Right-click any ribbon button to add it.	انقر بزر الماوس الأيمن على أي زر في الشريط لإضافته.
+	Right-to-Left Text Direction	اتجاه النص من اليمين إلى اليسار
+	Rotate	تدوير
+	Rotate Left	تدوير لليسار
+	Rotate Left 90°	تدوير لليسار 90°
+	Rotate Right	تدوير لليمين
+	Rotate Right 90°	تدوير لليمين 90°
+	Rotate with shape	التدوير مع الشكل
+	Rotation {rot}°, brightness {brightness}, contrast {contrast}	التدوير {rot}°، السطوع {brightness}، التباين {contrast}
+	Ruler	المسطرة
+	Saturation	التشبع
+	Saturation {v}%	التشبع {v}%
+	Save	حفظ
+	Save As…	حفظ باسم…
+	Save AutoRecover Information	حفظ معلومات الاسترداد التلقائي
+	Save as Template…	حفظ كقالب…
+	Saved	تم الحفظ
+	Saved {path}	تم الحفظ في {path}
+	Saving a copy needs a file picker, which this window doesn't have.	يتطلب حفظ نسخة منتقي ملفات، وهذه النافذة لا تحتوي عليه.
+	Screenshot	لقطة شاشة
+	Screenshot (not available yet)	لقطة شاشة (غير متوفرة بعد)
+	Search commands…	البحث في الأوامر…
+	Search for a word	البحث عن كلمة
+	Search icons	البحث في الأيقونات
+	Seconds per slide: enter {min} to {max}	الثواني لكل شريحة: أدخل قيمة من {min} إلى {max}
+	Section	مقطع
+	Seek	الانتقال في الوسائط
+	Select	تحديد
+	Select All	تحديد الكل
+	Select All Text	تحديد كل النص
+	Select Cells	تحديد الخلايا
+	Select Objects	تحديد الكائنات
+	Select Paragraph	تحديد الفقرة
+	Select Slides	تحديد الشرائح
+	Select Text	تحديد النص
+	Select Word	تحديد الكلمة
+	Select a SmartArt graphic to edit its text.	حدد رسم SmartArt لتحرير نصه.
+	Select a chart first.	حدد مخططاً أولاً.
+	Select a picture to rotate it or change brightness and contrast	حدد صورة لتدويرها أو لتغيير السطوع والتباين
+	Select a shape to format it.	حدد شكلاً لتنسيقه.
+	Select a word on the slide, or type one above.	حدد كلمة في الشريحة، أو اكتب كلمة في الأعلى.
+	Select an object on the slide and add an animation from the Animations tab.	حدد كائناً في الشريحة وأضف حركة من علامة التبويب "حركات".
+	Selection Pane…	جزء التحديد…
+	Send Backward	إرسال إلى الخلف
+	Send to Back	إرسال إلى الخلفية
+	Send\nBackward	إرسال\nإلى الخلف
+	Set	تعيين
+	Set Transparent Color	تعيين لون شفاف
+	Set Up Show…	إعداد العرض…
+	Set Zoom	تعيين التكبير/التصغير
+	Set as Default Shape	تعيين كشكل افتراضي
+	Shading	تظليل
+	Shadow	ظل
+	Shape Effects	تأثيرات الشكل
+	Shape Fill	تعبئة الشكل
+	Shape Outline	المخطط التفصيلي للشكل
+	Shape {id}	شكل {id}
+	Shape\nStyles	أنماط\nالأشكال
+	Shapes	أشكال
+	Show	إظهار
+	Show All	إظهار الكل
+	Show Media Controls	إظهار عناصر تحكم الوسائط
+	Show smart guides	إظهار الأدلة الذكية
+	Show type	نوع العرض
+	Show/Hide	إظهار/إخفاء
+	Show\nComments	إظهار\nالتعليقات
+	Size	الحجم
+	Size and Position…	الحجم والموضع…
+	Size:	الحجم:
+	Slide Master	الشريحة الرئيسية
+	Slide Number	رقم الشريحة
+	Slide Sorter	فارز الشرائح
+	Slide inserted after {n}	تم إدراج شريحة بعد الشريحة {n}
+	Slide timings recorded.	تم تسجيل توقيتات الشرائح.
+	Slide {i} of {n}	الشريحة {i} من {n}
+	Slide {n}	الشريحة {n}
+	Slide {n} changed	تم تغيير الشريحة {n}
+	Slide {n} deleted	تم حذف الشريحة {n}
+	Slide {n}: {issue}{name}	الشريحة {n}: {issue}{name}
+	Slide {n}: “{word}”	الشريحة {n}: “{word}”
+	Slide {slide}   Total {total}	الشريحة {slide}   المجموع {total}
+	Slide\nMaster	الشريحة\nالرئيسية
+	Slide\nSize	حجم\nالشريحة
+	Slides	الشرائح
+	Slides Per\nPage: {n}	الشرائح في\nالصفحة: {n}
+	Slides from Outline…	شرائح من المخطط التفصيلي…
+	Slides sized for:	حجم الشرائح مناسب لـ:
+	Slides:	الشرائح:
+	Slides: choose a range from 1 to {n}	الشرائح: اختر نطاقاً من 1 إلى {n}
+	SmartArt Styles	أنماط SmartArt
+	Smooth Corners	زوايا ناعمة
+	Snap	انطباق
+	Snap objects to grid	انطباق الكائنات على الشبكة
+	Soft Edges	حواف ناعمة
+	Solid line	خط متصل
+	Sort	فرز
+	Sound:	الصوت:
+	Source on GitHub	المصدر على GitHub
+	Spacing	تباعد
+	Spacing after must be a number	يجب أن يكون التباعد بعد الفقرة رقماً
+	Spacing before must be a number	يجب أن يكون التباعد قبل الفقرة رقماً
+	Special	خاص
+	Special indent must be a number of inches	يجب أن تكون المسافة البادئة الخاصة رقماً بالبوصة
+	Spelling is checked for languages marked (dictionary).	يُدقَّق الإملاء للغات المعلَّمة بـ (قاموس).
+	Standard (4:3)	قياسي (4:3)
+	Start Automatically	بدء تلقائي
+	Start a conversation	بدء محادثة
+	Start:	البداية:
+	Start: {start}s, End: {end}s	البداية: {start}s، النهاية: {end}s
+	Still opening {name}	لا يزال جارياً فتح {name}
+	Stop	إيقاف
+	Stop Editing Text	إيقاف تحرير النص
+	Stopped opening {name}	تم إيقاف فتح {name}
+	Strikethrough	يتوسطه خط
+	Style {i}	النمط {i}
+	Subscript	منخفض
+	Superscript	مرتفع
+	Symbol	رمز
+	Tab stop position (in):	موضع علامة الجدولة (بوصة):
+	Tab stops:	علامات الجدولة:
+	Table	جدول
+	Table…	جدول…
+	Tabs…	علامات الجدولة…
+	Task Pane	جزء المهام
+	Templates	القوالب
+	Text Box	مربع نص
+	Text Direction	اتجاه النص
+	Text Effects	تأثيرات النص
+	Text Fill	تعبئة النص
+	Text Highlight Color	لون تمييز النص
+	Text Outline	المخطط التفصيلي للنص
+	Text Shadow	ظل النص
+	Text boxes have no picture options	لا توجد خيارات صورة لمربعات النص
+	Text is longer than 400 characters	النص أطول من 400 حرف
+	Text: {text}	النص: {text}
+	Text\nPane	جزء\nالنص
+	That file is empty	هذا الملف فارغ
+	That picture is larger than 32 MB	حجم هذه الصورة أكبر من 32 MB
+	The picture list is invalid	قائمة الصور غير صالحة
+	The presentation has no sections. Add one with Home › Section.	لا يحتوي العرض التقديمي على مقاطع. أضف مقطعاً من الشريط الرئيسي › مقطع.
+	The spelling check is complete. No issues found.	اكتمل التدقيق الإملائي. لم يتم العثور على أي مشكلات.
+	The web build inserts album pictures from data passed to insert.photoAlbum	يُدرج إصدار الويب صور الألبوم من البيانات المُمرَّرة إلى insert.photoAlbum
+	Themes	السمات
+	Themes (whole presentation)	السمات (العرض التقديمي بأكمله)
+	There are no unsaved presentations to recover	لا توجد عروض تقديمية غير محفوظة لاستردادها
+	Thesaurus	قاموس المرادفات
+	This Document	هذا المستند
+	This presentation has no custom shows (Slide Show ▸ Custom Slide Show).	لا يحتوي هذا العرض التقديمي على عروض مخصصة (عرض الشرائح ▸ عرض شرائح مخصص).
+	This slide has no animations	لا تحتوي هذه الشريحة على حركات
+	Tile picture as texture	تجانب الصورة كمادة
+	Title	العنوان
+	Total Row	صف الإجمالي
+	Transform	تحويل
+	Translate	ترجمة
+	Translation needs a language model (not bundled)	تتطلب الترجمة نموذجاً لغوياً (غير مضمَّن)
+	Transparency	الشفافية
+	Trigger	مشغّل
+	Type	النوع
+	Type Text	كتابة نص
+	Type an equation in linear form (e.g. a^2+b^2=c^2, x=(-b±√(b^2-4ac))/2a).	اكتب معادلة بالصيغة الخطية (مثلاً a^2+b^2=c^2، x=(-b±√(b^2-4ac))/2a).
+	Type and organise the diagram's text	اكتب نص الرسم التخطيطي ونظّمه
+	Type the text for the new text box	اكتب نص مربع النص الجديد
+	Type your text here	اكتب النص هنا
+	Underline	تسطير
+	Undo	تراجع
+	Ungroup	فك التجميع
+	Use Timings	استخدام التوقيتات
+	Variants	المتغيرات
+	Version {version}	الإصدار {version}
+	Vertical alignment	المحاذاة العمودية
+	Video from File…	فيديو من ملف…
+	Volume	مستوى الصوت
+	Warp	التواء
+	Web Page or File	صفحة ويب أو ملف
+	Weight	السُمك
+	White	أبيض
+	Widescreen (16:9)	شاشة عريضة (16:9)
+	Width	العرض
+	Width:	العرض:
+	Width: 	العرض:
+	Width: enter {min} to {max} pixels	العرض: أدخل قيمة من {min} إلى {max} بكسل
+	With	بـ
+	With:	بـ:
+	WordArt	WordArt
+	WordArt style {n}	نمط WordArt {n}
+	Wrap Text in Shape	التفاف النص في الشكل
+	Wrap text in shape	التفاف النص في الشكل
+	Your changes will be lost if you don't save them.	ستفقد تغييراتك إذا لم تحفظها.
+	Your name (comments):	اسمك (للتعليقات):
+	Zoom	تكبير/تصغير
+	Zoom In	تكبير
+	Zoom Out	تصغير
+	Zoom to	تكبير/تصغير إلى
+	Zoom…	تكبير/تصغير…
+	[No Sound]	[بلا صوت]
+	[Stop Previous Sound]	[إيقاف الصوت السابق]
+	a dictionaries folder	مجلد قواميس
+	align text to the {pos} of the cell	محاذاة النص إلى {pos} الخلية
+	animation preview plays the current slide	معاينة الحركة تشغّل الشريحة الحالية
+	dropped file	ملف تم إفلاته
+	e.g. 1-3, 5	مثلاً 1-3، 5
+	in	بوصة
+	no presentation is open	لا يوجد عرض تقديمي مفتوح
+	no slide to preview	لا توجد شريحة للمعاينة
+	nothing to print: no presentation is open	لا يوجد ما يُطبع: لا يوجد عرض تقديمي مفتوح
+	open a presentation first	افتح عرضاً تقديمياً أولاً
+	open the presentation to compare first	افتح العرض التقديمي المطلوب مقارنته أولاً
+	picking a SmartArt picture needs the desktop app	يتطلب اختيار صورة SmartArt تطبيق سطح المكتب
+	pt	pt
+	size (pt)	الحجم (pt)
+	the layout it was chosen for was deleted	تم حذف التخطيط الذي اختير له
+	the slide it was chosen for was deleted	تم حذف الشريحة التي اختير لها
+	the slide master it was chosen for was deleted	تم حذف الشريحة الرئيسية التي اختير لها
+	there was no slide to put it on	لم تكن هناك شريحة لوضعه عليها
+	{a} and {b}	{a} و{b}
+	{a}, {b} and {c}	{a}، {b} و{c}
+	{a}, {b}, {c} and {n} more	{a}، {b}، {c} و{n} أخرى
+	{ch}  Bullet	{ch}  تعداد نقطي
+	{cols}x{rows} Table	جدول {cols}x{rows}
+	{f} (Body)	{f} (النص الأساسي)
+	{f} (Headings)	{f} (العناوين)
+	{i} of {n}	{i} من {n}
+	{kind} (click to change)	{kind} (انقر للتغيير)
+	{label} ({shortcut})	{label} ({shortcut})
+	{label} must be a number	يجب أن يكون {label} رقماً
+	{lang} (not checked)	{lang} (غير مدقَّق)
+	{names} aren't installed on this computer. Text that uses them is shown in a similar font.	الخطوط {names} غير مثبّتة على هذا الكمبيوتر. يُعرض النص الذي يستخدمها بخط مشابه.
+	{names} isn't installed on this computer. Text that uses it is shown in a similar font.	الخط {names} غير مثبّت على هذا الكمبيوتر. يُعرض النص الذي يستخدمه بخط مشابه.
+	{name}  (dictionary)	{name}  (قاموس)
+	{name}  ({n})	{name}  ({n})
+	{name} ({n} slides)	{name} ({n} شرائح)
+	{name} Slide Master	الشريحة الرئيسية {name}
+	{name} was not applied: the presentation it was chosen for is closed	لم يتم تطبيق {name}: العرض التقديمي الذي اختير له مغلق
+	{name} was not applied: {error}	لم يتم تطبيق {name}: {error}
+	{name} — {class}	{name} — {class}
+	{name}: DeckCraft can't open this kind of file	{name}: لا يمكن لـ DeckCraft فتح هذا النوع من الملفات
+	{n}  Hidden	{n}  مخفية
+	{n} Columns	{n} أعمدة
+	{n} KB	{n} KB
+	{n} MB	{n} MB
+	{n} Slides	{n} شرائح
+	{n} bytes	{n} بايت
+	{n} contributors · {commits} commits	{n} مساهمين · {commits} إيداعات
+	{n} presentations	{n} عروض تقديمية
+	{n} slides per page	{n} شرائح في الصفحة
+	{path} — this file can't be found	{path} — لا يمكن العثور على هذا الملف
+	{path}: reading the file stopped unexpectedly	{path}: توقفت قراءة الملف بشكل غير متوقع
+	{pct}%	{pct}%
+	{r} pt	{r} pt
+	{r} pt glow	توهج {r} pt
+	{slot} needs a colour like #RRGGBB.	يحتاج {slot} إلى لون بصيغة مثل #RRGGBB.
+	{text}  →	{text}  →
+	{title} — Edited	{title} — تم التحرير
+	{when} · Resolved	{when} · تم الحل
+	{w} pt	{w} pt
+	“{from}” isn't used explicitly.	“{from}” غير مستخدم بشكل صريح.
+	“{id}” is not available yet.	“{id}” غير متوفر بعد.
+	•  {text}	•  {text}
+	↳ {author}: {text}	↳ {author}: {text}
+	◀ Previous	◀ السابق
+	Builds a new presentation from a set of pictures: pick the photos and each one gets its own slide, with a frame and a caption if you like. Example: twenty photos from a visit become a twenty-slide album in one go.	ينشئ عرضًا جديدًا من مجموعة صور: اختر الصور فتحصل كل صورة على شريحة خاصة بها، مع إطار وتعليق إن شئت. مثال: عشرون صورة من زيارة تصبح ألبومًا من عشرين شريحة دفعة واحدة.
+	Puts what you cut or copied onto the current slide: text where the caret is, or a shape or picture in the middle of the slide. Example: copy a logo from slide ١ and paste it onto slide ٢.	يضع ما قصصته أو نسخته في الشريحة الحالية: النص عند مؤشر الكتابة، أو الشكل أو الصورة في وسط الشريحة. مثال: انسخ شعارًا من الشريحة ١ وألصقه في الشريحة ٢.
+	Takes the selected shape or text off the slide and keeps it on the clipboard, so you can paste it somewhere else. Example: cut a picture from one slide and paste it on the next.	يزيل الشكل أو النص المحدد من الشريحة ويحتفظ به في الحافظة، لتلصقه في مكان آخر. مثال: قص صورة من شريحة وألصقها في الشريحة التالية.
+	Keeps a copy of the selected shape or text on the clipboard to paste elsewhere; the original stays where it is. Example: copy a title box once and paste it on three slides.	يحتفظ بنسخة من الشكل أو النص المحدد في الحافظة لتلصقها في مكان آخر؛ ويبقى الأصل في مكانه. مثال: انسخ مربع العنوان مرة واحدة وألصقه في ثلاث شرائح.
+	Format Painter: copies the look of the selected shape or text (fill, outline, font, colour) and paints it onto the next thing you click. Example: click a blue rounded box, then click a plain box to make it blue and rounded too.	نسخ التنسيق: ينسخ مظهر الشكل أو النص المحدد (التعبئة، الحد، الخط، اللون) ويطبّقه على الشيء التالي الذي تنقر عليه. مثال: انقر على مربع أزرق مستدير الزوايا، ثم انقر على مربع عادي ليصبح أزرق ومستدير الزوايا أيضًا.
+	Adds a new empty slide after the current one, with the same layout: a title and a body ready to fill. Example: after the introduction slide, a new blank slide appears for the first topic.	يضيف شريحة جديدة فارغة بعد الشريحة الحالية، بالتخطيط نفسه: عنوان ونص جاهزان للملء. مثال: بعد شريحة المقدمة تظهر شريحة فارغة جديدة للموضوع الأول.
+	Changes how the placeholders are arranged on the current slide: title only, title and content, two columns, comparison… Example: a slide with one text box becomes a slide with two side-by-side boxes.	يغيّر ترتيب العناصر النائبة في الشريحة الحالية: عنوان فقط، عنوان ومحتوى، عمودان، مقارنة… مثال: شريحة فيها مربع نص واحد تصبح شريحة فيها مربعان متجاوران.
+	Groups the slides into named sections you can collapse, move and jump to in the slide list. Example: the slides about the budget get a section called «الميزانية».	يجمع الشرائح في أقسام مسماة يمكنك طيّها ونقلها والانتقال إليها في قائمة الشرائح. مثال: شرائح الميزانية تحصل على قسم باسم «الميزانية».
+	Puts the placeholders of the current slide back where the layout has them, with the layout's fonts and sizes, after you moved or restyled them. Example: a title dragged to the corner jumps back to the top.	يعيد العناصر النائبة في الشريحة الحالية إلى مواضعها في التخطيط، بخطوط التخطيط وأحجامه، بعد أن نقلتها أو غيّرت مظهرها. مثال: عنوان سُحب إلى الزاوية يقفز عائدًا إلى الأعلى.
+	Makes the selected text one step bigger. Example: a title in ٢٨ points becomes ٣٢ points.	يكبّر النص المحدد درجة واحدة. مثال: عنوان بحجم ٢٨ نقطة يصبح ٣٢ نقطة.
+	Makes the selected text one step smaller. Example: a body text in ٢٠ points becomes ١٨ points, so one more line fits.	يصغّر النص المحدد درجة واحدة. مثال: نص بحجم ٢٠ نقطة يصبح ١٨ نقطة، فيتسع سطر إضافي.
+	Removes bold, italic, colours, sizes and other looks from the selected text, leaving plain text in the slide's own font. Example: a red bold underlined line becomes an ordinary line.	يزيل الغامق والمائل والألوان والأحجام وسائر المظاهر عن النص المحدد، ويترك نصًا عاديًا بخط الشريحة نفسه. مثال: سطر أحمر غامق مسطّر يصبح سطرًا عاديًا.
+	Makes the selected text bold: thicker, darker letters that stand out. Example: the key word of a bullet point is made bold.	يجعل النص المحدد غامقًا: حروفًا أسمك وأدكن تلفت النظر. مثال: الكلمة الأساسية في نقطة تعداد تُجعل غامقة.
+	Slants the selected letters to the side, like handwriting. Example: a quotation on the slide is written slanted.	يميل الحروف المحددة إلى الجانب، كالكتابة اليدوية. مثال: اقتباس في الشريحة يُكتب مائلًا.
+	Draws a line under the selected text. Example: the word «مهم» gets a line under it.	يرسم خطًا تحت النص المحدد. مثال: كلمة «مهم» تحصل على خط تحتها.
+	Draws a line through the middle of the selected text, as if crossed out. Example: an old price is crossed out next to the new one.	يرسم خطًا في منتصف النص المحدد، كأنه مشطوب. مثال: سعر قديم يُشطب بجانب السعر الجديد.
+	Makes the selected text small and raised above the line. Example: the ٢ in م² is raised.	يجعل النص المحدد صغيرًا ومرفوعًا فوق السطر. مثال: الرقم ٢ في م² مرفوع.
+	Makes the selected text small and lowered below the line. Example: the ٢ in H₂O is lowered.	يجعل النص المحدد صغيرًا ومنخفضًا تحت السطر. مثال: الرقم ٢ في H₂O منخفض.
+	Widens or tightens the space between the letters of the selected text. Example: the letters of a title are spread out so it fills the slide's width.	يوسّع المسافة بين حروف النص المحدد أو يضيّقها. مثال: حروف عنوان تُباعد حتى يملأ عرض الشريحة.
+	Changes the capital letters of selected Latin text: all capitals, all small, first letter capital, or the reverse. Example: «word craft» becomes «WORD CRAFT».	يغيّر الحروف الكبيرة في النص اللاتيني المحدد: كلها كبيرة، كلها صغيرة، الحرف الأول كبيرًا، أو العكس. مثال: «word craft» تصبح «WORD CRAFT».
+	Paints a bright colour behind the selected text, like a marker pen, so it stands out. Example: the deadline in a bullet point gets a yellow background.	يلوّن خلفية النص المحدد بلون زاهٍ، كقلم التحديد، ليبرز. مثال: الموعد النهائي في نقطة تعداد يحصل على خلفية صفراء.
+	Colours the selected letters; the background stays as it is. Example: the warning line is written in red.	يلوّن الحروف المحددة؛ وتبقى الخلفية كما هي. مثال: سطر التحذير يُكتب باللون الأحمر.
+	Puts a dot in front of each selected paragraph, making a bulleted list; press again to remove the dots. Example: three plain lines become three bullet points.	يضع نقطة أمام كل فقرة محددة، فتصبح قائمة نقطية؛ اضغط مرة أخرى لإزالة النقاط. مثال: ثلاثة أسطر عادية تصبح ثلاث نقاط تعداد.
+	Numbers the selected paragraphs ١, ٢, ٣… in order; add a paragraph and the numbers follow. Example: the steps of a procedure are numbered.	يرقّم الفقرات المحددة ١، ٢، ٣… بالترتيب؛ وإذا أضفت فقرة تتابعت الأرقام. مثال: خطوات إجراء تُرقَّم.
+	Moves the selected list item one level out, back towards the margin, making it a main point again. Example: a sub-point under «المعدات» becomes a main point of its own.	ينقل عنصر القائمة المحدد مستوى واحدًا إلى الخارج، نحو الهامش، فيعود نقطة رئيسية. مثال: نقطة فرعية تحت «المعدات» تصبح نقطة رئيسية بذاتها.
+	Moves the selected list item one level in, making it a sub-point of the item above it. Example: «الطابعة» becomes a sub-point under «المعدات».	ينقل عنصر القائمة المحدد مستوى واحدًا إلى الداخل، فيصبح نقطة فرعية من العنصر الذي فوقه. مثال: «الطابعة» تصبح نقطة فرعية تحت «المعدات».
+	Sets the space between the lines of the selected text: single, one and a half, double, or an exact value. Example: a crowded bullet list gets more air between its lines.	يحدد المسافة بين أسطر النص المحدد: مفردة، واحدة ونصف، مزدوجة، أو قيمة محددة. مثال: قائمة نقطية مزدحمة تحصل على مسافة أوسع بين أسطرها.
+	Splits the text of the selected box into two or more columns side by side. Example: a long list of names flows into two columns instead of one.	يقسم نص المربع المحدد إلى عمودين أو أكثر متجاورين. مثال: قائمة أسماء طويلة تنساب في عمودين بدل عمود واحد.
+	Turns the text in the selected box: horizontal, rotated ٩٠°, rotated ٢٧٠°, or stacked letter under letter. Example: a label beside a chart is turned to run from bottom to top.	يدير النص في المربع المحدد: أفقي، مُدار ٩٠°، مُدار ٢٧٠°، أو مكدّس حرفًا تحت حرف. مثال: تسمية بجانب مخطط تُدار لتجري من الأسفل إلى الأعلى.
+	Places the text at the top, the middle or the bottom of its box. Example: a short title in a tall box is moved to the middle.	يضع النص في أعلى مربعه أو وسطه أو أسفله. مثال: عنوان قصير في مربع طويل يُنقل إلى الوسط.
+	Turns the selected bulleted list into a diagram: boxes, a process with arrows, a cycle, a hierarchy… Example: three bullet points become three connected boxes.	يحوّل القائمة النقطية المحددة إلى رسم تخطيطي: مربعات، عملية بأسهم، دورة، تسلسل هرمي… مثال: ثلاث نقاط تعداد تصبح ثلاثة مربعات متصلة.
+	Lines the selected text up along the left edge of its box. Example: an English address on the slide starts at the left edge.	يحاذي النص المحدد على الحافة اليسرى لمربعه. مثال: عنوان بالإنجليزية في الشريحة يبدأ من الحافة اليسرى.
+	Centres each line of the selected text in its box. Example: the title sits in the middle of the slide.	يوسّط كل سطر من النص المحدد في مربعه. مثال: العنوان يستقر في منتصف الشريحة.
+	Lines the selected text up along the right edge of its box, as Arabic text normally is. Example: a paragraph that was centred moves to the right edge.	يحاذي النص المحدد على الحافة اليمنى لمربعه، كما هو النص العربي عادة. مثال: فقرة كانت موسّطة تنتقل إلى الحافة اليمنى.
+	Stretches each line of the selected text to reach both edges of its box, by widening the spaces between words. Example: a paragraph gets straight edges on both sides.	يمدّ كل سطر من النص المحدد ليبلغ حافتي مربعه، بتوسيع المسافات بين الكلمات. مثال: فقرة تحصل على حافتين مستقيمتين من الجانبين.
+	Opens a gallery of shapes (rectangles, circles, arrows, stars, callouts…) to draw on the slide: pick one, then drag on the slide. Example: a circle is drawn around the important number.	يفتح معرض أشكال (مستطيلات، دوائر، أسهم، نجوم، وسائل شرح…) لترسمها في الشريحة: اختر شكلًا ثم اسحب في الشريحة. مثال: دائرة تُرسم حول الرقم المهم.
+	Orders, aligns, groups and rotates the selected shapes: bring to front, send to back, align tops, distribute evenly, group. Example: three boxes at different heights are lined up in a row.	يرتّب الأشكال المحددة ويحاذيها ويجمّعها ويديرها: إحضار إلى الأمام، إرسال إلى الخلف، محاذاة الأعلى، توزيع متساوٍ، تجميع. مثال: ثلاثة مربعات على ارتفاعات مختلفة تُصفّ في صف واحد.
+	Gives the selected shape a ready-made look in one click: fill, outline and effects that match the theme. Example: a plain box becomes a blue box with a soft shadow.	يمنح الشكل المحدد مظهرًا جاهزًا بنقرة واحدة: تعبئة وحدًّا وتأثيرات تناسب السمة. مثال: مربع عادي يصبح مربعًا أزرق بظل خفيف.
+	Colours the inside of the selected shape: a colour, a gradient, a picture or no fill at all. Example: a white box is filled with the theme's blue.	يلوّن داخل الشكل المحدد: لون، أو تدرّج، أو صورة، أو بلا تعبئة. مثال: مربع أبيض يُملأ بأزرق السمة.
+	Sets the line around the selected shape: its colour, thickness and dashes, or no line. Example: a box gets a thick dark border.	يضبط الخط المحيط بالشكل المحدد: لونه وسمكه وشرطاته، أو بلا خط. مثال: مربع يحصل على حد داكن سميك.
+	Adds a shadow, glow, reflection, soft edge or 3-D look to the selected shape. Example: a box gets a shadow so it seems to float above the slide.	يضيف ظلًا أو توهجًا أو انعكاسًا أو حافة ناعمة أو مظهرًا ثلاثي الأبعاد إلى الشكل المحدد. مثال: مربع يحصل على ظل فيبدو كأنه يطفو فوق الشريحة.
+	Draws a box on the slide to type free text anywhere, outside the layout's placeholders. Example: a note is added in the corner of a chart slide.	يرسم مربعًا في الشريحة لتكتب نصًا حرًا في أي مكان، خارج العناصر النائبة للتخطيط. مثال: ملاحظة تُضاف في زاوية شريحة مخطط.
+	Places a picture file from your computer on the current slide; drag it to move it and pull its corners to resize it. Example: the unit's logo lands on the title slide.	يضع ملف صورة من حاسوبك في الشريحة الحالية؛ اسحبها لنقلها واسحب زواياها لتغيير حجمها. مثال: شعار الوحدة يحطّ في شريحة العنوان.
+	Searches all the slides for a word and highlights each place it appears. Example: find every «بغداد» in the presentation.	يبحث في كل الشرائح عن كلمة ويحدد كل موضع تظهر فيه. مثال: اعثر على كل «بغداد» في العرض.
+	Finds a word on the slides and swaps it for another, one at a time or all at once. Example: every «٢٠٢٥» becomes «٢٠٢٦».	يعثر على كلمة في الشرائح ويستبدلها بأخرى، واحدة واحدة أو كلها دفعة واحدة. مثال: كل «٢٠٢٥» تصبح «٢٠٢٦».
+	Swaps one font for another everywhere in the presentation. Example: every text set in one font is changed to the new font in a single step.	يستبدل خطًا بخط آخر في كل أنحاء العرض. مثال: كل نص مكتوب بخط معيّن يتحوّل إلى الخط الجديد في خطوة واحدة.
+	Opens a list of everything on the current slide, to select, rename, hide or reorder the shapes, even ones hidden behind others. Example: hide the big picture to reach the small text box behind it.	يفتح قائمة بكل ما في الشريحة الحالية، لتحديد الأشكال وإعادة تسميتها وإخفائها وإعادة ترتيبها، حتى المخفية خلف غيرها. مثال: أخفِ الصورة الكبيرة لتصل إلى مربع النص الصغير خلفها.
+	Suggests ready-made designs for the current slide's content in a side pane; click one to apply it. Example: a slide with a title and a picture is offered three polished arrangements.	يقترح تصاميم جاهزة لمحتوى الشريحة الحالية في جزء جانبي؛ انقر على أحدها لتطبيقه. مثال: شريحة فيها عنوان وصورة تُعرض لها ثلاثة ترتيبات أنيقة.
+	Puts a table on the slide: drag over the grid to choose how many rows and columns, and type in the cells. Example: a ٣ × ٣ table for the names, the dates and the amounts.	يضع جدولًا في الشريحة: اسحب فوق الشبكة لاختيار عدد الصفوف والأعمدة، ثم اكتب في الخلايا. مثال: جدول ٣ × ٣ للأسماء والتواريخ والمبالغ.
+	Places a picture file from your computer on the slide; drag it to move it and pull its corners to resize it. Example: a photo of the device is placed beside its description.	يضع ملف صورة من حاسوبك في الشريحة؛ اسحبها لنقلها واسحب زواياها لتغيير حجمها. مثال: صورة الجهاز توضع بجانب وصفه.
+	Takes a picture of another open window, or of a part of the screen you drag over, and puts it on the slide. Example: a snapshot of the budget sheet lands on the slide.	يلتقط صورة لنافذة أخرى مفتوحة، أو لجزء من الشاشة تسحب فوقه، ويضعها في الشريحة. مثال: لقطة من ورقة الميزانية تحطّ في الشريحة.
+	Opens a gallery of simple symbols (people, tools, arrows, buildings…) to put on the slide as shapes you can colour and resize. Example: a gear icon next to the word «الصيانة».	يفتح معرض رموز بسيطة (أشخاص، أدوات، أسهم، مبانٍ…) لتضعها في الشريحة كأشكال يمكنك تلوينها وتغيير حجمها. مثال: رمز ترس بجانب كلمة «الصيانة».
+	Puts a ready-made diagram on the slide (a list, a process, a cycle, a hierarchy…) and you type the words into its boxes. Example: a tree of the unit's sections and who reports to whom.	يضع رسمًا تخطيطيًا جاهزًا في الشريحة (قائمة، عملية، دورة، تسلسل هرمي…) وتكتب أنت الكلمات في مربعاته. مثال: شجرة بأقسام الوحدة ومن يتبع لمن.
+	Puts a chart (bars, lines, a pie…) on the slide, with a small table where you type the numbers it shows. Example: a bar chart of the monthly totals.	يضع مخططًا (أعمدة، خطوط، دائري…) في الشريحة، مع جدول صغير تكتب فيه الأرقام التي يعرضها. مثال: مخطط أعمدة للمجاميع الشهرية.
+	Puts a live thumbnail of another slide or section on this slide; clicking it during the show jumps there and zooms in. Example: a summary slide with a thumbnail of each section.	يضع في هذه الشريحة صورة مصغرة حيّة لشريحة أو قسم آخر؛ والنقر عليها أثناء العرض ينتقل إلى هناك مع تكبير. مثال: شريحة ملخص فيها صورة مصغرة لكل قسم.
+	Turns the selected text or shape into a link: clicking it during the show opens a web page, a file or another slide. Example: the word «الموقع» opens the unit's web page.	يحوّل النص أو الشكل المحدد إلى رابط: النقر عليه أثناء العرض يفتح صفحة ويب أو ملفًا أو شريحة أخرى. مثال: كلمة «الموقع» تفتح صفحة الوحدة على الويب.
+	Makes the selected shape do something when clicked or pointed at during the show: jump to a slide, open a file, play a sound. Example: a «التالي» button jumps to the next slide.	يجعل الشكل المحدد يفعل شيئًا عند النقر عليه أو الإشارة إليه أثناء العرض: الانتقال إلى شريحة، فتح ملف، تشغيل صوت. مثال: زر «التالي» ينتقل إلى الشريحة التالية.
+	Attaches a note to the slide for the people you work with; it shows in a side pane, not in the show. Example: «please check this number» is pinned next to the table.	يلحق بالشريحة ملاحظة لمن يعملون معك؛ تظهر في جزء جانبي، لا في العرض. مثال: «يرجى التحقق من هذا الرقم» تُثبَّت بجانب الجدول.
+	Draws a box on the slide to type free text anywhere, outside the layout's placeholders. Example: a source line is added under a chart.	يرسم مربعًا في الشريحة لتكتب نصًا حرًا في أي مكان، خارج العناصر النائبة للتخطيط. مثال: سطر المصدر يُضاف تحت مخطط.
+	Puts the date, the slide number and a line of footer text at the bottom of every slide (or only this one). Example: every slide shows the unit's name and its number at the bottom.	يضع التاريخ ورقم الشريحة وسطر تذييل في أسفل كل شريحة (أو هذه الشريحة فقط). مثال: كل شريحة تعرض اسم الوحدة ورقمها في الأسفل.
+	Puts decorative text on the slide: big letters with an outline, a shadow, a gradient or a 3-D look. Example: the word «مرحباً» in large outlined letters on the opening slide.	يضع نصًا زخرفيًا في الشريحة: حروفًا كبيرة بحد خارجي أو ظل أو تدرّج أو مظهر ثلاثي الأبعاد. مثال: كلمة «مرحباً» بحروف كبيرة محدّدة في الشريحة الافتتاحية.
+	Inserts today's date (and the time if you like) where the caret is, in the format you choose, and can keep it updated automatically. Example: ٢٠٢٦/١٠/١٨ is written at the caret.	يدرج تاريخ اليوم (والوقت إن شئت) عند مؤشر الكتابة، بالصيغة التي تختارها، ويمكنه تحديثه تلقائيًا. مثال: ٢٠٢٦/١٠/١٨ يُكتب عند المؤشر.
+	Inserts the number of the current slide where the caret is; it changes by itself when the slides are reordered. Example: the third slide shows ٣.	يدرج رقم الشريحة الحالية عند مؤشر الكتابة؛ ويتغير من تلقاء نفسه عند إعادة ترتيب الشرائح. مثال: الشريحة الثالثة تعرض ٣.
+	Puts a mathematical formula on the slide, with fractions, powers, roots and symbols laid out properly. Example: a fraction with a + b above the line and ٢ below it.	يضع صيغة رياضية في الشريحة، بكسور وأسس وجذور ورموز مرتبة ترتيبًا صحيحًا. مثال: كسر فيه a + b فوق الخط و٢ تحته.
+	Opens a table of characters that are not on the keyboard (©, ±, →, Ω…) to insert one where the caret is. Example: the degree sign in ٢٥°.	يفتح جدولًا بالحروف غير الموجودة على لوحة المفاتيح (©، ±، →، Ω…) لتدرج أحدها عند مؤشر الكتابة. مثال: علامة الدرجة في ٢٥°.
+	Puts a video file on the slide, with play controls; it plays during the show. Example: a short clip of the procedure plays on the training slide.	يضع ملف فيديو في الشريحة، مع أزرار تشغيل؛ ويُشغَّل أثناء العرض. مثال: مقطع قصير للإجراء يُعرض في شريحة التدريب.
+	Puts a sound file on the slide as a small speaker icon; it plays during the show, when clicked or automatically. Example: a recorded explanation plays when the slide opens.	يضع ملف صوت في الشريحة على هيئة رمز سماعة صغير؛ يُشغَّل أثناء العرض، عند النقر أو تلقائيًا. مثال: شرح مسجّل يُشغَّل عند فتح الشريحة.
+	Lasso Select: drag a loop around the ink strokes you want, to move, resize or delete them together. Example: circle three strokes of a sketch to move them aside.	تحديد بالحبل: اسحب حلقة حول خطوط الحبر التي تريدها، لنقلها أو تغيير حجمها أو حذفها معًا. مثال: حوّط ثلاثة خطوط من رسم لتزيحها جانبًا.
+	Rubs out ink strokes: drag over a stroke and it disappears. Example: a wrong line in a sketch is wiped away.	يمحو خطوط الحبر: اسحب فوق خط فيختفي. مثال: خط خاطئ في رسم يُمسح.
+	Turns a shape you drew by hand into a clean one: a wobbly circle becomes a perfect circle, a rough box a straight rectangle. Example: a hand-drawn ring around a number becomes a neat ellipse.	يحوّل شكلًا رسمته بيدك إلى شكل نظيف: دائرة مهتزة تصبح دائرة تامة، ومربع خشن يصبح مستطيلًا مستقيمًا. مثال: حلقة مرسومة باليد حول رقم تصبح شكلًا بيضويًا أنيقًا.
+	Turns handwriting into typed text in a text box. Example: a word written with the pen becomes a typed word.	يحوّل الكتابة اليدوية إلى نص مطبوع في مربع نص. مثال: كلمة مكتوبة بالقلم تصبح كلمة مطبوعة.
+	Turns a formula written by hand into a proper typed equation. Example: a handwritten x² + y² becomes a clean equation.	يحوّل صيغة مكتوبة باليد إلى معادلة مطبوعة صحيحة. مثال: x² + y² مكتوبة باليد تصبح معادلة نظيفة.
+	Opens a file box so you can pick a theme saved on your computer (or take the look of another presentation) and apply its colours, fonts and backgrounds to every slide. Example: choose the ministry's theme file and all the slides take its blue title bars.	يفتح مربع ملفات لتختار سمة محفوظة على حاسوبك (أو تأخذ مظهر عرض تقديمي آخر) وتطبّق ألوانها وخطوطها وخلفياتها على كل الشرائح. مثال: اختر ملف سمة الوزارة فتأخذ كل الشرائح أشرطة عناوينها الزرقاء.
+	Changes the set of colours the whole presentation uses: titles, shapes, charts and links all switch together, while the layout stays the same. Example: pick the green set and every blue heading and shape turns green.	يغيّر مجموعة الألوان التي يستعملها العرض كله: العناوين والأشكال والمخططات والروابط تتبدّل معًا، ويبقى التخطيط كما هو. مثال: اختر المجموعة الخضراء فيتحوّل كل عنوان وشكل أزرق إلى الأخضر.
+	Changes the pair of fonts the presentation uses, one for headings and one for body text, on every slide at once. Example: choose a bolder heading font and all the slide titles change together.	يغيّر زوج الخطوط الذي يستعمله العرض، خطًا للعناوين وخطًا لنص المتن، في كل الشرائح دفعة واحدة. مثال: اختر خط عناوين أثقل فتتغيّر عناوين الشرائح كلها معًا.
+	Changes how the theme's shapes look: flat, with soft shadows, with glows or with bevelled edges, on every slide at once. Example: the plain boxes of a diagram get a gentle shadow under each one.	يغيّر مظهر أشكال السمة: مسطّحة، أو بظلال ناعمة، أو بوهج، أو بحواف مشطوفة، في كل الشرائح دفعة واحدة. مثال: مربعات المخطط البسيطة تحصل على ظل خفيف تحت كل واحد منها.
+	Gives the slides a background from the theme: light, tinted, or dark shades, plain or with a soft gradient. Example: a white slide gets a light-to-dark blue gradient behind its text.	يمنح الشرائح خلفية من السمة: درجات فاتحة أو ملوّنة أو داكنة، سادة أو بتدرّج ناعم. مثال: شريحة بيضاء تحصل على تدرّج أزرق من الفاتح إلى الداكن خلف نصها.
+	Changes the shape of every slide: the older square-ish 4:3 for old projectors, or the wide 16:9 for modern screens and TVs. Example: switch a 4:3 deck to 16:9 so it fills the meeting-room screen.	يغيّر شكل كل الشرائح: النسبة القديمة شبه المربعة 4:3 لأجهزة العرض القديمة، أو النسبة العريضة 16:9 للشاشات والتلفزيونات الحديثة. مثال: حوّل عرضًا من 4:3 إلى 16:9 ليملأ شاشة قاعة الاجتماعات.
+	Opens a side pane where you set the background of this slide yourself: a solid colour, a gradient, a picture or a pattern, and whether to apply it to all slides. Example: put a faint picture of the building behind the title slide.	يفتح لوحة جانبية تضبط فيها خلفية هذه الشريحة بنفسك: لون سادة، أو تدرّج، أو صورة، أو نقش، وهل تُطبَّق على كل الشرائح. مثال: ضع صورة خافتة للمبنى خلف شريحة العنوان.
+	Plays this slide's transition (or, on the Animations tab, its animations) right here on the canvas, so you can see it without starting the whole show. Example: press it after choosing Push to watch the slide slide in.	يشغّل انتقال هذه الشريحة (أو حركاتها في تبويب الحركات) هنا على اللوحة مباشرة، لتراه من دون بدء العرض كله. مثال: اضغطه بعد اختيار «دفع» لتشاهد الشريحة وهي تنزلق إلى الداخل.
+	Sets the details of the chosen transition: which direction it comes from, whether it runs smoothly or in pieces. Example: a Wipe from the left becomes a Wipe from the top.	يضبط تفاصيل الانتقال المختار: من أي اتجاه يأتي، وهل يجري بسلاسة أو على أجزاء. مثال: «مسح» من اليسار يصبح «مسحًا» من الأعلى.
+	Copies this slide's transition, its sound and its timing to every slide of the presentation, so the whole show moves the same way. Example: set Fade on slide 1, press it, and slides 2 to 20 fade too.	ينسخ انتقال هذه الشريحة وصوتها وتوقيتها إلى كل شرائح العرض، فيتحرّك العرض كله بالطريقة نفسها. مثال: اضبط «تلاشي» على الشريحة 1 واضغطه، فتتلاشى الشرائح من 2 إلى 20 أيضًا.
+	Gives the selected object one more animation on top of the ones it already has, instead of replacing them. Example: a box that already flies in gets a second effect that makes it pulse afterwards.	يمنح العنصر المحدد حركة إضافية فوق الحركات التي لديه أصلًا، بدلًا من أن يستبدلها. مثال: مربع يطير إلى الداخل أصلًا يحصل على تأثير ثانٍ يجعله ينبض بعد ذلك.
+	Makes the selected animation start when you click a particular object on the slide, instead of on the next click anywhere. Example: the picture appears only when the presenter clicks the «show» button.	يجعل الحركة المحددة تبدأ عند النقر على عنصر معيّن في الشريحة، بدلًا من النقرة التالية في أي مكان. مثال: تظهر الصورة فقط عندما ينقر المحاضر زر «اعرض».
+	Opens a side pane listing every animation on this slide in order, with its timing bar, so you can reorder, retime or remove them. Example: drag the title's animation above the picture's so it plays first.	يفتح لوحة جانبية تعرض كل حركات هذه الشريحة بترتيبها، مع شريط توقيت لكل منها، لتعيد ترتيبها أو تغيّر توقيتها أو تحذفها. مثال: اسحب حركة العنوان فوق حركة الصورة لتُعرَض أولًا.
+	Copies the animation of the selected object and puts the same one on the object you click next; double-click the button to paint several objects. Example: the fly-in of the first box is painted onto the other three.	ينسخ حركة العنصر المحدد ويضع الحركة نفسها على العنصر الذي تنقر عليه بعده؛ انقر الزر نقرًا مزدوجًا لتطلي عدة عناصر. مثال: حركة طيران المربع الأول تُطلى على المربعات الثلاثة الأخرى.
+	Starts the slide show full screen from the first slide, whatever slide you are looking at now; press Escape to come back. Example: you are editing slide 7, press it and the show opens on slide 1.	يبدأ عرض الشرائح بملء الشاشة من الشريحة الأولى، أيًا كانت الشريحة التي تنظر إليها الآن؛ اضغط Escape للعودة. مثال: أنت تحرّر الشريحة 7، اضغطه فيبدأ العرض من الشريحة 1.
+	Starts the slide show full screen from the slide you are on, so you can check it without going through the earlier ones. Example: on slide 7, press it and the show opens on slide 7.	يبدأ عرض الشرائح بملء الشاشة من الشريحة التي أنت عليها، لتتفقدها من دون المرور بالشرائح السابقة. مثال: على الشريحة 7، اضغطه فيبدأ العرض من الشريحة 7.
+	When the show plays, your screen shows the current slide, the next one, your notes and a clock, while the audience sees only the slide. Example: read your notes under slide 3 while the projector shows the slide alone.	عندما يعمل العرض، تُظهر شاشتك الشريحة الحالية والشريحة التالية وملاحظاتك وساعة، بينما لا يرى الجمهور إلا الشريحة. مثال: اقرأ ملاحظاتك تحت الشريحة 3 بينما يعرض جهاز العرض الشريحة وحدها.
+	Keeps this slide in the file but skips it when the show plays; press again to show it. Example: hide the budget slide for the public talk and unhide it for the committee.	يُبقي هذه الشريحة في الملف لكنه يتخطّاها عند تشغيل العرض؛ اضغطه مرة أخرى لإظهارها. مثال: أخفِ شريحة الميزانية في المحاضرة العامة وأظهرها للّجنة.
+	Plays the show with a stopwatch and remembers how long you stay on each slide, so later the show can advance by itself at the same pace. Example: you spend 40 seconds on slide 2 during the rehearsal, and in the real show it moves on after 40 seconds.	يشغّل العرض مع ساعة توقيت ويحفظ مدة بقائك على كل شريحة، ليستطيع العرض لاحقًا أن يتقدّم بنفسه بالإيقاع نفسه. مثال: تقضي 40 ثانية على الشريحة 2 أثناء التدريب، وفي العرض الحقيقي ينتقل بعد 40 ثانية.
+	Records your voice and your timings while you go through the slides, so the show can play itself with narration; this needs sound capture and is not available yet in this version. Example: record the talk once and send the deck to colleagues who missed it.	يسجّل صوتك وتوقيتاتك أثناء مرورك بالشرائح، ليستطيع العرض أن يشغّل نفسه مع التعليق الصوتي؛ يحتاج هذا إلى التقاط الصوت وهو غير متاح بعد في هذه النسخة. مثال: سجّل المحاضرة مرة وأرسل العرض إلى الزملاء الذين فاتتهم.
+	Lets you pick some of the slides, in any order, and save them under a name as a shorter show to play for a particular audience. Example: a «managers» show that plays slides 1, 4 and 9 only.	يتيح لك اختيار بعض الشرائح، بأي ترتيب، وحفظها تحت اسم كعرض أقصر تشغّله لجمهور معيّن. مثال: عرض «المديرون» يشغّل الشرائح 1 و4 و9 فقط.
+	Opens a box with the rules of the show: which slides play, whether it loops until Escape, whether to use the saved timings and narration, and the pen colour. Example: make the show loop for a stand at an exhibition.	يفتح مربعًا بقواعد العرض: أي الشرائح تُعرَض، وهل يتكرّر حتى الضغط على Escape، وهل تُستعمل التوقيتات والتعليق الصوتي المحفوظان، ولون القلم. مثال: اجعل العرض يتكرّر لمنصة في معرض.
+	Puts a live window of your camera on the slide so the audience sees you beside your content; camera capture is not available yet in this version. Example: a round video of the speaker in the corner of each slide.	يضع نافذة حية من كاميرتك على الشريحة ليراك الجمهور بجانب محتواك؛ التقاط الكاميرا غير متاح بعد في هذه النسخة. مثال: فيديو دائري للمتحدث في زاوية كل شريحة.
+	Starts a recording run of the show from the first slide, keeping how long you stay on each slide. Example: press it, talk through all the slides, and the timings are saved with the deck.	يبدأ جولة تسجيل للعرض من الشريحة الأولى، مع حفظ مدة بقائك على كل شريحة. مثال: اضغطه وتحدّث عبر كل الشرائح، فتُحفَظ التوقيتات مع العرض.
+	Starts a recording run from the slide you are on, keeping the timings from there; the earlier slides keep theirs. Example: redo the timing of slides 5 to 8 without starting over.	يبدأ جولة تسجيل من الشريحة التي أنت عليها، مع حفظ التوقيتات من هناك؛ وتحتفظ الشرائح السابقة بتوقيتاتها. مثال: أعد توقيت الشرائح من 5 إلى 8 من دون البدء من جديد.
+	Opens DeckCraft's web page in your browser, with the guide and the news about recording and the other features. Example: press it to read how narration will work when it arrives.	يفتح صفحة DeckCraft على الويب في متصفحك، وفيها الدليل وأخبار التسجيل وبقية الميزات. مثال: اضغطه لتقرأ كيف سيعمل التعليق الصوتي عندما يصل.
+	Checks the words on every slide against the dictionary and stops at each one it does not know, offering corrections to accept or ignore. Example: «الاجتمااع» is flagged and the box offers «الاجتماع».	يفحص الكلمات في كل شريحة مقابل القاموس ويتوقف عند كل كلمة لا يعرفها، مقترحًا تصحيحات تقبلها أو تتجاهلها. مثال: تُعلَّم كلمة «الاجتمااع» ويقترح المربع «الاجتماع».
+	Opens a side pane with words that mean the same as the selected word, so you can swap it for a better one with a click. Example: select «كبير» and the pane offers «ضخم», «واسع», «عظيم».	يفتح لوحة جانبية بكلمات لها معنى الكلمة المحددة نفسه، لتبدّلها بكلمة أفضل بنقرة. مثال: حدّد «كبير» فتقترح اللوحة «ضخم» و«واسع» و«عظيم».
+	Looks through the deck for things people with weak sight or a screen reader would struggle with: pictures without a description, faint text, unnamed objects, and lists them to fix. Example: it reports the photo on slide 2 has no description.	يبحث في العرض عن الأشياء التي يصعب على ضعاف البصر أو مستخدمي قارئ الشاشة التعامل معها: صور من دون وصف، نص خافت، عناصر من دون اسم، ويعرضها في قائمة لإصلاحها. مثال: يبلّغ أن الصورة في الشريحة 2 ليس لها وصف.
+	Translates the selected text into another language, showing the result beside the original; this needs a language model that is not bundled, so it is not available yet. Example: a slide title in Arabic shown in English next to it.	يترجم النص المحدد إلى لغة أخرى ويعرض النتيجة بجانب الأصل؛ يحتاج هذا إلى نموذج لغوي غير مضمَّن في البرنامج، لذا فهو غير متاح بعد. مثال: عنوان شريحة بالعربية يُعرَض بالإنجليزية بجانبه.
+	Sets which language the selected text is in, so the spelling check uses the right dictionary and the text runs the right way. Example: mark an English quotation as English so Arabic spelling does not flag every word.	يحدّد لغة النص المحدد، ليستعمل التدقيق الإملائي القاموس الصحيح ويجري النص في الاتجاه الصحيح. مثال: علّم اقتباسًا بالإنجليزية بأنه إنجليزي كي لا يعلّم التدقيق العربي كل كلمة فيه.
+	Opens another copy of this presentation and shows every difference between the two, slide by slide, as changes you can accept or reject. Example: see which boxes your colleague moved in the copy she sent back.	يفتح نسخة أخرى من هذا العرض ويُظهر كل فرق بين النسختين، شريحة بشريحة، كتغييرات تقبلها أو ترفضها. مثال: انظر أي المربعات حرّكتها زميلتك في النسخة التي أعادتها إليك.
+	Takes every remaining change from the compared copy into this presentation at once, instead of accepting them one by one. Example: all 12 edits from the reviewed copy go in with one click.	يأخذ كل التغييرات المتبقية من النسخة المقارَنة إلى هذا العرض دفعة واحدة، بدلًا من قبولها واحدًا واحدًا. مثال: التعديلات الاثنا عشر كلها من النسخة المراجَعة تدخل بنقرة واحدة.
+	Closes the comparison: the changes you accepted stay, the rest are dropped, and the revisions pane goes away. Example: after accepting the three edits you wanted, end the review and go on editing.	يغلق المقارنة: التغييرات التي قبلتها تبقى، والبقية تُطرَح، وتختفي لوحة المراجعات. مثال: بعد قبول التعديلات الثلاثة التي أردتها، أنهِ المراجعة وتابع التحرير.
+	Attaches a note to the slide, or to the selected object, for a colleague to read; it shows in the comments pane and never prints or plays in the show. Example: write «check this figure» on the chart for the finance clerk.	يلحق ملاحظة بالشريحة، أو بالعنصر المحدد، ليقرأها زميل؛ تظهر في لوحة التعليقات ولا تُطبَع ولا تُعرَض في العرض أبدًا. مثال: اكتب «راجع هذا الرقم» على المخطط لكاتب الحسابات.
+	Opens or closes the comments pane beside the slide, where every note on this slide is listed with its author and can be answered or removed. Example: open it to read what the manager wrote about slide 4.	يفتح لوحة التعليقات بجانب الشريحة أو يغلقها، وفيها تُعرَض كل ملاحظة على هذه الشريحة مع كاتبها ويمكن الرد عليها أو حذفها. مثال: افتحها لتقرأ ما كتبه المدير عن الشريحة 4.
+	Opens the master: the one slide behind all the others, whose placeholders, fonts and background every layout copies; change it here and every slide follows. Example: put the logo on the master and it appears on all 30 slides.	يفتح الشريحة الرئيسية: الشريحة الواحدة التي تقف خلف كل الشرائح وتنسخ منها كل التخطيطات عناصرها النائبة وخطوطها وخلفيتها؛ غيّرها هنا فتتبعها كل الشرائح. مثال: ضع الشعار على الشريحة الرئيسية فيظهر على الشرائح الثلاثين كلها.
+	Opens the page design used when you print several slides per sheet for the audience: how many slides per page, the header, footer, date and page number. Example: set three slides per page with lines beside them for notes.	يفتح تصميم الصفحة المستعمل عند طباعة عدة شرائح في الورقة الواحدة للجمهور: عدد الشرائح في الصفحة، والرأس، والتذييل، والتاريخ، ورقم الصفحة. مثال: اضبط ثلاث شرائح في الصفحة مع سطور بجانبها للملاحظات.
+	Opens the page design used when you print your speaker notes: the slide picture on top, the notes text under it, and the header and footer. Example: make the notes text larger so it is easy to read at the lectern.	يفتح تصميم الصفحة المستعمل عند طباعة ملاحظات المحاضر: صورة الشريحة في الأعلى، ونص الملاحظات تحتها، والرأس والتذييل. مثال: كبّر نص الملاحظات ليسهل قراءته على المنصة.
+	Opens a box to set the spacing of the grid and whether objects snap to it and to each other, and whether the gridlines and guides are drawn. Example: set a 1 cm grid so boxes line up when you drag them.	يفتح مربعًا لضبط تباعد الشبكة، وهل تنجذب العناصر إليها وإلى بعضها، وهل تُرسَم خطوط الشبكة والأدلة. مثال: اضبط شبكة بمسافة 1 سم فتصطف المربعات عندما تسحبها.
+	Shows or hides the notes box under the slide, where you type what you will say; the audience never sees it. Example: open it and write the figures you will quote for slide 5.	يُظهر مربع الملاحظات تحت الشريحة أو يخفيه، وفيه تكتب ما ستقوله؛ لا يراه الجمهور أبدًا. مثال: افتحه واكتب الأرقام التي ستذكرها في الشريحة 5.
+	Sets the zoom so the whole slide fits in the window, after you zoomed in to work on a detail. Example: after working at 200%, press it to see the full slide again.	يضبط التكبير ليتسع كل الشريحة في النافذة، بعد أن كبّرت للعمل على تفصيل. مثال: بعد العمل عند 200%، اضغطه لترى الشريحة كاملة مرة أخرى.
+	Opens a second window on the same presentation, so you can look at two slides at once or keep one on another screen; edits show in both. Example: keep slide 2 open on the second monitor while you edit slide 9.	يفتح نافذة ثانية على العرض نفسه، لتنظر إلى شريحتين في وقت واحد أو تُبقي واحدة على شاشة أخرى؛ التعديلات تظهر في النافذتين. مثال: أبقِ الشريحة 2 مفتوحة على الشاشة الثانية بينما تحرّر الشريحة 9.
+	Shows the slides in shades of grey, as a black-and-white printer would print them, so you can check that everything still reads; press again for colour. Example: the red and green bars of a chart look the same in grey, so you add labels.	يعرض الشرائح بدرجات الرمادي، كما تطبعها طابعة بالأسود والأبيض، لتتأكد أن كل شيء ما زال مقروءًا؛ اضغطه مرة أخرى للعودة إلى الألوان. مثال: أعمدة المخطط الحمراء والخضراء تبدو متماثلة بالرمادي، فتضيف إليها تسميات.
+	Switches the program's own frame, ribbon and panes between light and dark; the slides keep their colours. Example: work at night with a dark frame around a white slide.	يبدّل إطار البرنامج نفسه وشريطه ولوحاته بين الفاتح والداكن؛ وتحتفظ الشرائح بألوانها. مثال: اعمل ليلًا بإطار داكن حول شريحة بيضاء.
+	Adds a new layout under the master, a pattern of placeholders that new slides can be made from. Example: add a «two pictures» layout to use on the product slides.	يضيف تخطيطًا جديدًا تحت الشريحة الرئيسية، أي نمطًا من العناصر النائبة تُصنَع منه الشرائح الجديدة. مثال: أضف تخطيط «صورتين» لتستعمله في شرائح المنتجات.
+	Gives the selected layout a name of your own, the one shown in the Layout and New Slide menus. Example: call the layout «غلاف الوزارة» instead of «تخطيط ١».	يمنح التخطيط المحدد اسمًا من عندك، وهو الاسم الذي يظهر في قائمتَي «تخطيط» و«شريحة جديدة». مثال: سمِّ التخطيط «غلاف الوزارة» بدلًا من «تخطيط 1».
+	Adds a placeholder box to the layout: a frame where every slide made from it will get content, text, a picture, a chart, a table or a video. Example: add a picture placeholder on the right so each product slide has a photo there.	يضيف مربع عنصر نائب إلى التخطيط: إطار تحصل فيه كل شريحة مصنوعة منه على محتوى، أو نص، أو صورة، أو مخطط، أو جدول، أو فيديو. مثال: أضف عنصرًا نائبًا للصورة على اليمين فتحصل كل شريحة منتج على صورة هناك.
+	Applies one of the built-in themes, a complete look of colours, fonts and backgrounds, to the master and all its layouts. Example: pick the dark blue theme and every layout takes it.	يطبّق إحدى السمات المضمَّنة، وهي مظهر كامل من الألوان والخطوط والخلفيات، على الشريحة الرئيسية وكل تخطيطاتها. مثال: اختر السمة الزرقاء الداكنة فتأخذها كل التخطيطات.
+	Leaves the master and goes back to the normal slides, which now show the changes you made to the master and layouts. Example: after adding the logo to the master, close it and see the logo on every slide.	يترك الشريحة الرئيسية ويعود إلى الشرائح العادية، التي تُظهر الآن التغييرات التي أجريتها على الشريحة الرئيسية والتخطيطات. مثال: بعد إضافة الشعار إلى الشريحة الرئيسية، أغلقها فترى الشعار على كل شريحة.
+	Changes the selected shape into another shape, or lets you drag its corner points one by one to draw your own outline. Example: a rectangle becomes a rounded speech bubble, or one corner is pulled out to make a pointer.	يغيّر الشكل المحدد إلى شكل آخر، أو يتيح لك سحب نقاط أركانه واحدة واحدة لترسم حدوده بنفسك. مثال: يصبح المستطيل فقاعة كلام مستديرة، أو يُسحب أحد أركانه إلى الخارج ليصير مؤشرًا.
+	Joins two or more overlapping shapes into one new shape: their union, the part they share, or one cut out of the other. Example: a circle and a rectangle become one badge shape.	يجمع شكلين متداخلين أو أكثر في شكل واحد جديد: اتحادهما، أو الجزء المشترك بينهما، أو أحدهما مقطوعًا من الآخر. مثال: تصبح الدائرة والمستطيل شكل شارة واحدًا.
+	Opens a gallery of ready looks for the selected shape — fill, outline and effect together — and applies the one you pick. Example: a plain grey rectangle becomes a filled blue box with a white outline.	يفتح معرضًا بمظاهر جاهزة للشكل المحدد — التعبئة والحد والتأثير معًا — ويطبّق ما تختاره. مثال: يصبح المستطيل الرمادي البسيط صندوقًا أزرق معبّأً بحد أبيض.
+	Colours the letters of the selected text; the shape behind them stays as it is. Example: a black title becomes blue.	يلوّن حروف النص المحدد؛ ويبقى الشكل خلفها كما هو. مثال: يصبح العنوان الأسود أزرق.
+	Draws a thin line around each letter of the selected text, in the colour you pick. Example: white letters get a dark outline so they stay readable over a picture.	يرسم خطًا رفيعًا حول كل حرف من النص المحدد باللون الذي تختاره. مثال: تحصل الحروف البيضاء على حد داكن لتبقى مقروءة فوق الصورة.
+	Adds a shadow to the selected text or bends it along a curve or a shape. Example: the title gets a soft shadow, or it is written in an arch over the picture.	يضيف ظلًا إلى النص المحدد أو يحنيه على منحنى أو شكل. مثال: يحصل العنوان على ظل خفيف، أو يُكتب على هيئة قوس فوق الصورة.
+	Moves the selected object one step up in the pile, in front of the object that covered it. Example: a circle hidden behind a square comes out in front of it.	ينقل الكائن المحدد خطوة واحدة إلى الأعلى في الرُّكام، أمام الكائن الذي كان يغطيه. مثال: تخرج الدائرة المخفية خلف المربع إلى أمامه.
+	Moves the selected object one step down in the pile, behind the object next to it. Example: a square covering a circle goes behind it.	ينقل الكائن المحدد خطوة واحدة إلى الأسفل في الرُّكام، خلف الكائن المجاور له. مثال: يذهب المربع الذي يغطي الدائرة إلى خلفها.
+	Lines up the selected objects on one edge or centre line, or spreads them out evenly. Example: three boxes at different heights line up along their top edges.	يصفّ الكائنات المحددة على حافة واحدة أو خط وسط واحد، أو يوزّعها بمسافات متساوية. مثال: تصطفّ ثلاثة صناديق بارتفاعات مختلفة على حوافها العلوية.
+	Joins the selected objects into one group that moves, resizes and copies as a single object; Ungroup takes them apart again. Example: a picture and its caption become one object you can drag together.	يضمّ الكائنات المحددة في مجموعة واحدة تتحرك وتتغيّر في الحجم وتُنسخ ككائن واحد؛ وفكّ التجميع يفصلها من جديد. مثال: تصبح الصورة وتعليقها كائنًا واحدًا تسحبه معًا.
+	Turns the selected object a quarter turn left or right, or flips it into its mirror image. Example: a wide arrow turned right by 90° points down.	يدوّر الكائن المحدد ربع دورة إلى اليسار أو اليمين، أو يقلبه إلى صورته المرآتية. مثال: سهم عريض مُدار إلى اليمين ٩٠° يشير إلى الأسفل.
+	Cuts the background away from the selected picture so only its subject stays, with the slide showing through around it. Example: a product photo on a white table becomes the product alone.	يقصّ الخلفية من الصورة المحددة فلا يبقى إلا موضوعها، وتظهر الشريحة من حوله. مثال: صورة منتج على طاولة بيضاء تصبح المنتج وحده.
+	Makes the selected picture brighter or darker, and its contrast stronger or softer. Example: a photo taken in a dark room is brightened by 40%.	يجعل الصورة المحددة أفتح أو أغمق، وتباينها أقوى أو ألطف. مثال: صورة أُخذت في غرفة مظلمة تُضاء بنسبة ٤٠٪.
+	Changes the colours of the selected picture: stronger or weaker colours, black and white, a tint in one colour, or one colour made transparent. Example: a colour photo becomes black and white.	يغيّر ألوان الصورة المحددة: ألوان أقوى أو أضعف، أو أبيض وأسود، أو صبغة بلون واحد، أو لون واحد يُجعل شفافًا. مثال: تصبح الصورة الملوّنة بالأبيض والأسود.
+	Makes the selected picture look like a drawing or a painting: a pencil sketch, a blur, a mosaic. Example: a photo of the building becomes a pencil sketch.	يجعل الصورة المحددة تبدو كرسم أو لوحة: رسم بقلم الرصاص، أو ضبابية، أو فسيفساء. مثال: تصبح صورة المبنى رسمًا بقلم الرصاص.
+	Makes the selected picture see-through by the amount you pick, so what is behind it shows. Example: at 65% the logo fades into a soft watermark behind the text.	يجعل الصورة المحددة شفافة بالقدر الذي تختاره، فيظهر ما خلفها. مثال: عند ٦٥٪ يتلاشى الشعار إلى علامة مائية خفيفة خلف النص.
+	Makes the pictures smaller in file size — fewer pixels, cropped parts thrown away — so the presentation is lighter to send. Example: a 4 MB photo becomes 400 KB with no visible change on screen.	يصغّر حجم الصور في الملف — بكسلات أقل، وأجزاء مقصوصة تُحذف — فيصبح العرض أخف للإرسال. مثال: صورة بحجم 4 MB تصبح 400 KB دون تغيير ظاهر على الشاشة.
+	Draws a frame line around the selected picture in the colour, weight and dash style you pick. Example: a thin black line around the photo.	يرسم خط إطار حول الصورة المحددة باللون والسُّمك ونمط التقطيع الذي تختاره. مثال: خط أسود رفيع حول الصورة.
+	Cuts away the edges of the selected picture you do not want, or trims it to a shape. Example: the empty sky above the building is cut off.	يقصّ من حواف الصورة المحددة ما لا تريده، أو يقطعها على هيئة شكل. مثال: تُقطع السماء الفارغة فوق المبنى.
+	Fills the selected table cells with a colour. Example: the total row is filled light blue so it stands out.	يعبّئ خلايا الجدول المحددة بلون. مثال: يُعبّأ صف المجموع بالأزرق الفاتح ليبرز.
+	Draws or removes the lines around and between the selected table cells, with the pen weight, style and colour you set. Example: all borders of the table drawn in a thin black line.	يرسم أو يحذف الخطوط حول خلايا الجدول المحددة وبينها، بسُمك القلم ونمطه ولونه الذي تحدده. مثال: تُرسم كل حدود الجدول بخط أسود رفيع.
+	Removes the selected rows or columns from the table, or the whole table. Example: the empty «Notes» column is deleted and the other columns close the gap.	يحذف الصفوف أو الأعمدة المحددة من الجدول، أو الجدول كله. مثال: يُحذف عمود «ملاحظات» الفارغ وتسدّ الأعمدة الأخرى الفراغ.
+	Shows the same numbers as another kind of chart: columns, bars, a line, a pie. Example: the column chart of monthly sales becomes a line chart.	يعرض الأرقام نفسها بنوع آخر من المخططات: أعمدة، أو أشرطة، أو خط، أو دائرة. مثال: يصبح مخطط أعمدة المبيعات الشهرية مخططًا خطيًا.
+	Opens a side pane where you type the diagram's text as a plain list; every line is one box and indented lines are sub-boxes. Example: typing a fourth line adds a fourth step to the process.	يفتح لوحة جانبية تكتب فيها نص المخطط كقائمة بسيطة؛ كل سطر صندوق، والأسطر المزاحة صناديق فرعية. مثال: كتابة سطر رابع تضيف خطوة رابعة إلى العملية.
+	Adds one more box to the diagram after, before, above or below the selected one. Example: a three-step process gets a fourth step.	يضيف صندوقًا آخر إلى المخطط بعد الصندوق المحدد أو قبله أو فوقه أو تحته. مثال: تحصل عملية من ثلاث خطوات على خطوة رابعة.
+	Moves the selected box one level up in the diagram, so a sub-item becomes a main item. Example: a point under «Costs» becomes a heading of its own.	يرفع الصندوق المحدد مستوى واحدًا في المخطط، فيصبح العنصر الفرعي عنصرًا رئيسيًا. مثال: تصبح نقطة تحت «التكاليف» عنوانًا بذاتها.
+	Moves the selected box one level down in the diagram, so a main item becomes a sub-item of the one before it. Example: «Travel» becomes a point under «Costs».	يخفض الصندوق المحدد مستوى واحدًا في المخطط، فيصبح العنصر الرئيسي عنصرًا فرعيًا تحت الذي قبله. مثال: يصبح «السفر» نقطة تحت «التكاليف».
+	Puts a picture of your choice into the picture frame of the selected diagram box. Example: each team member's box in the organisation chart shows their photo.	يضع صورة من اختيارك في إطار الصورة في صندوق المخطط المحدد. مثال: يعرض صندوق كل عضو في المخطط التنظيمي صورته.
+	Opens a gallery of diagram layouts and rearranges the same boxes and text into the one you pick. Example: a row of steps becomes a cycle.	يفتح معرضًا بتخطيطات المخططات ويرتّب الصناديق والنص نفسها في التخطيط الذي تختاره. مثال: يصبح صف الخطوات دورة.
+	Turns the diagram back into ordinary text or into separate shapes you can edit one by one. Example: the four steps become a bulleted list of four lines.	يحوّل المخطط إلى نص عادي من جديد أو إلى أشكال منفصلة تحرّرها واحدًا واحدًا. مثال: تصبح الخطوات الأربع قائمة نقطية من أربعة أسطر.
+	Applies another colour scheme to the whole diagram: one colour in shades, or a different colour for every box. Example: all-blue boxes become blue, orange, green and purple.	يطبّق نظام ألوان آخر على المخطط كله: لون واحد بدرجاته، أو لون مختلف لكل صندوق. مثال: تصبح الصناديق الزرقاء كلها أزرق وبرتقالي وأخضر وبنفسجي.
+	Applies a ready look to every box of the diagram: flat, outlined, with a shadow or in 3-D. Example: the flat boxes get a soft shadow and a glossy top.	يطبّق مظهرًا جاهزًا على كل صناديق المخطط: مسطّح، أو بحد، أو بظل، أو ثلاثي الأبعاد. مثال: تحصل الصناديق المسطّحة على ظل خفيف ولمعة في الأعلى.
+	Sets how loud the selected audio or video plays during the show: low, medium, high or muted. Example: the background music is set to low so the speaker is heard.	يحدد ارتفاع صوت المقطع الصوتي أو الفيديو المحدد أثناء العرض: منخفض، أو متوسط، أو مرتفع، أو صامت. مثال: تُجعل الموسيقى الخلفية منخفضة ليُسمع المتحدث.
+	Lets you write a short description of the selected picture or shape, read aloud by screen readers to people who cannot see it. Example: «Map of the clinic's three buildings».	يتيح لك كتابة وصف قصير للصورة أو الشكل المحدد، تقرأه قارئات الشاشة بصوت عالٍ لمن لا يستطيع رؤيته. مثال: «خريطة مباني العيادة الثلاثة».
+	Opens the side pane with every setting of the selected object — fill, line, effects, size and text. Example: set the fill to a gradient and the line to 2 pt.	يفتح اللوحة الجانبية بكل إعدادات الكائن المحدد — التعبئة والخط والتأثيرات والحجم والنص. مثال: اجعل التعبئة تدرّجًا والخط ٢ نقطة.
+	Swaps the selected picture for another file, keeping the same place, size and style on the slide. Example: last year's photo is replaced by this year's in the same frame.	يبدّل الصورة المحددة بملف آخر، مع إبقاء الموضع والحجم والنمط نفسها على الشريحة. مثال: تُستبدل صورة السنة الماضية بصورة هذه السنة في الإطار نفسه.
+	Throws away every change made to the selected picture — colour, crop, effects, style — and shows it as it was inserted. Example: the greyed, cropped photo is back in full colour.	يلغي كل تغيير أُجري على الصورة المحددة — اللون والقصّ والتأثيرات والنمط — ويعرضها كما أُدرجت. مثال: تعود الصورة الرمادية المقصوصة بألوانها الكاملة.
+	Adds a new empty row to the table above the selected cell. Example: a row for January is added above the February row.	يضيف صفًا فارغًا جديدًا إلى الجدول فوق الخلية المحددة. مثال: يُضاف صف لكانون الثاني فوق صف شباط.
+	Adds a new empty row to the table below the selected cell. Example: a row for a new employee is added under the last one.	يضيف صفًا فارغًا جديدًا إلى الجدول تحت الخلية المحددة. مثال: يُضاف صف لموظف جديد تحت الصف الأخير.
+	Adds a new empty column to the table to the left of the selected cell. Example: a «Total» column is added at the left end.	يضيف عمودًا فارغًا جديدًا إلى الجدول على يسار الخلية المحددة. مثال: يُضاف عمود «المجموع» في الطرف الأيسر.
+	Adds a new empty column to the table to the right of the selected cell. Example: a column for a new month is added at the right end.	يضيف عمودًا فارغًا جديدًا إلى الجدول على يمين الخلية المحددة. مثال: يُضاف عمود لشهر جديد في الطرف الأيمن.
+	Joins the selected cells into one bigger cell. Example: the three cells of the top row become one wide title cell.	يضمّ الخلايا المحددة في خلية واحدة أكبر. مثال: تصبح الخلايا الثلاث في الصف الأعلى خلية عنوان واحدة عريضة.
+	Divides the selected cell into the number of rows and columns you choose. Example: one wide cell becomes two side by side.	يقسم الخلية المحددة إلى عدد الصفوف والأعمدة الذي تختاره. مثال: تصبح خلية عريضة واحدة خليتين جنبًا إلى جنب.
+	Makes the selected rows all the same height, sharing the space they take now. Example: one tall row and two short ones become three equal rows.	يجعل الصفوف المحددة كلها بارتفاع واحد، تتقاسم المساحة التي تشغلها الآن. مثال: يصبح صف طويل وصفّان قصيران ثلاثة صفوف متساوية.
+	Makes the selected columns all the same width, sharing the space they take now. Example: a wide column and two narrow ones become three equal columns.	يجعل الأعمدة المحددة كلها بعرض واحد، تتقاسم المساحة التي تشغلها الآن. مثال: يصبح عمود عريض وعمودان ضيّقان ثلاثة أعمدة متساوية.
+	Opens the small table of numbers behind the chart so you can change them; the chart redraws as you type. Example: change March from 120 to 150 and its column grows.	يفتح جدول الأرقام الصغير خلف المخطط لتغييرها؛ ويُعاد رسم المخطط وأنت تكتب. مثال: غيّر آذار من ١٢٠ إلى ١٥٠ فيكبر عموده.
+	Cuts the start and the end off the selected audio or video, so only the part between the two markers plays. Example: the first 5 seconds of silence are trimmed away.	يقصّ بداية المقطع الصوتي أو الفيديو المحدد ونهايته، فلا يُشغَّل إلا الجزء بين العلامتين. مثال: تُقصّ الثواني الخمس الأولى من الصمت.
+	Starts a new, empty presentation with one title slide. Example: a blank deck ready for the quarterly report.	يبدأ عرضًا جديدًا فارغًا بشريحة عنوان واحدة. مثال: عرض فارغ جاهز للتقرير الفصلي.
+	Opens a presentation saved on your computer, chosen from a file window. Example: open last week's «Training.pptx» to continue it.	يفتح عرضًا محفوظًا على حاسوبك، تختاره من نافذة الملفات. مثال: افتح «Training.pptx» من الأسبوع الماضي لتتابعه.
+	Closes the current presentation, asking to save first if it has unsaved changes; DeckCraft stays open. Example: close the finished deck and start another.	يغلق العرض الحالي، ويطلب الحفظ أولًا إن كانت فيه تغييرات غير محفوظة؛ ويبقى DeckCraft مفتوحًا. مثال: أغلق العرض المنتهي وابدأ آخر.
+	Writes the presentation to its file on disk, keeping every change you made. Example: press it after each finished slide so nothing is lost.	يكتب العرض في ملفه على القرص، فيحفظ كل تغيير أجريته. مثال: اضغطه بعد كل شريحة تنتهي منها فلا يُفقد شيء.
+	Saves a copy of the presentation under a new name or in another folder; the original stays as it was. Example: «Report v2.pptx» next to «Report.pptx».	يحفظ نسخة من العرض باسم جديد أو في مجلد آخر؛ ويبقى الأصل كما كان. مثال: «Report v2.pptx» بجانب «Report.pptx».
+	Makes another kind of file from the presentation: a PDF, a video, or a picture of each slide. Example: a PDF of the deck to send by e-mail.	ينتج نوعًا آخر من الملفات من العرض: PDF، أو فيديو، أو صورة لكل شريحة. مثال: ملف PDF للعرض لإرساله بالبريد الإلكتروني.
+	Prints the slides on paper: full slides, handouts with several slides per page, or notes pages. Example: six slides per page as a handout for the audience.	يطبع الشرائح على الورق: شرائح كاملة، أو نشرات بعدة شرائح في الصفحة، أو صفحات ملاحظات. مثال: ست شرائح في الصفحة كنشرة للحضور.
+	Shows the facts about the file: its title, author, size, number of slides and when it was changed. Example: see that the deck has 24 slides and was last saved on Tuesday.	يعرض معلومات الملف: عنوانه ومؤلفه وحجمه وعدد شرائحه ووقت آخر تغيير فيه. مثال: ترى أن العرض فيه ٢٤ شريحة وحُفظ آخر مرة يوم الثلاثاء.
+	Takes back the last thing you did, and the one before that each time you press it again. Example: a deleted picture comes back.	يتراجع عن آخر ما فعلته، وعمّا قبله كل مرة تضغطه من جديد. مثال: تعود صورة محذوفة.
+	Does again what Undo just took back. Example: the picture is deleted again.	يعيد ما تراجع عنه الأمر «تراجع» للتو. مثال: تُحذف الصورة من جديد.
+	Takes the selected object or text off the slide and keeps it on the clipboard, so you can paste it somewhere else. Example: cut a chart from slide 2 and paste it on slide 5.	يأخذ الكائن أو النص المحدد من الشريحة ويحتفظ به في الحافظة، لتلصقه في مكان آخر. مثال: قصّ مخططًا من الشريحة ٢ والصقه في الشريحة ٥.
+	Keeps a copy of the selected object or text on the clipboard to paste elsewhere; the original stays where it is. Example: copy the logo and paste it on every slide.	يحتفظ بنسخة من الكائن أو النص المحدد في الحافظة للصقها في مكان آخر؛ ويبقى الأصل في مكانه. مثال: انسخ الشعار والصقه في كل شريحة.
+	Puts what you cut or copied onto the current slide, or into the text where the cursor is. Example: the copied logo appears on this slide.	يضع ما قصصته أو نسخته على الشريحة الحالية، أو في النص عند المؤشر. مثال: يظهر الشعار المنسوخ على هذه الشريحة.
+	Pastes copied text so it takes the font, size and colour of the text around it, instead of bringing its own. Example: red bold text from a web page is pasted as the slide's plain black text.	يلصق النص المنسوخ بحيث يأخذ خط النص المحيط به وحجمه ولونه، بدلًا من أن يجلب نصه الخاص. مثال: نص أحمر عريض من صفحة ويب يُلصق كنص الشريحة الأسود العادي.
+	Lets you choose in what form to paste what you copied: a picture, plain text, or the original object. Example: paste a table from a spreadsheet as a picture so it cannot be changed.	يتيح لك اختيار الهيئة التي يُلصق بها ما نسخته: صورة، أو نص عادي، أو الكائن الأصلي. مثال: الصق جدولًا من ورقة حساب كصورة فلا يمكن تغييره.
+	Selects everything on the slide — every shape, picture and text box — or every slide in the slide list. Example: select all, then move the whole layout a little to the right.	يحدد كل ما على الشريحة — كل شكل وصورة ومربع نص — أو كل الشرائح في قائمة الشرائح. مثال: حدد الكل ثم حرّك التخطيط كله قليلًا إلى اليمين.
+	Makes a copy of the selected object right next to the original, in one step without the clipboard. Example: one box becomes two identical boxes.	ينسخ الكائن المحدد بجانب الأصل مباشرة، في خطوة واحدة دون الحافظة. مثال: يصبح الصندوق الواحد صندوقين متطابقين.
+	Removes the selected slide from the presentation; the slides after it move up. Example: slide 3 is deleted and slide 4 becomes the new slide 3.	يحذف الشريحة المحددة من العرض؛ وتتقدم الشرائح التي بعدها. مثال: تُحذف الشريحة ٣ وتصبح الشريحة ٤ هي الشريحة ٣ الجديدة.
+	Looks for a word or phrase in all the slides and shows where it is. Example: find every slide that mentions «Basra».	يبحث عن كلمة أو عبارة في كل الشرائح ويعرض مكانها. مثال: اعثر على كل شريحة تذكر «البصرة».
+	Finds a word or phrase in all the slides and swaps it for another, one at a time or all at once. Example: replace «2025» with «2026» everywhere.	يجد كلمة أو عبارة في كل الشرائح ويبدّلها بأخرى، واحدة واحدة أو كلها معًا. مثال: استبدل «٢٠٢٥» بـ«٢٠٢٦» في كل مكان.
+	The everyday view for editing: the slide list on the side, the current slide large in the middle, and the notes under it. Example: click a slide on the side to edit it.	العرض اليومي للتحرير: قائمة الشرائح على الجانب، والشريحة الحالية كبيرة في الوسط، والملاحظات تحتها. مثال: انقر شريحة في الجانب لتحرّرها.
+	Shows all the slides small, side by side, so you can see the whole deck and drag slides into another order. Example: drag slide 7 to come before slide 3.	يعرض كل الشرائح صغيرة جنبًا إلى جنب، لترى العرض كله وتسحب الشرائح إلى ترتيب آخر. مثال: اسحب الشريحة ٧ لتأتي قبل الشريحة ٣.
+	Shows each slide on a page with its speaker notes below, the way they print. Example: write the full speech under the slide picture.	يعرض كل شريحة في صفحة مع ملاحظات المتحدث تحتها، كما تُطبع. مثال: اكتب الكلمة كاملة تحت صورة الشريحة.
+	Shows only the text of all the slides as a list — titles and points — so you can write and reorder the content fast. Example: type a new title and a slide is made for it.	يعرض نص كل الشرائح فقط كقائمة — العناوين والنقاط — لتكتب المحتوى وتعيد ترتيبه بسرعة. مثال: اكتب عنوانًا جديدًا فتُنشأ له شريحة.
+	Plays the presentation inside the window instead of the full screen, with buttons to move between slides. Example: check the slides while another window stays visible.	يشغّل العرض داخل النافذة بدلًا من ملء الشاشة، مع أزرار للتنقل بين الشرائح. مثال: راجع الشرائح بينما تبقى نافذة أخرى ظاهرة.
+	Starts the slide show full screen from the first slide. Example: the screen goes to the title slide; click or press the arrow to continue.	يبدأ عرض الشرائح بملء الشاشة من الشريحة الأولى. مثال: تنتقل الشاشة إلى شريحة العنوان؛ انقر أو اضغط السهم للمتابعة.
+	Opens the master slide and its layouts — the designs every slide is based on; change them here and all the slides follow. Example: put the logo on the master and it appears on every slide.	يفتح الشريحة الرئيسية وتخطيطاتها — التصاميم التي تُبنى عليها كل شريحة؛ غيّرها هنا فتتبعها كل الشرائح. مثال: ضع الشعار في الشريحة الرئيسية فيظهر في كل شريحة.
+	Opens the design of the printed handout pages: how many slides per page and the header and footer. Example: three slides per page with lines for notes.	يفتح تصميم صفحات النشرات المطبوعة: عدد الشرائح في الصفحة والرأس والتذييل. مثال: ثلاث شرائح في الصفحة مع أسطر للملاحظات.
+	Opens the design of the notes pages: where the slide picture and the notes text go and what they look like. Example: a larger notes area in a bigger font.	يفتح تصميم صفحات الملاحظات: أين تُوضع صورة الشريحة ونص الملاحظات وكيف يبدوان. مثال: مساحة ملاحظات أكبر بخط أكبر.
+	Shows or hides the rulers along the top and the side of the slide, for placing things by measure. Example: see that the picture starts 2 cm from the edge.	يُظهر المسطرتَين على طول أعلى الشريحة وجانبها أو يخفيهما، لوضع الأشياء بالقياس. مثال: ترى أن الصورة تبدأ على ٢ سم من الحافة.
+	Shows or hides a grid of dots over the slide to line things up by eye; it is not printed or shown in the show. Example: place the three boxes on the same grid line.	يُظهر شبكة من النقاط فوق الشريحة أو يخفيها لتصفّ الأشياء بالعين؛ ولا تُطبع ولا تظهر في العرض. مثال: ضع الصناديق الثلاثة على خط الشبكة نفسه.
+	Shows or hides a vertical and a horizontal guide line through the middle of the slide; objects snap to them as you drag. Example: centre the title on the vertical guide.	يُظهر خطًا إرشاديًا عموديًا وآخر أفقيًا عبر وسط الشريحة أو يخفيهما؛ وتلتصق بهما الكائنات وأنت تسحبها. مثال: وسّط العنوان على الخط العمودي.
+	Sets how far apart the grid dots are and whether objects snap to the grid and to each other. Example: a 1 cm grid with snapping on.	يحدد المسافة بين نقاط الشبكة وما إذا كانت الكائنات تلتصق بالشبكة وببعضها. مثال: شبكة بمسافة ١ سم مع تشغيل الالتصاق.
+	Sets the size the slide is shown at, as a percentage you pick or type. Example: 200% to work on a small detail.	يحدد الحجم الذي تُعرض به الشريحة، كنسبة مئوية تختارها أو تكتبها. مثال: ٢٠٠٪ للعمل على تفصيل صغير.
+	Shows the slide bigger, one step at a time. Example: from 100% to 125%.	يعرض الشريحة أكبر، خطوة واحدة كل مرة. مثال: من ١٠٠٪ إلى ١٢٥٪.
+	Shows the slide smaller, one step at a time. Example: from 100% to 75%.	يعرض الشريحة أصغر، خطوة واحدة كل مرة. مثال: من ١٠٠٪ إلى ٧٥٪.
+	Sizes the slide so the whole of it fits in the window. Example: after zooming in on a detail, see the whole slide again.	يضبط حجم الشريحة بحيث تظهر كلها في النافذة. مثال: بعد التكبير على تفصيل، ارجع لترى الشريحة كلها.
+	Opens the same presentation in a second window, so you can look at two slides at once. Example: slide 2 in one window while editing slide 9 in the other.	يفتح العرض نفسه في نافذة ثانية، لتنظر إلى شريحتَين معًا. مثال: الشريحة ٢ في نافذة بينما تحرّر الشريحة ٩ في الأخرى.
+	Adds a new slide after the current one, with the same layout. Example: after the title slide, a new slide with a title and a text area.	يضيف شريحة جديدة بعد الشريحة الحالية بالتخطيط نفسه. مثال: بعد شريحة العنوان، شريحة جديدة بعنوان ومساحة نص.
+	Adds a copy of the current slide right after it, with everything on it. Example: copy the table slide and change only the numbers.	يضيف نسخة من الشريحة الحالية بعدها مباشرة بكل ما عليها. مثال: انسخ شريحة الجدول وغيّر الأرقام فقط.
+	Starts a named section at the current slide, to group the slides into chapters you can collapse and move together. Example: a «Results» section from slide 8 on.	يبدأ قسمًا مسمّى عند الشريحة الحالية، لتجمع الشرائح في فصول تطويها وتحرّكها معًا. مثال: قسم «النتائج» من الشريحة ٨ فصاعدًا.
+	Adds a box you can type in anywhere on the slide; drag to set its size. Example: a caption under the picture.	يضيف مربعًا تكتب فيه في أي مكان على الشريحة؛ اسحب لتحدد حجمه. مثال: تعليق تحت الصورة.
+	Adds decorative text with a fill, an outline and effects, for a big title or a word to stand out. Example: the word «Welcome» in large outlined letters with a shadow.	يضيف نصًا مزيّنًا بتعبئة وحد وتأثيرات، لعنوان كبير أو كلمة تبرز. مثال: كلمة «أهلًا» بحروف كبيرة محددة وبظل.
+	Puts today's date, and the time if you want, in the slide's footer; it can update itself every time the file is opened. Example: «18/10/2026» at the bottom of every slide.	يضع تاريخ اليوم، والوقت إن شئت، في تذييل الشريحة؛ ويمكنه تحديث نفسه كل مرة يُفتح الملف. مثال: «٢٠٢٦/١٠/١٨» في أسفل كل شريحة.
+	Puts the slide's number in its footer, updated when slides are added or moved. Example: «3» in the corner of the third slide.	يضع رقم الشريحة في تذييلها، ويُحدَّث عند إضافة شرائح أو نقلها. مثال: «٣» في زاوية الشريحة الثالثة.
+	Adds a table to the slide with the number of rows and columns you choose. Example: a table of 4 rows and 3 columns for the monthly figures.	يضيف جدولًا إلى الشريحة بعدد الصفوف والأعمدة الذي تختاره. مثال: جدول من ٤ صفوف و٣ أعمدة للأرقام الشهرية.
+	Adds a chart to the slide — columns, a line, a pie — drawn from numbers you type into a small table. Example: a column chart of sales for each month.	يضيف مخططًا إلى الشريحة — أعمدة، أو خط، أو دائرة — يُرسم من أرقام تكتبها في جدول صغير. مثال: مخطط أعمدة للمبيعات في كل شهر.
+	Puts a picture from a file on your computer onto the slide. Example: a photo of the new building from the Pictures folder.	يضع صورة من ملف على حاسوبك على الشريحة. مثال: صورة للمبنى الجديد من مجلد الصور.
+	Makes a new presentation from a set of pictures, one or more on each slide, with captions if you want. Example: the 30 photos of the trip become a 30-slide album.	ينشئ عرضًا جديدًا من مجموعة صور، واحدة أو أكثر في كل شريحة، مع تعليقات إن شئت. مثال: تصبح صور الرحلة الثلاثون ألبومًا من ٣٠ شريحة.
+	Changes a photo album you made: add or remove pictures, change their order, their layout and their captions. Example: move the group photo to the first slide.	يغيّر ألبوم صور أنشأته: أضف صورًا أو احذفها، وغيّر ترتيبها وتخطيطها وتعليقاتها. مثال: انقل صورة المجموعة إلى الشريحة الأولى.
+	Puts a sound file on the slide, shown as a small speaker you can play during the show. Example: a recorded welcome message that plays when the slide opens.	يضع ملف صوت على الشريحة، يظهر كسمّاعة صغيرة تشغّلها أثناء العرض. مثال: رسالة ترحيب مسجّلة تُشغَّل حين تُفتح الشريحة.
+	Puts a video file on the slide, with its own play button during the show. Example: a 30-second clip of the machine at work.	يضع ملف فيديو على الشريحة، بزر تشغيل خاص به أثناء العرض. مثال: مقطع ٣٠ ثانية للآلة وهي تعمل.
+	Opens the window with every text setting at once: font, size, style, colour, underline and effects. Example: set the title to 32 pt bold in dark blue.	يفتح النافذة التي تجمع كل إعدادات النص: الخط والحجم والنمط واللون والتسطير والتأثيرات. مثال: اجعل العنوان ٣٢ نقطة عريضًا بالأزرق الداكن.
+	Opens the window with every paragraph setting at once: alignment, indents, line spacing and space before and after. Example: 1.5 line spacing with 6 pt after each paragraph.	يفتح النافذة التي تجمع كل إعدادات الفقرة: المحاذاة والإزاحات وتباعد الأسطر والمسافة قبل الفقرة وبعدها. مثال: تباعد أسطر ١٫٥ مع ٦ نقاط بعد كل فقرة.
+	Makes the selected text bold: thicker, darker letters that stand out. Example: the name of the product is made bold.	يجعل النص المحدد عريضًا: حروفًا أثخن وأغمق تبرز. مثال: يُجعل اسم المنتج عريضًا.
+	Slants the selected text to the side, like handwriting. Example: a quotation is written slanted.	يميل النص المحدد إلى الجانب، كخط اليد. مثال: يُكتب الاقتباس مائلًا.
+	Draws a line under the selected text. Example: the key figure is underlined.	يرسم خطًا تحت النص المحدد. مثال: يُسطَّر الرقم الأهم.
+	Lines the text up along the left edge of its box, leaving the right edge ragged. Example: English text lined up on the left.	يصفّ النص على الحافة اليسرى لمربعه، ويترك الحافة اليمنى غير منتظمة. مثال: نص إنجليزي مصفوف على اليسار.
+	Centres every line of the text in its box. Example: a title centred over the slide.	يوسّط كل سطر من النص في مربعه. مثال: عنوان موسَّط فوق الشريحة.
+	Lines the text up along the right edge of its box, leaving the left edge ragged. Example: Arabic text lined up on the right.	يصفّ النص على الحافة اليمنى لمربعه، ويترك الحافة اليسرى غير منتظمة. مثال: نص عربي مصفوف على اليمين.
+	Stretches every line of the text to reach both edges of its box, widening the spaces between words. Example: a paragraph with straight edges on both sides.	يمدّ كل سطر من النص ليصل إلى حافتَي مربعه، بتوسيع المسافات بين الكلمات. مثال: فقرة بحافتَين مستقيمتَين من الجانبَين.
+	Opens the window where you type the exact width, height, position and rotation of the selected object. Example: a picture exactly 10 cm wide, 2 cm from the top.	يفتح النافذة التي تكتب فيها العرض والارتفاع والموضع والدوران الدقيقة للكائن المحدد. مثال: صورة بعرض ١٠ سم بالضبط، على ٢ سم من الأعلى.
+	Makes the selected text run from right to left, as Arabic does, with its punctuation and numbers placed the Arabic way. Example: a sentence pasted the wrong way round reads correctly again.	يجعل النص المحدد يجري من اليمين إلى اليسار كما تجري العربية، مع وضع علامات ترقيمه وأرقامه على الطريقة العربية. مثال: جملة لُصقت معكوسة تُقرأ من جديد صحيحة.
+	Moves the selected object to the very top of the pile, in front of everything else on the slide. Example: a label hidden under two pictures comes out on top of both.	ينقل الكائن المحدد إلى قمة الرُّكام، أمام كل شيء آخر على الشريحة. مثال: تخرج تسمية مخفية تحت صورتَين فوقهما معًا.
+	Moves the selected object to the very bottom of the pile, behind everything else on the slide. Example: a big rectangle goes behind the text and pictures as a background.	ينقل الكائن المحدد إلى قاع الرُّكام، خلف كل شيء آخر على الشريحة. مثال: يذهب مستطيل كبير خلف النص والصور كخلفية.
+	Joins the selected objects into one group that moves, resizes and copies as a single object. Example: a picture and its caption become one object you can drag together.	يضمّ الكائنات المحددة في مجموعة واحدة تتحرك وتتغيّر في الحجم وتُنسخ ككائن واحد. مثال: تصبح الصورة وتعليقها كائنًا واحدًا تسحبه معًا.
+	Takes a group apart into its separate objects again, each with its own handles. Example: the diagram's boxes can be moved one by one.	يفكّ المجموعة إلى كائناتها المنفصلة من جديد، لكل منها مقابضه. مثال: يمكن تحريك صناديق المخطط واحدًا واحدًا.
+	Puts back together the objects of a group you took apart, without selecting them all again. Example: after fixing one box, the diagram is one group again.	يعيد جمع كائنات مجموعة فككتها، دون أن تحددها كلها من جديد. مثال: بعد إصلاح صندوق واحد، يعود المخطط مجموعة واحدة.
+	Turns the selected object a quarter turn to the left (anticlockwise). Example: an arrow pointing right points up.	يدوّر الكائن المحدد ربع دورة إلى اليسار (عكس اتجاه الساعة). مثال: سهم يشير إلى اليمين يصير يشير إلى الأعلى.
+	Turns the selected object a quarter turn to the right (clockwise). Example: an arrow pointing right points down.	يدوّر الكائن المحدد ربع دورة إلى اليمين (باتجاه الساعة). مثال: سهم يشير إلى اليمين يصير يشير إلى الأسفل.
+	Mirrors the selected object left to right, as in a mirror beside it. Example: an arrow pointing right points left.	يعكس الكائن المحدد من اليسار إلى اليمين، كما في مرآة بجانبه. مثال: سهم يشير إلى اليمين يصير يشير إلى اليسار.
+	Mirrors the selected object top to bottom, as in a mirror under it. Example: an arrow pointing up points down.	يعكس الكائن المحدد من الأعلى إلى الأسفل، كما في مرآة تحته. مثال: سهم يشير إلى الأعلى يصير يشير إلى الأسفل.
+	Starts the slide show full screen from the first slide, whichever slide you are on. Example: the show begins with the title slide.	يبدأ عرض الشرائح بملء الشاشة من الشريحة الأولى، أيًّا كانت الشريحة التي أنت عليها. مثال: يبدأ العرض بشريحة العنوان.
+	Starts the slide show full screen from the slide you are on. Example: rehearse the last part from slide 12 without going through the beginning.	يبدأ عرض الشرائح بملء الشاشة من الشريحة التي أنت عليها. مثال: تدرّب على الجزء الأخير من الشريحة ١٢ دون المرور بالبداية.
+	Keeps the selected slide in the file but skips it during the show; its number is crossed out in the slide list. Example: the slide with the backup figures is hidden from the audience.	يبقي الشريحة المحددة في الملف لكنه يتجاوزها أثناء العرض؛ ويُشطب رقمها في قائمة الشرائح. مثال: تُخفى شريحة الأرقام الاحتياطية عن الحضور.
+	Sets how the show runs: on which screen, full screen or in a window, looping or not, and which slides to show. Example: loop the show on the reception screen all day.	يحدد كيفية تشغيل العرض: على أي شاشة، بملء الشاشة أو في نافذة، بتكرار أو من دونه، وأي شرائح تُعرض. مثال: كرّر العرض على شاشة الاستقبال طوال اليوم.
+	Shows which version of DeckCraft this is and who made it. Example: the version number to quote when you report a problem.	يعرض أي إصدار من DeckCraft هذا ومن صنعه. مثال: رقم الإصدار الذي تذكره حين تبلّغ عن مشكلة.
+	Opens a search box where you type a few letters of what you want to do and pick the command from the list, instead of looking for its button. Example: type «hide» and choose Hide Slide.	يفتح مربع بحث تكتب فيه بضعة حروف مما تريد فعله وتختار الأمر من القائمة، بدلًا من البحث عن زرّه. مثال: اكتب «إخفاء» واختر إخفاء الشريحة.
+	Removes the selected comment from the slide, with every reply under it; the slide itself is not changed. Example: once the figure is corrected, delete the «check this figure» note.	يحذف التعليق المحدد من الشريحة مع كل الردود التي تحته؛ الشريحة نفسها لا تتغير. مثال: بعد تصحيح الرقم، احذف ملاحظة «راجع هذا الرقم».
+	Removes the selected layout from the master; slides that used it move to the nearest remaining layout, so nothing is lost. Example: delete the unused «two pictures» layout to keep the Layout menu short.	يحذف التخطيط المحدد من الشريحة الرئيسية؛ الشرائح التي كانت تستخدمه تنتقل إلى أقرب تخطيط متبقٍ فلا يضيع شيء. مثال: احذف تخطيط «صورتان» غير المستخدم لتبقى قائمة التخطيط قصيرة.
+	Sets how large the slide is drawn in the window, from a far overview to a close-up for fine work; the slide itself keeps its size. Example: choose 200% to align two small boxes exactly, then Fit to Window.	يحدد حجم رسم الشريحة في النافذة، من نظرة عامة بعيدة إلى تقريب للعمل الدقيق؛ الشريحة نفسها تحتفظ بحجمها. مثال: اختر 200% لمحاذاة مربعين صغيرين بدقة، ثم «ملاءمة النافذة».
+	Draw	رسم

@@ -25,10 +25,10 @@ pub fn command(app: &mut SlideApp, p: &Value) -> Result<Value, String> {
         return Ok(json!({"open": false}));
     }
     let (uid, n, title, editor_slide) = {
-        let active = app.session.active().ok_or("New Window needs an open presentation")?;
+        let active = app.session.active().ok_or(tl!("New Window needs an open presentation"))?;
         let n = active.doc.slides.len();
         if n == 0 {
-            return Err("New Window needs a slide".into());
+            return Err(tl!("New Window needs a slide").into());
         }
         (active.uid, n, window_title(&active.title()), active.selection.slide.min(n - 1))
     };
@@ -94,12 +94,16 @@ pub fn show(app: &mut SlideApp, ctx: &egui::Context) {
                         ui.horizontal_centered(|ui| {
                             ui.label(RichText::new(title.clone()).font(crate::theme::bold(13.0)).color(t.text));
                             ui.add_space(16.0);
-                            ui.label(RichText::new(format!("Slide {} of {n}", slide + 1)).color(t.text_dim).font(crate::theme::font(13.0)));
+                            ui.label(
+                                RichText::new(crate::i18n::fmt(tl!("Slide {i} of {n}"), &[("i", &(slide + 1).to_string()), ("n", &n.to_string())]))
+                                    .color(t.text_dim)
+                                    .font(crate::theme::font(13.0)),
+                            );
                             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                                if ui.add_enabled(slide + 1 < n, egui::Button::new("Next")).clicked() {
+                                if ui.add_enabled(slide + 1 < n, egui::Button::new(tl!("Next"))).clicked() {
                                     let _ = app.run("view.newWindow", json!({"delta": 1}));
                                 }
-                                if ui.add_enabled(slide > 0, egui::Button::new("Previous")).clicked() {
+                                if ui.add_enabled(slide > 0, egui::Button::new(tl!("Previous"))).clicked() {
                                     let _ = app.run("view.newWindow", json!({"delta": -1}));
                                 }
                             });

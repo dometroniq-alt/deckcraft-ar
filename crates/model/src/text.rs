@@ -154,8 +154,15 @@ pub enum Align {
     Center,
     Right,
     Justify,
-    /// Justified with kashida (tatweel) elongation for Arabic (`justLow`).
+    /// Justified with kashida (tatweel) elongation for Arabic (`justLow`): the joints take a
+    /// little of the slack, the spaces the rest.
     JustLow,
+    /// Kashida justification, medium: joints and spaces share the slack about evenly. Saved to
+    /// PowerPoint as `justLow` (the only kashida alignment it knows).
+    JustMedium,
+    /// Kashida justification, high: the joints take nearly all the slack. Saved to PowerPoint as
+    /// `justLow`.
+    JustHigh,
     Distributed,
 }
 
@@ -166,9 +173,23 @@ impl Align {
             Align::Center => "ctr",
             Align::Right => "r",
             Align::Justify => "just",
-            Align::JustLow => "justLow",
+            Align::JustLow | Align::JustMedium | Align::JustHigh => "justLow",
             Align::Distributed => "dist",
         }
+    }
+    /// The share of a justified line's slack that kashida joints take (the spaces take the rest)
+    /// for the kashida alignments; `None` for the others.
+    pub fn kashida_share(self) -> Option<f64> {
+        match self {
+            Align::JustLow => Some(0.35),
+            Align::JustMedium => Some(0.6),
+            Align::JustHigh => Some(0.9),
+            Align::Left | Align::Center | Align::Right | Align::Justify | Align::Distributed => None,
+        }
+    }
+    /// Justified alignments: every line but the last reaches both margins.
+    pub fn is_justified(self) -> bool {
+        matches!(self, Align::Justify | Align::JustLow | Align::JustMedium | Align::JustHigh | Align::Distributed)
     }
     pub fn from_xml(s: &str) -> Option<Self> {
         Some(match s {
