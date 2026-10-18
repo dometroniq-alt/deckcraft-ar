@@ -293,6 +293,10 @@ Forks and modified versions must remove them.
   <sub>Made by the <a href="https://getartcraft.com/">ArtCraft</a> team and community.</sub>
 </p>
 
+## DeckCraft AR: exchanging with WordCraft AR and GridCraft AR
+
+Home › Send hands the presentation to WordCraft AR or GridCraft AR as a Craft exchange file (`.craftx`, right-to-left direction, alignment and kashida kept), and Receive… / File › Open reads one back as slides; the format is specified in [`docs/ar-exchange.md`](docs/ar-exchange.md).
+
 ## Releasing DeckCraft AR
 
 No tag pushing and no clicking through the web UI (the fork's GitHub proxy forbids both):

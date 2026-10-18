@@ -54,6 +54,9 @@ pub const INVENTORY: &[(&str, &str, Option<Icon>)] = &[
     ("drawing_group", "Shape Outline", Some(Icon::ShapeOutline)),
     ("drawing_group", "Shape Effects", Some(Icon::ShapeEffects)),
     ("home", "Replace Fonts…", Some(Icon::Fonts)),
+    ("send_group", "Send to\nWordCraft", Some(Icon::SendWord)),
+    ("send_group", "Send to\nGridCraft", Some(Icon::SendGrid)),
+    ("send_group", "Receive…", Some(Icon::ReceiveCraft)),
     ("insert", "Table", Some(Icon::Table)),
     ("insert", "Screenshot", Some(Icon::Screenshot)),
     ("insert", "Icons", Some(Icon::Icons)),
@@ -313,8 +316,10 @@ impl Report {
 }
 
 /// Commands the self-test leaves out: they touch files on disk or close the scratch presentation
-/// (the same ones the engine's fuzz test skips).
-pub const SKIPPED: &[&str] = &["file.close", "file.open", "file.save", "file.saveAs", "file.export", "file.saveTemplate"];
+/// (the same ones the engine's fuzz test skips), and the two Send commands, which would start
+/// WordCraft AR or GridCraft AR from the gallery.
+pub const SKIPPED: &[&str] =
+    &["file.close", "file.open", "file.save", "file.saveAs", "file.export", "file.saveTemplate", "send.toWordCraft", "send.toGridCraft"];
 
 /// The scratch presentation the self-test works on: the sample deck, in a session of its own,
 /// with its first shape selected so shape commands have something to act on.

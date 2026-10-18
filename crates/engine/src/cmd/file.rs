@@ -38,11 +38,11 @@ pub fn specs() -> Vec<CommandSpec> {
             adopt
         ),
         cmd!(noundo "file.openBytes", "Open Data", [], None, "{name, data: base64}", always, open_bytes),
-        cmd!(noundo "file.save", "Save", ["File"], Some("Cmd+S"), "{path?, format?: deckcraft|pptx}", has_doc, save),
+        cmd!(noundo "file.save", "Save", ["File"], Some("Cmd+S"), "{path?, format?: deckcraft|pptx|craftx}", has_doc, save),
         cmd!(noundo "file.saveAs", "Save As…", ["File"], Some("Cmd+Shift+S"), "{path, format?}", has_doc, save_as),
         cmd!(noundo "file.saveTemplate", "Save as Template…", ["File"], None, "{path}", has_doc, save_as),
         cmd!(query "file.saveBytes", "Save to Data", [], None, "{format?: deckcraft|pptx} → {data: base64}", has_doc, save_bytes_cmd),
-        cmd!(noundo "file.export", "Export…", ["File"], None, "{path, format?: png|jpeg|pptx|deckcraft|outline|pdf|gif (else by path), slide?: index, all?: bool, scale?: px per pt, layout?: slides|notes|handouts (pdf), perPage?: 1|2|3|4|6|9, paper?: letter|a4|legal|a3 (pdf), orientation?: portrait|landscape (pdf), dpi?, slides?: [index]|range (\"1-3,5\"), includeHidden?, textLayer?, frame?, width?: px 16-3840|small|medium|large|extraLarge (gif), secondsPerSlide?: 0.1-600 (gif; 5), loop?: bool (gif; true: forever)} → {path, bytes} or {files} (png, jpeg); gif adds frames, width, height, secondsPerSlide", has_doc, export),
+        cmd!(noundo "file.export", "Export…", ["File"], None, "{path, format?: png|jpeg|pptx|deckcraft|outline|craftx|pdf|gif (else by path), slide?: index, all?: bool, scale?: px per pt, layout?: slides|notes|handouts (pdf), perPage?: 1|2|3|4|6|9, paper?: letter|a4|legal|a3 (pdf), orientation?: portrait|landscape (pdf), dpi?, slides?: [index]|range (\"1-3,5\"), includeHidden?, textLayer?, frame?, width?: px 16-3840|small|medium|large|extraLarge (gif), secondsPerSlide?: 0.1-600 (gif; 5), loop?: bool (gif; true: forever)} → {path, bytes} or {files} (png, jpeg); gif adds frames, width, height, secondsPerSlide", has_doc, export),
         cmd!(
             query "file.info",
             "Info",
@@ -256,6 +256,11 @@ fn open_other(name: &str, bytes: &[u8]) -> Result<Presentation> {
         return Err(EngineError::Other(format!("{name} is password-protected. DeckCraft can't open password-protected presentations yet.")));
     }
     let lower = name.to_ascii_lowercase();
+    // DeckCraft AR: a Craft exchange file from WordCraft AR or GridCraft AR (`docs/ar-exchange.md`).
+    if lower.ends_with(".craftx") || deckcraft_format::craftx::sniff(bytes) {
+        let text = String::from_utf8_lossy(bytes);
+        return deckcraft_format::craftx::read(&text).map_err(|e| EngineError::Other(format!("{name}: {e}")));
+    }
     if lower.ends_with(".txt") || lower.ends_with(".md") {
         let text = String::from_utf8_lossy(bytes);
         let mut p = defaults::blank_presentation(defaults::WIDE, Default::default(), false);
@@ -372,10 +377,19 @@ pub fn save_bytes(doc: &Presentation, format: &str) -> Result<Vec<u8>> {
     match format {
         f @ ("pptx" | "potx" | "ppsx") => deckcraft_pptx::export_as(doc, f).map_err(|e| EngineError::Other(e.to_string())),
         "outline" | "txt" => Ok(deckcraft_format::slides_to_outline(doc).into_bytes()),
+        "craftx" => craftx_bytes(doc, None),
         "pdf" => deckcraft_pdf::export(doc, &Default::default()).map_err(|e| EngineError::Other(e.to_string())),
         "gif" => gif_bytes(doc, &Value::Null),
         _ => deckcraft_format::save(doc).map_err(|e| EngineError::Other(e.to_string())),
     }
+}
+
+/// DeckCraft AR: the presentation as a Craft exchange file, titled by its Title property, else by
+/// the file's stem, else "Presentation".
+pub fn craftx_bytes(doc: &Presentation, path: Option<&str>) -> Result<Vec<u8>> {
+    let stem = path.and_then(|p| std::path::Path::new(p).file_stem()).map(|s| s.to_string_lossy().to_string()).filter(|s| !s.is_empty());
+    let title = if doc.props.title.trim().is_empty() { stem.unwrap_or_else(|| "Presentation".into()) } else { doc.props.title.clone() };
+    deckcraft_format::craftx::write(doc, &title).map(String::into_bytes).map_err(|e| EngineError::Other(e.to_string()))
 }
 
 /// Paper sizes for notes and handouts, for the UI's Print page.
@@ -447,7 +461,7 @@ pub fn pdf_bytes(doc: &Presentation, p: &Value) -> Result<Vec<u8>> {
 }
 
 /// The output extensions [`format_for_path`] maps to a writer of that format.
-pub const WRITABLE_EXTENSIONS: &[&str] = &["deckcraft", "pptx", "potx", "ppsx", "pdf", "png", "jpg", "jpeg", "gif", "txt", "md"];
+pub const WRITABLE_EXTENSIONS: &[&str] = &["deckcraft", "pptx", "potx", "ppsx", "pdf", "png", "jpg", "jpeg", "gif", "txt", "md", "craftx"];
 
 /// The format a file named `path` is written in, or `None` when its extension names no format
 /// DeckCraft writes (`.odp`, `.svg`, no extension …): [`format_for_path`] would save
@@ -480,6 +494,8 @@ pub fn format_for_path(path: &str) -> &'static str {
         "gif"
     } else if l.ends_with(".txt") || l.ends_with(".md") {
         "outline"
+    } else if l.ends_with(".craftx") {
+        "craftx"
     } else {
         "deckcraft"
     }
@@ -510,7 +526,7 @@ fn save(s: &mut Session, p: &Value) -> Result<Value> {
         return Ok(json!({"needsPath": true}));
     };
     let format = str_param(p, "format").unwrap_or(format_for_path(&path));
-    let bytes = save_bytes(&s.doc()?.doc, format)?;
+    let bytes = if format == "craftx" { craftx_bytes(&s.doc()?.doc, Some(&path))? } else { save_bytes(&s.doc()?.doc, format)? };
     write_file(&path, &bytes)?;
     mark_saved(s, Some(path.clone()))?;
     Ok(json!({"path": path, "bytes": bytes.len()}))
@@ -645,6 +661,11 @@ fn export(s: &mut Session, p: &Value) -> Result<Value> {
                 "height": out.height,
                 "secondsPerSlide": f64::from(out.delay_cs) / 100.0,
             }))
+        }
+        "craftx" => {
+            let bytes = craftx_bytes(&st.doc, Some(&path))?;
+            write_file(&path, &bytes)?;
+            Ok(json!({"path": path, "bytes": bytes.len()}))
         }
         "pptx" | "potx" | "ppsx" | "deckcraft" | "outline" | "txt" => {
             let bytes = save_bytes(&st.doc, &format)?;

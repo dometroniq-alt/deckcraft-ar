@@ -241,6 +241,22 @@ pub const ENTRIES: &[Entry] = &[
         "Suggests ready-made designs for the current slide's content in a side pane; click one to apply it. Example: a slide with a title and a picture is offered three polished arrangements.",
         |d| d.hm_design_ideas(),
     ),
+    // ---- Send (Craft exchange) ----
+    Entry::new(
+        "Send to\nWordCraft",
+        "Hands the presentation to WordCraft AR as a document: every slide becomes a heading with its text, lists, tables and pictures under it, keeping right-to-left direction, alignment and kashida; the file is also saved in the exchange folder. Example: a 12-slide deck becomes a document with 12 headings, right-to-left and kashida kept.",
+        |d| d.hm_send_word(),
+    ),
+    Entry::new(
+        "Send to\nGridCraft",
+        "Hands the presentation to GridCraft AR as a workbook: each table lands on its own sheet and the slide text goes into a Text sheet, right-to-left direction and kashida kept per cell. Example: a slide with a 12-row duty roster becomes a sheet with 12 rows.",
+        |d| d.hm_send_grid(),
+    ),
+    Entry::new(
+        "Receive…",
+        "Opens a Craft exchange file (.craftx) from WordCraft AR or GridCraft AR as a new presentation: each heading starts a slide, long text continues on «(2)», «(3)»… slides, tables get slides of their own, and direction, alignment and kashida stay as they were. Example: a 3-page duties document becomes 7 slides, every paragraph still right-to-left and justified with kashida.",
+        |d| d.hm_receive_craft(),
+    ),
 ];
 
 /// A light tint of a colour for shading and translucent marks.
@@ -1220,6 +1236,100 @@ impl Draw<'_> {
                 Stroke::new(if chosen { 1.8 } else { 1.0 }, if chosen { self.accent() } else { self.t.border_strong.linear_multiply(alpha) }),
                 egui::StrokeKind::Inside,
             );
+        }
+    }
+
+    // ---- Send (Craft exchange) ----
+
+    /// A tall page at `x, y` of `w × h` (white, grey border); returns its text area.
+    fn hm_page(&self, x: f32, y: f32, w: f32, h: f32) -> Rect {
+        let r = Rect::from_min_size(self.at(x, y), vec2(w, h));
+        self.p.rect_filled(r, 1.5, Color32::WHITE);
+        self.p.rect_stroke(r, 1.5, self.stroke(self.t.border_strong), egui::StrokeKind::Inside);
+        r.shrink2(vec2(6.0, 6.0))
+    }
+    /// A slide's lines flow into a tall page: the arrow grows, then the page fills from the top
+    /// with a heading (the slide's title) and the body lines, right-to-left.
+    pub(super) fn hm_send_word(&self) {
+        let a = self.hm_slide(6.0, 30.0, 70.0, 40.0);
+        self.hm_title(a, self.ink());
+        self.hm_body(a, 3, 7.0, self.grey());
+        let go = self.reveal(0.0, 0.25);
+        if go > 0.0 {
+            self.arrow_right(self.at(80.0, 52.0), self.at(80.0 + 16.0 * go, 52.0));
+        }
+        let page = self.hm_page(104.0, 8.0, 62.0, 88.0);
+        let k = self.reveal(0.25, 0.8);
+        let n = (1.0 + 4.0 * k).floor() as usize;
+        if n >= 1 {
+            let y = page.min.y + 4.0;
+            let w = page.width() * 0.6;
+            self.line(pos2(page.max.x - w, y), pos2(page.max.x, y), self.accent(), 3.0);
+        }
+        if n >= 2 {
+            let area = Rect::from_min_max(pos2(page.min.x, page.min.y + 10.0), page.max);
+            let widths: Vec<f32> = [1.0, 0.92, 0.96, 0.6].iter().take(n - 1).map(|f| area.width() * f).collect();
+            self.text_lines(area, true, &widths, 10.0, self.grey());
+        }
+    }
+    /// A slide's table drops into a grid: the table slides down and right into a sheet whose
+    /// cells light up as it lands.
+    pub(super) fn hm_send_grid(&self) {
+        let a = self.hm_slide(6.0, 30.0, 70.0, 40.0);
+        self.hm_title(a, self.ink());
+        let tbl = Rect::from_min_max(pos2(a.min.x + 2.0, a.min.y + 9.0), pos2(a.max.x - 2.0, a.max.y - 1.0));
+        self.table(tbl, 3, 3);
+        let go = self.reveal(0.0, 0.25);
+        if go > 0.0 {
+            self.arrow_right(self.at(80.0, 52.0), self.at(80.0 + 16.0 * go, 52.0));
+        }
+        let sheet = Rect::from_min_size(self.at(102.0, 14.0), vec2(66.0, 76.0));
+        self.p.rect_filled(sheet, 1.5, Color32::WHITE);
+        self.p.rect_stroke(sheet, 1.5, self.stroke(self.t.border_strong), egui::StrokeKind::Inside);
+        self.grid(sheet.shrink(3.0), 7, 3, self.t.border);
+        let k = self.reveal(0.25, 0.8);
+        if k > 0.0 {
+            let target = Rect::from_min_size(sheet.min + vec2(3.0, 3.0), vec2(sheet.width() - 6.0, (sheet.height() - 6.0) * 3.0 / 7.0));
+            let from = tbl.translate(vec2(0.0, -20.0));
+            let r = Rect::from_min_max(from.min + (target.min - from.min) * k, from.max + (target.max - from.max) * k);
+            self.table(r, 3, 3);
+            if k >= 1.0 {
+                self.p.rect_stroke(r, 0.0, Stroke::new(1.5, self.accent()), egui::StrokeKind::Inside);
+            }
+        }
+    }
+    /// A page's paragraphs fly into slides: the heading becomes a slide title and the lines
+    /// settle as its body; a long page spills onto a second slide.
+    pub(super) fn hm_receive_craft(&self) {
+        let page = self.hm_page(6.0, 8.0, 62.0, 88.0);
+        let hy = page.min.y + 4.0;
+        let hw = page.width() * 0.6;
+        self.line(pos2(page.max.x - hw, hy), pos2(page.max.x, hy), self.ink(), 3.0);
+        let area = Rect::from_min_max(pos2(page.min.x, page.min.y + 10.0), page.max);
+        let widths = [1.0, 0.92, 0.96, 0.9, 0.94, 0.6];
+        let k = self.reveal(0.2, 0.8);
+        let go = self.reveal(0.0, 0.2);
+        if go > 0.0 {
+            self.arrow_right(self.at(72.0, 52.0), self.at(72.0 + 16.0 * go, 52.0));
+        }
+        let s1 = self.hm_slide(96.0, 10.0, 72.0, 40.0);
+        let s2 = self.hm_slide(96.0, 56.0, 72.0, 40.0);
+        self.hm_title(s1, self.accent());
+        self.hm_title(s2, self.accent());
+        for (i, f) in widths.iter().enumerate() {
+            let y0 = area.min.y + 4.0 + i as f32 * 10.0;
+            let w0 = area.width() * f;
+            let (slide, row) = if i < 3 { (s1, i) } else { (s2, i - 3) };
+            let y1 = slide.min.y + 10.0 + row as f32 * 7.0;
+            let w1 = slide.width() * 0.8 * f;
+            let y = y0 + (y1 - y0) * k;
+            let x1 = area.max.x + (slide.max.x - area.max.x) * k;
+            let w = w0 + (w1 - w0) * k;
+            let c = if k >= 1.0 { self.grey() } else { self.accent() };
+            self.line(pos2(x1 - w, y), pos2(x1, y), c, 1.5);
+        }
+        if k >= 1.0 {
+            self.label(pos2(s2.min.x, s2.min.y + 3.0), "(2)", 6.0, self.grey(), Align2::LEFT_CENTER);
         }
     }
 }

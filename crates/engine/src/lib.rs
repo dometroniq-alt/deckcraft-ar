@@ -10,6 +10,7 @@
 pub mod cmd;
 pub mod compare;
 pub mod connect;
+pub mod craft_launch;
 pub mod drawtable;
 pub mod file_access;
 pub mod fonts;

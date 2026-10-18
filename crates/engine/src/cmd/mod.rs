@@ -22,6 +22,7 @@ pub mod reuse;
 pub mod review;
 mod richclip;
 pub mod selection;
+pub mod send;
 pub mod shape;
 pub mod slide;
 pub mod smartart;
@@ -190,6 +191,7 @@ pub fn command_specs() -> &'static [CommandSpec] {
         v.extend(artistic::specs());
         v.extend(zoom::specs());
         v.extend(compress::specs());
+        v.extend(send::specs());
         v
     })
 }

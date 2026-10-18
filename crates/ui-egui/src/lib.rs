@@ -154,6 +154,8 @@ fn is_presentation_name(lower: &str) -> bool {
         || lower.ends_with(".pptx")
         || lower.ends_with(".potx")
         || lower.ends_with(".ppsx")
+        // DeckCraft AR: a Craft exchange file opens as a new presentation.
+        || lower.ends_with(".craftx")
 }
 
 /// File → Open keeps the requested operation: a presentation opens, an outline becomes slides.
@@ -426,6 +428,7 @@ pub const UI_COMMANDS: &[(&str, &str, Option<&str>, &str)] = &[
     ("app.preferences", "Preferences…", Some("Cmd+,"), "{}"),
     ("app.openDialog", "Open…", None, "{purpose?}"),
     ("app.insertPictureDialog", "Picture from File…", None, "{}"),
+    ("app.receiveCraftx", "Receive from WordCraft / GridCraft…", None, "{}: picks a .craftx file and opens it as a new presentation (DeckCraft AR)"),
     ("app.smartArtPictureDialog", "Insert Picture in SmartArt…", None, "{id?, index}"),
     ("app.changePictureDialog", "Change Picture…", None, "{}"),
     ("app.insertAudioDialog", "Audio from File…", None, "{}"),
@@ -705,6 +708,19 @@ impl SlideApp {
             Err(e) => self.set_status(e.clone()),
         }
         self.drain_requests();
+        // DeckCraft AR: the engine's English send message, in the interface language.
+        if let Ok(v) = &r
+            && matches!(id, "send.toWordCraft" | "send.toGridCraft")
+        {
+            let app = if id == "send.toWordCraft" { "WordCraft AR" } else { "GridCraft AR" };
+            let path = v.get("path").and_then(Value::as_str).unwrap_or_default();
+            let text = if v.get("launched").and_then(Value::as_bool) == Some(true) {
+                crate::i18n::fmt(tl!("Sent to {app}"), &[("app", app)])
+            } else {
+                crate::i18n::fmt(tl!("Saved {path} — open it in {app} (File › Open)"), &[("path", path), ("app", app)])
+            };
+            self.set_status(text);
+        }
         r
     }
 
@@ -780,6 +796,7 @@ impl SlideApp {
             "outline" | "txt" => ("txt", "outline", false),
             "deckcraft" => ("deckcraft", "deckcraft", false),
             "gif" => ("gif", "gif", false),
+            "craftx" => ("craftx", "craftx", false),
             other => {
                 self.set_status(crate::i18n::fmt(tl!("DeckCraft can't export “{format}”"), &[("format", other)]));
                 return false;
@@ -1070,6 +1087,12 @@ impl SlideApp {
             "app.preferences" => self.dialog = Some(dialogs::Dialog::new("preferences")),
             "app.openDialog" => self.pick_and_open(),
             "app.insertPictureDialog" => self.pick_and_insert("picture", "insert.picture"),
+            "app.receiveCraftx" => {
+                if self.services.pick_open.is_none() && self.services.open_async.is_none() {
+                    return Err(tl!("Receiving a Craft exchange file needs the desktop app").into());
+                }
+                self.pick_and_run("craftx", "send.importCraftx", &json!({}));
+            }
             "app.smartArtPictureDialog" => {
                 if self.services.pick_open.is_none() {
                     return Err(tl!("picking a SmartArt picture needs the desktop app").into());

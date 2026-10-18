@@ -275,13 +275,13 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
         }
         if offset > 1.0 {
             let left = Rect::from_min_max(r.left_top(), pos2(r.left() + 18.0, r.bottom()));
-            if edge_cue(&mut cui, left, "‹", &tl!("Scroll ribbon left"), &t) {
+            if edge_cue(&mut cui, left, "‹", tl!("Scroll ribbon left"), &t) {
                 next = Some(offset - 160.0);
             }
         }
         if overflow - offset > 1.0 {
             let right = Rect::from_min_max(pos2(r.right() - 18.0, r.top()), r.right_bottom());
-            if edge_cue(&mut cui, right, "›", &tl!("Scroll ribbon right"), &t) {
+            if edge_cue(&mut cui, right, "›", tl!("Scroll ribbon right"), &t) {
                 next = Some(offset + 160.0);
             }
         }
@@ -1300,6 +1300,19 @@ fn home(app: &mut SlideApp, ui: &mut Ui) {
     });
     group(ui, |ui| {
         big(app, ui, Icon::DesignIdeas, "Design\nIdeas", "view.pane", json!({"pane": "designer"}));
+    });
+    send_group(app, ui);
+}
+
+/// DeckCraft AR: Home › Send — the presentation to WordCraft AR or GridCraft AR as a Craft
+/// exchange file, and Receive… to open one (`docs/ar-exchange.md`).
+fn send_group(app: &mut SlideApp, ui: &mut Ui) {
+    group(ui, |ui| {
+        big(app, ui, Icon::SendWord, "Send to\nWordCraft", "send.toWordCraft", json!({}));
+        big(app, ui, Icon::SendGrid, "Send to\nGridCraft", "send.toGridCraft", json!({}));
+        rows(ui, |ui| {
+            small(app, ui, Icon::ReceiveCraft, "Receive…", "app.receiveCraftx", json!({}));
+        });
     });
 }
 

@@ -211,11 +211,13 @@ impl Backstage {
 }
 
 /// Save As and Change File Type: (id for [`SlideApp::export_as`], label, detail).
-pub const SAVE_TYPES: [(&str, &str, &str); 6] = [
+pub const SAVE_TYPES: [(&str, &str, &str); 7] = [
     ("pptx", "PowerPoint Presentation (*.pptx)", "Opens in PowerPoint and other presentation apps"),
     ("deckcraft", "DeckCraft Presentation (*.deckcraft)", "DeckCraft's own format: everything is kept"),
     ("pdf", "PDF (*.pdf)", "A fixed copy that keeps its layout on any device"),
     ("outline", "Outline (*.txt)", "The slide titles and bullet text as plain text"),
+    // DeckCraft AR: the hand-off format WordCraft AR and GridCraft AR read (docs/ar-exchange.md).
+    ("craftx", "Craft exchange (*.craftx)", "Text, lists, tables and pictures for WordCraft AR and GridCraft AR, direction and kashida kept"),
     ("png", "PNG Picture (*.png)", "The current slide as a picture"),
     ("jpeg", "JPEG Picture (*.jpg)", "The current slide as a compressed picture"),
 ];

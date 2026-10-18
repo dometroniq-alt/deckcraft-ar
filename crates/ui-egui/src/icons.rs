@@ -156,6 +156,10 @@ icons! {
     SlideSize => "slide-size",
     FormatBackground => "format-background",
     DesignIdeas => "design-ideas",
+    // DeckCraft AR: Home › Send (Craft exchange with WordCraft AR and GridCraft AR)
+    SendWord => "send-word",
+    SendGrid => "send-grid",
+    ReceiveCraft => "receive-craft",
     // Transitions / animations
     Preview => "preview",
     EffectOptions => "effect-options",
@@ -1621,6 +1625,37 @@ fn draw(p: &Pen<'_>, icon: Icon) {
                 let (s, c) = rad(a).sin_cos();
                 p.seg((12.0 + c * 8.0, 9.5 + s * 8.0), (12.0 + c * 10.0, 9.5 + s * 10.0), Y);
             }
+        }
+
+        // ----- DeckCraft AR: Home › Send -----
+        // A slide (16:9 frame with a title line) and an arrow carrying it into a tall page.
+        I::SendWord => {
+            p.frame(1.5, 6.0, 12.5, 13.0);
+            p.seg((3.5, 8.5), (9.0, 8.5), B);
+            p.seg((3.5, 10.5), (7.5, 10.5), K.a(0.5));
+            p.page(14.5, 3.0, 22.5, 21.0, t(G), K);
+            p.seg((16.5, 11.0), (20.5, 11.0), K.a(0.5));
+            p.seg((16.5, 13.5), (20.5, 13.5), K.a(0.5));
+            p.seg((16.5, 16.0), (19.5, 16.0), K.a(0.5));
+            p.arrow((7.0, 17.5), (14.0, 17.5), G);
+        }
+        // A slide with a small table and an arrow carrying it into a grid of cells.
+        I::SendGrid => {
+            p.frame(1.5, 6.0, 12.5, 13.0);
+            p.seg((3.5, 8.5), (9.0, 8.5), B);
+            p.table(3.5, 10.0, 10.5, 12.5, 1, 3, N);
+            p.table(14.5, 5.0, 22.5, 19.0, 4, 2, t(G));
+            p.arrow((7.0, 17.5), (14.0, 17.5), G);
+        }
+        // A page on the left, an arrow back into a slide on the right.
+        I::ReceiveCraft => {
+            p.page(1.5, 3.0, 9.5, 21.0, N, K);
+            p.seg((3.5, 11.0), (7.5, 11.0), K.a(0.5));
+            p.seg((3.5, 13.5), (7.5, 13.5), K.a(0.5));
+            p.frame(11.5, 6.0, 22.5, 13.0);
+            p.seg((13.5, 8.5), (19.0, 8.5), B);
+            p.seg((13.5, 10.5), (17.5, 10.5), K.a(0.5));
+            p.arrow((4.0, 17.5), (17.0, 17.5), G);
         }
 
         // ----- Transitions / animations -----

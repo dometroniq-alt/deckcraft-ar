@@ -1114,3 +1114,20 @@
 	Draw	رسم
 	Scroll ribbon left	تمرير الشريط إلى اليسار
 	Scroll ribbon right	تمرير الشريط إلى اليمين
+
+# DeckCraft AR: Home › Send — Craft exchange (.craftx) with WordCraft AR and GridCraft AR
+	Send to\nWordCraft	إرسال إلى\nWordCraft
+	Send to\nGridCraft	إرسال إلى\nGridCraft
+	Receive…	استلام…
+	Send to WordCraft AR	إرسال إلى WordCraft AR
+	Send to GridCraft AR	إرسال إلى GridCraft AR
+	Receive from WordCraft / GridCraft	استلام من WordCraft / GridCraft
+	Receive from WordCraft / GridCraft…	استلام من WordCraft / GridCraft…
+	Sent to {app}	أُرسل إلى {app}
+	Saved {path} — open it in {app} (File › Open)	حُفظ في {path} — افتحه في {app} (ملف › فتح)
+	Receiving a Craft exchange file needs the desktop app	استلام ملف تبادل Craft يحتاج إلى تطبيق سطح المكتب
+	Craft exchange (*.craftx)	ملف تبادل Craft (*.craftx)
+	Hands the presentation to WordCraft AR as a document: every slide becomes a heading with its text, lists, tables and pictures under it, keeping right-to-left direction, alignment and kashida; the file is also saved in the exchange folder. Example: a 12-slide deck becomes a document with 12 headings, right-to-left and kashida kept.	يسلّم العرض إلى WordCraft AR كمستند: تصبح كل شريحة عنوانًا تحته نصها وقوائمها وجداولها وصورها، مع الحفاظ على اتجاه اليمين إلى اليسار والمحاذاة والكشيدة؛ ويُحفظ الملف أيضًا في مجلد التبادل. مثال: عرض من 12 شريحة يصبح مستندًا بـ 12 عنوانًا، مع بقاء اتجاه اليمين إلى اليسار والكشيدة.
+	Hands the presentation to GridCraft AR as a workbook: each table lands on its own sheet and the slide text goes into a Text sheet, right-to-left direction and kashida kept per cell. Example: a slide with a 12-row duty roster becomes a sheet with 12 rows.	يسلّم العرض إلى GridCraft AR كمصنّف: يحطّ كل جدول في ورقة خاصة به ويذهب نص الشرائح إلى ورقة «Text»، مع الحفاظ على اتجاه اليمين إلى اليسار والكشيدة في كل خلية. مثال: شريحة فيها جدول واجبات من 12 صفًا تصبح ورقة من 12 صفًا.
+	Opens a Craft exchange file (.craftx) from WordCraft AR or GridCraft AR as a new presentation: each heading starts a slide, long text continues on «(2)», «(3)»… slides, tables get slides of their own, and direction, alignment and kashida stay as they were. Example: a 3-page duties document becomes 7 slides, every paragraph still right-to-left and justified with kashida.	يفتح ملف تبادل Craft (.craftx) من WordCraft AR أو GridCraft AR كعرض جديد: يبدأ كل عنوان شريحة، ويتابع النص الطويل على شرائح «(2)» و«(3)»…، وتحصل الجداول على شرائح خاصة بها، ويبقى الاتجاه والمحاذاة والكشيدة كما كانت. مثال: مستند واجبات من 3 صفحات يصبح 7 شرائح، وكل فقرة لا تزال من اليمين إلى اليسار ومضبوطة بالكشيدة.
+	Text, lists, tables and pictures for WordCraft AR and GridCraft AR, direction and kashida kept	النصوص والقوائم والجداول والصور لبرنامجي WordCraft AR وGridCraft AR، مع الحفاظ على الاتجاه والكشيدة

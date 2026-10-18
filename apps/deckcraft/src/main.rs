@@ -1,6 +1,7 @@
 //! DeckCraft desktop app.
 //!
-//! Usage: `deckcraft [--control <port>] [--sample] [--show] [files…]`
+//! Usage: `deckcraft [--control <port>] [--sample] [--show] [files…]` (a `.pptx`, `.deckcraft`,
+//! outline or `.craftx` file each; DeckCraft AR's siblings start it with a `.craftx` argument)
 //! `deckcraft --help` prints the flags and exits. `deckcraft --version` prints the version and exits.
 //!
 //! `--control <port>` (or `DECKCRAFT_CONTROL_PORT`) starts a localhost JSON-lines control server:
@@ -102,10 +103,13 @@ fn services() -> Services {
                 ),
                 "video" => d.add_filter("Video", &["mp4", "m4v", "mov", "webm", "mkv", "wmv"]),
                 "theme" => d.add_filter("Themes and presentations", &["thmx", "pptx", "potx", "ppsx"]).add_filter("Office Theme", &["thmx"]),
+                // DeckCraft AR: Home › Send › Receive… (a Craft exchange file from WordCraft AR or GridCraft AR).
+                "craftx" => d.add_filter("Craft exchange (*.craftx)", &["craftx"]),
                 _ => d
-                    .add_filter("Presentations", &["deckcraft", "pptx", "potx", "ppsx"])
+                    .add_filter("Presentations", &["deckcraft", "pptx", "potx", "ppsx", "craftx"])
                     .add_filter("DeckCraft", &["deckcraft"])
                     .add_filter("PowerPoint", &["pptx", "potx", "ppsx"])
+                    .add_filter("Craft exchange (*.craftx)", &["craftx"])
                     .add_filter("Outline", &["txt", "md"]),
             };
             d.pick_file().map(|p| p.to_string_lossy().to_string())
@@ -308,5 +312,20 @@ mod tests {
             assert!(sample);
             assert!(!show);
         }
+    }
+
+    /// DeckCraft AR: a sibling app starts DeckCraft with a `.craftx` path as its only argument;
+    /// it is opened like any other file (`open_path` → `file.open`, which reads `.craftx`).
+    #[test]
+    fn a_craftx_argument_is_opened_like_a_presentation() {
+        let path = std::env::temp_dir().join("craft-exchange").join("واجبات-120000.craftx");
+        let arg = path.to_string_lossy().to_string();
+        let launch = startup(None, [arg.clone()]);
+        let Startup::Run { control_port, files, sample, show } = launch else { panic!("a file argument runs the app") };
+        assert_eq!(control_port, None);
+        assert_eq!(files, [arg]);
+        assert!(!sample && !show);
+        // The engine's file command takes the extension (no file needed to know the format).
+        assert_eq!(deckcraft_engine::cmd::file::format_for_path("x.craftx"), "craftx");
     }
 }
